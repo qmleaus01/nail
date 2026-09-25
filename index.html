@@ -1,0 +1,1978 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nails Avenue — Where Elegance Meets Every Fingertip</title>
+<meta name="description" content="Nails Avenue — elegant manicures, pedicures, nail art and extensions. Design your own nails in our 2D Nail Design Studio and book online.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --primary:#D9A6A0;--blush:#F3D9D5;--beige:#F5EDE4;--ivory:#FBF7F2;
+  --text:#4A342E;--muted:#8A7267;--mocha:#6E4B3A;
+  --line:rgba(74,52,46,.12);--line-2:rgba(74,52,46,.2);
+  --ok:#7D9A7A;--warn:#C08A5B;--err:#B5615A;
+  --shadow:0 18px 50px rgba(74,52,46,.09);--shadow-sm:0 6px 18px rgba(74,52,46,.06);
+  --r:22px;--r-sm:14px;
+  --serif:'Playfair Display','Cormorant Garamond',Georgia,serif;
+  --sans:'Inter','Lato',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --ease:cubic-bezier(.22,.61,.36,1);--maxw:1200px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--beige);color:var(--text);line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img,svg{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+input,select,textarea{font:inherit;color:inherit}
+h1,h2,h3,h4{font-family:var(--serif);font-weight:500;letter-spacing:.01em;line-height:1.18}
+h1{font-size:clamp(2.5rem,5.6vw,4.5rem)}
+h2{font-size:clamp(1.9rem,3.6vw,2.8rem)}
+h3{font-size:1.32rem}
+em.accent,h1 em,h2 em{font-style:italic;color:var(--primary)}
+p{color:var(--muted)}
+.eyebrow{font-size:.7rem;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);font-weight:500;display:inline-block}
+.container{width:min(var(--maxw),100% - 40px);margin-inline:auto}
+.section{padding:clamp(64px,9vw,120px) 0}
+.section-sm{padding:clamp(40px,6vw,72px) 0}
+.section-head{text-align:center;max-width:640px;margin:0 auto clamp(36px,5vw,56px)}
+.section-head h2{margin:14px 0 14px}
+.muted{color:var(--muted)}
+.small{font-size:.85rem}
+.center{text-align:center}
+.card{background:var(--ivory);border-radius:var(--r);border:1px solid var(--line);box-shadow:var(--shadow-sm)}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:14px 30px;border-radius:999px;font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;font-weight:500;border:1px solid transparent;white-space:nowrap;transition:background .35s var(--ease),color .35s var(--ease),transform .35s var(--ease),box-shadow .35s var(--ease),border-color .35s var(--ease)}
+.btn svg{width:16px;height:16px}
+.btn-primary{background:var(--primary);color:#fff}
+.btn-primary:hover{background:var(--mocha);transform:translateY(-2px);box-shadow:var(--shadow)}
+.btn-dark{background:var(--text);color:var(--ivory)}
+.btn-dark:hover{background:var(--mocha);transform:translateY(-2px)}
+.btn-ghost{border-color:var(--line-2);color:var(--text)}
+.btn-ghost:hover{border-color:var(--text);background:var(--text);color:var(--ivory)}
+.btn-soft{background:var(--ivory);border-color:var(--line);color:var(--text)}
+.btn-soft:hover{border-color:var(--primary);color:var(--mocha)}
+.btn-sm{padding:9px 18px;font-size:.68rem}
+.btn-block{width:100%}
+.btn:disabled,.btn[aria-disabled="true"]{opacity:.4;pointer-events:none}
+.link{border-bottom:1px solid currentColor;padding-bottom:2px;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;transition:color .3s}
+.link:hover{color:var(--primary)}
+.textbtn{font-size:.78rem;color:var(--muted);letter-spacing:.06em;border-bottom:1px solid transparent;transition:color .3s,border-color .3s}
+.textbtn:hover{color:var(--mocha);border-color:currentColor}
+.textbtn.danger:hover{color:var(--err)}
+
+/* Header */
+.header{position:sticky;top:0;z-index:60;background:rgba(245,237,228,.85);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid transparent;transition:border-color .4s,background .4s}
+.header.scrolled{border-color:var(--line);background:rgba(251,247,242,.9)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:78px;gap:20px}
+.logo{font-family:var(--serif);font-size:1.45rem;letter-spacing:.03em;display:flex;align-items:center;gap:10px;white-space:nowrap}
+.logo i{font-style:italic;color:var(--primary)}
+.logo svg{width:26px;height:26px}
+.nav-links{display:flex;gap:30px;align-items:center}
+.nav-links a{font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);position:relative;padding:6px 0;transition:color .3s}
+.nav-links a::after{content:'';position:absolute;left:0;bottom:0;width:100%;height:1px;background:var(--primary);transform:scaleX(0);transform-origin:left;transition:transform .45s var(--ease)}
+.nav-links a:hover,.nav-links a.active{color:var(--text)}
+.nav-links a:hover::after,.nav-links a.active::after{transform:scaleX(1)}
+.nav-actions{display:flex;gap:10px;align-items:center}
+.icon-btn{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--line);transition:border-color .3s,background .3s;position:relative;flex:none}
+.icon-btn:hover{border-color:var(--primary);background:var(--ivory)}
+.icon-btn svg{width:18px;height:18px}
+.badge{position:absolute;top:-3px;right:-3px;min-width:18px;height:18px;border-radius:9px;background:var(--primary);color:#fff;font-size:.62rem;font-weight:600;display:grid;place-items:center;padding:0 5px;transform:scale(0);transition:transform .35s var(--ease)}
+.badge.on{transform:scale(1)}
+.burger{display:none}
+@media (max-width:1000px){
+  .burger{display:grid}
+  .nav-links{position:fixed;left:0;right:0;top:78px;flex-direction:column;align-items:flex-start;background:var(--ivory);padding:26px 24px 30px;gap:18px;border-bottom:1px solid var(--line);box-shadow:var(--shadow);opacity:0;transform:translateY(-10px);pointer-events:none;transition:opacity .35s var(--ease),transform .35s var(--ease)}
+  .nav-links.open{opacity:1;transform:none;pointer-events:auto}
+  .nav-book{display:none}
+}
+
+/* Pages */
+.page{display:none}
+.page.active{display:block;animation:pageIn .7s var(--ease) both}
+@keyframes pageIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+.page-hero{padding:clamp(48px,7vw,90px) 0 clamp(20px,3vw,36px);text-align:center}
+.page-hero h1{font-size:clamp(2.2rem,4.6vw,3.5rem);margin:14px 0 14px}
+.page-hero p{max-width:560px;margin:auto}
+
+/* Nails & hands */
+.hand{display:flex;align-items:flex-end;gap:calc(var(--w,46px) * .2)}
+.finger{display:flex;flex-direction:column;align-items:center;gap:8px;transform:translateY(calc(var(--off,0) * var(--w,46px) / 46))}
+.nail{width:calc(var(--w,46px) * var(--s,1));position:relative;transition:transform .4s var(--ease)}
+.nail svg{width:100%;height:auto;overflow:visible;filter:drop-shadow(0 6px 10px rgba(74,52,46,.13))}
+button.nail:hover{transform:translateY(-5px)}
+.nail.sel{transform:translateY(-8px)}
+.nail.sel::after{content:'';position:absolute;left:50%;bottom:-14px;width:6px;height:6px;border-radius:50%;background:var(--primary);transform:translateX(-50%)}
+.finger small{font-size:.58rem;letter-spacing:.12em;color:var(--muted);text-transform:uppercase}
+
+/* Hero */
+.hero{padding:clamp(36px,6vw,80px) 0 clamp(60px,8vw,110px)}
+.hero-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:clamp(40px,6vw,80px);align-items:center}
+.hero .lead{font-size:1.08rem;max-width:470px;margin:24px 0 38px}
+.hero-cta{display:flex;gap:14px;flex-wrap:wrap}
+.hero-visual{position:relative;aspect-ratio:1/1.02;border-radius:999px 999px var(--r) var(--r);background:linear-gradient(165deg,var(--blush) 0%,var(--ivory) 70%);display:grid;place-items:center;box-shadow:var(--shadow);overflow:visible}
+.hero-visual::before{content:'';position:absolute;inset:18px;border-radius:inherit;border:1px solid rgba(255,255,255,.8)}
+.hero-stats{display:flex;gap:clamp(24px,4vw,48px);margin-top:52px;padding-top:28px;border-top:1px solid var(--line);flex-wrap:wrap}
+.hero-stats b{font-family:var(--serif);font-size:1.9rem;font-weight:500;display:block;line-height:1.1}
+.hero-stats span{font-size:.72rem;color:var(--muted);letter-spacing:.14em;text-transform:uppercase}
+.float-card{position:absolute;background:var(--ivory);border-radius:16px;padding:12px 16px;box-shadow:var(--shadow);font-size:.78rem;display:flex;gap:12px;align-items:center;animation:floaty 7s ease-in-out infinite;border:1px solid var(--line)}
+.float-card b{display:block;font-weight:600;font-size:.82rem}
+.float-card .dot{width:34px;height:34px;border-radius:50%;background:var(--blush);display:grid;place-items:center;color:var(--mocha)}
+.float-card .dot svg{width:16px;height:16px}
+.fc-1{left:-24px;top:18%}.fc-2{right:-18px;bottom:14%;animation-delay:-3s}
+@keyframes floaty{50%{transform:translateY(-10px)}}
+@media (max-width:880px){.hero-grid{grid-template-columns:1fr}.hero-visual{max-width:460px;width:100%;margin:10px auto 0}.fc-1{left:0}.fc-2{right:0}}
+
+/* Marquee */
+.marquee{overflow:hidden;border-block:1px solid var(--line);background:var(--ivory);padding:18px 0}
+.marquee-track{display:flex;gap:48px;width:max-content;animation:marq 38s linear infinite}
+.marquee span{font-family:var(--serif);font-style:italic;font-size:1.3rem;color:var(--muted);white-space:nowrap;display:flex;align-items:center;gap:48px}
+.marquee span::after{content:'✦';font-style:normal;font-size:.7rem;color:var(--primary)}
+@keyframes marq{to{transform:translateX(-50%)}}
+
+/* Category tiles */
+.tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.tile{padding:30px 26px;display:flex;flex-direction:column;gap:12px;transition:transform .5s var(--ease),box-shadow .5s var(--ease)}
+.tile:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
+.tile .tile-art{height:120px;border-radius:var(--r-sm);background:var(--beige);display:grid;place-items:center;margin-bottom:8px;overflow:hidden}
+.tile .from{font-size:.78rem;color:var(--mocha);letter-spacing:.06em}
+@media (max-width:980px){.tiles{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:520px){.tiles{grid-template-columns:1fr}}
+
+/* Split */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:clamp(36px,6vw,90px);align-items:center}
+.split-art{background:linear-gradient(160deg,var(--ivory),var(--blush));border-radius:var(--r);padding:clamp(30px,5vw,60px) 20px;display:flex;justify-content:center;gap:clamp(18px,4vw,40px);flex-wrap:wrap;box-shadow:var(--shadow)}
+.steps-list{list-style:none;margin:30px 0 36px;display:grid;gap:22px}
+.steps-list li{display:grid;grid-template-columns:52px 1fr;gap:14px;align-items:start}
+.steps-list .num{font-family:var(--serif);font-style:italic;font-size:1.6rem;color:var(--primary);line-height:1}
+.steps-list b{font-weight:500;display:block;margin-bottom:2px}
+@media (max-width:880px){.split{grid-template-columns:1fr}}
+
+/* Values */
+.values{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(20px,4vw,50px);text-align:center}
+.values .ico{width:58px;height:58px;border-radius:50%;background:var(--blush);display:grid;place-items:center;margin:0 auto 18px;color:var(--mocha)}
+.values .ico svg{width:22px;height:22px}
+.values h3{margin-bottom:8px}
+@media (max-width:760px){.values{grid-template-columns:1fr}}
+.cta-band{background:var(--text);color:var(--ivory);border-radius:var(--r);padding:clamp(40px,7vw,80px) 24px;text-align:center;position:relative;overflow:hidden}
+.cta-band p{color:rgba(251,247,242,.7);max-width:460px;margin:14px auto 30px}
+.cta-band h2 em{color:var(--primary)}
+.cta-band::before,.cta-band::after{content:'';position:absolute;border-radius:50%;border:1px solid rgba(217,166,160,.25)}
+.cta-band::before{width:420px;height:420px;left:-140px;top:-200px}
+.cta-band::after{width:320px;height:320px;right:-90px;bottom:-190px}
+
+/* Filters / chips */
+.chips{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-bottom:40px}
+.chip{padding:9px 20px;border-radius:999px;border:1px solid var(--line-2);font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);transition:all .35s var(--ease);background:transparent}
+.chip:hover{border-color:var(--primary);color:var(--text)}
+.chip.on{background:var(--text);border-color:var(--text);color:var(--ivory)}
+
+/* Services */
+.svc-group{margin-bottom:56px}
+.svc-group-head{display:flex;align-items:baseline;justify-content:space-between;gap:20px;border-bottom:1px solid var(--line);padding-bottom:14px;margin-bottom:26px}
+.svc-group-head h2{font-size:clamp(1.5rem,2.6vw,2rem)}
+.svc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px}
+.svc{display:flex;flex-direction:column;overflow:hidden;transition:transform .5s var(--ease),box-shadow .5s var(--ease)}
+.svc:hover{transform:translateY(-5px);box-shadow:var(--shadow)}
+.svc-art{height:150px;display:grid;place-items:center;background:linear-gradient(160deg,var(--beige),var(--blush))}
+.svc-body{padding:22px 22px 24px;display:flex;flex-direction:column;gap:8px;flex:1}
+.svc-body h3{font-size:1.18rem}
+.svc-meta{display:flex;justify-content:space-between;align-items:center;font-size:.8rem;color:var(--muted);margin-top:auto;padding-top:12px}
+.svc-meta .price{font-family:var(--serif);font-size:1.35rem;color:var(--text)}
+.svc .btn{margin-top:14px}
+.svc .btn.added{background:var(--text);color:var(--ivory);border-color:var(--text)}
+
+/* Gallery */
+.masonry{columns:4 250px;column-gap:20px}
+.g-item{break-inside:avoid;margin-bottom:20px;display:block;width:100%;text-align:left;border-radius:var(--r);overflow:hidden;background:var(--ivory);border:1px solid var(--line);transition:transform .5s var(--ease),box-shadow .5s var(--ease)}
+.g-item:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
+.g-art{display:grid;place-items:center;padding:var(--pad,48px) 16px;background:var(--bg,var(--blush));position:relative;overflow:hidden}
+.g-art::after{content:'View design';position:absolute;inset:auto 0 0 0;padding:12px;text-align:center;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;background:rgba(251,247,242,.92);transform:translateY(100%);transition:transform .45s var(--ease)}
+.g-item:hover .g-art::after{transform:none}
+.g-cap{padding:16px 18px 18px;display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.g-cap b{font-family:var(--serif);font-weight:500;font-size:1.06rem}
+.g-cap span{font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
+
+/* Dialog */
+dialog{border:0;border-radius:var(--r);padding:0;max-width:900px;width:calc(100% - 32px);background:var(--ivory);color:var(--text);box-shadow:var(--shadow);margin:auto}
+dialog[open]{animation:pageIn .45s var(--ease)}
+dialog::backdrop{background:rgba(74,52,46,.38);backdrop-filter:blur(4px)}
+.dlg-grid{display:grid;grid-template-columns:1.1fr 1fr}
+.dlg-art{display:grid;place-items:center;padding:56px 20px;background:var(--bg,var(--blush))}
+.dlg-body{padding:40px 36px;display:flex;flex-direction:column;gap:14px}
+.dlg-close{position:absolute;top:14px;right:14px;background:var(--ivory)}
+.spec{display:grid;grid-template-columns:auto 1fr;gap:6px 18px;font-size:.86rem;margin:6px 0 10px}
+.spec dt{color:var(--muted)}
+@media (max-width:760px){.dlg-grid{grid-template-columns:1fr}.dlg-body{padding:28px 22px}}
+
+/* Stepper */
+.stepper{display:flex;list-style:none;gap:8px;justify-content:center;margin:0 auto 40px;flex-wrap:wrap;counter-reset:st}
+.stepper li{counter-increment:st}
+.stepper button{display:flex;align-items:center;gap:10px;padding:8px 16px 8px 8px;border-radius:999px;font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);transition:all .35s var(--ease)}
+.stepper button::before{content:counter(st);width:28px;height:28px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--line-2);font-size:.75rem;letter-spacing:0;transition:all .35s var(--ease)}
+.stepper li.done button::before{content:'✓';background:var(--blush);border-color:var(--blush);color:var(--mocha)}
+.stepper li.on button{color:var(--text);background:var(--ivory);box-shadow:var(--shadow-sm)}
+.stepper li.on button::before{background:var(--primary);border-color:var(--primary);color:#fff}
+.stepper button:disabled{cursor:not-allowed;opacity:.55}
+
+/* Studio */
+.studio-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:28px;align-items:start}
+.stage{position:sticky;top:98px;overflow:hidden}
+.stage-hands{display:flex;justify-content:center;align-items:flex-end;gap:clamp(20px,5vw,56px);flex-wrap:wrap;padding:52px 18px 40px;background:radial-gradient(ellipse at 50% 30%,#fff 0%,var(--ivory) 45%,var(--beige) 100%);min-height:300px}
+.hand-wrap{display:flex;flex-direction:column;align-items:center;gap:26px}
+.hand-wrap > span{font-size:.64rem;letter-spacing:.24em;text-transform:uppercase;color:var(--muted)}
+.stage-foot{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:18px 24px;border-top:1px solid var(--line);flex-wrap:wrap}
+.price-big{font-family:var(--serif);font-size:1.7rem;line-height:1}
+.tag{display:inline-flex;align-items:center;gap:6px;font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;padding:5px 11px;border-radius:999px;background:var(--beige);color:var(--muted);white-space:nowrap}
+.tag.ok{background:#E7EDE3;color:#56704F}
+.tag.warn{background:#F6E6D6;color:#94613A}
+.tag.bad{background:#F3DEDA;color:#9A4A43}
+.tag.info{background:var(--blush);color:var(--mocha)}
+.panel{padding:30px 30px 26px}
+.panel h3{margin-bottom:6px}
+.panel-actions{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:30px;padding-top:22px;border-top:1px solid var(--line);flex-wrap:wrap}
+.seg{display:inline-flex;padding:4px;border-radius:999px;background:var(--beige);gap:4px;margin:18px 0 20px;flex-wrap:wrap}
+.seg button{padding:8px 16px;border-radius:999px;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);transition:all .3s var(--ease)}
+.seg button.on{background:var(--ivory);color:var(--text);box-shadow:var(--shadow-sm)}
+.shape-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.shape-opt{display:flex;flex-direction:column;align-items:center;gap:10px;padding:16px 8px 12px;border-radius:var(--r-sm);border:1px solid var(--line);background:var(--ivory);transition:all .35s var(--ease);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.shape-opt svg{width:32px;height:auto}
+.shape-opt:hover{border-color:var(--primary);transform:translateY(-3px)}
+.shape-opt.on{border-color:var(--primary);background:#fff;color:var(--text);box-shadow:0 0 0 3px var(--blush)}
+@media (max-width:520px){.shape-grid{grid-template-columns:repeat(3,1fr)}}
+.hint{font-size:.8rem;margin-top:16px;padding:12px 14px;background:var(--beige);border-radius:12px;color:var(--muted)}
+.editor-row{display:flex;gap:22px;align-items:center;margin-bottom:22px}
+.editor{width:128px;flex:none;padding:16px 14px;border-radius:22px;background:radial-gradient(circle at 50% 35%,#fff,var(--beige));touch-action:none;user-select:none;border:1px dashed transparent;transition:border-color .3s}
+.editor svg{width:100%;height:auto;overflow:visible;filter:drop-shadow(0 8px 14px rgba(74,52,46,.15))}
+.editor.can-drag{cursor:grab;border-color:var(--primary)}
+.editor.dragging{cursor:grabbing}
+.editor-info h3{font-size:1.4rem}
+.editor-info .tags{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0 12px}
+.mini-actions{display:flex;gap:16px;flex-wrap:wrap;align-items:center}
+.tabs{display:flex;gap:4px;border-bottom:1px solid var(--line);margin-bottom:20px;overflow-x:auto}
+.tabs button{padding:12px 16px;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);position:relative;white-space:nowrap;transition:color .3s}
+.tabs button::after{content:'';position:absolute;left:12px;right:12px;bottom:-1px;height:2px;background:var(--primary);transform:scaleX(0);transition:transform .4s var(--ease)}
+.tabs button.on{color:var(--text)}
+.tabs button.on::after{transform:scaleX(1)}
+.lbl{display:block;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin:4px 0 10px}
+.swatches{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:22px}
+.sw{width:32px;height:32px;border-radius:50%;background:var(--c);border:1px solid var(--line-2);position:relative;transition:transform .3s var(--ease),box-shadow .3s}
+.sw:hover{transform:scale(1.1)}
+.sw.on{box-shadow:0 0 0 3px var(--ivory),0 0 0 5px var(--primary)}
+.sw-custom{background:conic-gradient(#D9A6A0,#C9A96E,#A8B8A5,#B9C4D6,#E4D4E8,#D9A6A0);overflow:hidden;cursor:pointer;display:block}
+.sw-custom input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
+.preset-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.preset{display:flex;flex-direction:column;align-items:center;gap:8px;padding:14px 8px 12px;border-radius:var(--r-sm);border:1px solid var(--line);background:var(--ivory);transition:all .35s var(--ease)}
+.preset .nail{--w:34px}
+.preset b{font-weight:500;font-size:.8rem}
+.preset small{font-size:.7rem;color:var(--muted)}
+.preset:hover{border-color:var(--primary);transform:translateY(-3px)}
+.preset.on{border-color:var(--primary);background:#fff;box-shadow:0 0 0 3px var(--blush)}
+.addon-list{display:grid;gap:10px}
+.addon{display:grid;grid-template-columns:22px 1fr auto;gap:14px;align-items:center;text-align:left;padding:14px 16px;border-radius:var(--r-sm);border:1px solid var(--line);background:var(--ivory);transition:all .3s var(--ease)}
+.addon:hover{border-color:var(--primary)}
+.addon .chk{width:22px;height:22px;border-radius:7px;border:1px solid var(--line-2);display:grid;place-items:center;transition:all .3s;color:#fff;font-size:.8rem}
+.addon.on{border-color:var(--primary);background:#fff}
+.addon.on .chk{background:var(--primary);border-color:var(--primary)}
+.addon b{font-weight:500;font-size:.9rem;display:block}
+.addon small{font-size:.76rem;color:var(--muted)}
+.addon em{font-style:normal;font-size:.82rem;color:var(--mocha)}
+.upload{display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center;padding:26px 16px;border:1.5px dashed var(--line-2);border-radius:var(--r-sm);cursor:pointer;transition:border-color .3s,background .3s;background:var(--ivory)}
+.upload:hover{border-color:var(--primary);background:#fff}
+.upload .ico{width:44px;height:44px;border-radius:50%;background:var(--blush);display:grid;place-items:center;color:var(--mocha);margin-bottom:4px}
+.upload .ico svg{width:20px;height:20px}
+.upload small{color:var(--muted);font-size:.76rem}
+.range-row{display:grid;grid-template-columns:70px 1fr 52px;gap:12px;align-items:center;margin:10px 0}
+.range-row label{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.range-row output{font-size:.8rem;text-align:right;color:var(--muted)}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:4px;border-radius:4px;background:var(--blush);outline:none}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:var(--primary);border:3px solid #fff;box-shadow:0 2px 6px rgba(74,52,46,.25);cursor:pointer}
+input[type=range]::-moz-range-thumb{width:14px;height:14px;border-radius:50%;background:var(--primary);border:3px solid #fff;cursor:pointer}
+.custom-box{padding:16px 18px;border-radius:var(--r-sm);background:var(--beige);margin-bottom:16px}
+.note{font-size:.78rem;color:var(--muted);margin-top:12px}
+.note b{color:var(--mocha);font-weight:500}
+.breakdown{display:grid;gap:8px;margin:18px 0;font-size:.9rem}
+.breakdown div{display:flex;justify-content:space-between;gap:12px}
+.breakdown div span:first-child{color:var(--muted)}
+.breakdown .total{border-top:1px solid var(--line);padding-top:12px;margin-top:4px;font-family:var(--serif);font-size:1.3rem}
+.nail-table{width:100%;border-collapse:collapse;font-size:.8rem;margin-top:10px}
+.nail-table th{font-weight:500;text-align:left;color:var(--muted);font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;padding:8px 6px;border-bottom:1px solid var(--line)}
+.nail-table td{padding:8px 6px;border-bottom:1px solid var(--line);vertical-align:middle}
+.nail-table td:last-child,.nail-table th:last-child{text-align:right}
+.swatch-dot{display:inline-block;width:12px;height:12px;border-radius:50%;border:1px solid var(--line-2);vertical-align:-2px;margin-right:6px}
+@media (max-width:960px){.studio-grid{grid-template-columns:1fr}.stage{position:relative;top:0}}
+@media (max-width:520px){.panel{padding:22px 18px}.preset-grid{grid-template-columns:repeat(2,1fr)}.editor-row{flex-direction:column;align-items:flex-start}}
+
+/* Booking */
+.book-grid{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:28px;align-items:start}
+.summary{position:sticky;top:98px;padding:28px}
+.summary h3{margin-bottom:16px}
+.sum-list{list-style:none;display:grid;gap:10px;font-size:.88rem}
+.sum-list li{display:flex;justify-content:space-between;gap:12px}
+.sum-list li span:last-child{white-space:nowrap}
+.sum-sep{border-top:1px solid var(--line);margin:18px 0}
+.sum-row{display:flex;justify-content:space-between;gap:12px;font-size:.86rem;margin:6px 0}
+.sum-row span:first-child{color:var(--muted)}
+.sum-total{display:flex;justify-content:space-between;align-items:baseline;font-family:var(--serif);font-size:1.5rem;margin-top:10px}
+.sum-design{display:flex;gap:12px;align-items:center;margin-top:6px}
+.sum-design img{width:96px;border-radius:10px;border:1px solid var(--line);background:#fff}
+.empty{padding:26px;text-align:center;color:var(--muted);font-size:.9rem;border:1px dashed var(--line-2);border-radius:var(--r-sm)}
+.pick-list{display:grid;gap:10px}
+.pick{display:grid;grid-template-columns:22px 1fr auto;gap:14px;align-items:center;text-align:left;padding:14px 18px;border-radius:var(--r-sm);border:1px solid var(--line);background:var(--ivory);transition:all .3s var(--ease);width:100%}
+.pick:hover{border-color:var(--primary)}
+.pick .chk{width:22px;height:22px;border-radius:50%;border:1px solid var(--line-2);display:grid;place-items:center;color:#fff;font-size:.75rem;transition:all .3s}
+.pick.on{border-color:var(--primary);background:#fff}
+.pick.on .chk{background:var(--primary);border-color:var(--primary)}
+.pick b{font-weight:500;display:block;font-size:.95rem}
+.pick small{color:var(--muted);font-size:.78rem}
+.pick .pr{text-align:right;font-family:var(--serif);font-size:1.05rem}
+.pick .pr small{display:block;font-family:var(--sans)}
+.pick-cat{font-size:.66rem;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin:22px 0 10px}
+.pick-cat:first-child{margin-top:0}
+.cal-wrap{display:grid;grid-template-columns:1.1fr 1fr;gap:26px}
+.cal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+.cal-head b{font-family:var(--serif);font-weight:500;font-size:1.15rem}
+.cal-head button{width:34px;height:34px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;transition:all .3s}
+.cal-head button:hover:not(:disabled){border-color:var(--primary)}
+.cal-head button:disabled{opacity:.3;cursor:default}
+.cal{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;text-align:center}
+.cal .dow{font-size:.64rem;letter-spacing:.1em;color:var(--muted);text-transform:uppercase;padding:6px 0}
+.day{aspect-ratio:1;border-radius:50%;font-size:.86rem;transition:all .3s var(--ease);display:grid;place-items:center}
+.day:hover:not(:disabled){background:var(--blush)}
+.day:disabled{color:rgba(138,114,103,.35);cursor:default;text-decoration:line-through;text-decoration-color:rgba(138,114,103,.25)}
+.day.today{box-shadow:inset 0 0 0 1px var(--line-2)}
+.day.on{background:var(--text);color:var(--ivory)}
+.slots{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;max-height:330px;overflow:auto;padding-right:4px}
+.slot{padding:10px 6px;border-radius:12px;border:1px solid var(--line);font-size:.84rem;transition:all .3s var(--ease);background:var(--ivory)}
+.slot:hover{border-color:var(--primary)}
+.slot.on{background:var(--primary);border-color:var(--primary);color:#fff}
+@media (max-width:640px){.cal-wrap{grid-template-columns:1fr}}
+.staff-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.staff{display:flex;flex-direction:column;align-items:center;gap:8px;padding:18px 10px;border-radius:var(--r-sm);border:1px solid var(--line);background:var(--ivory);transition:all .3s var(--ease);text-align:center}
+.staff:hover:not(:disabled){border-color:var(--primary);transform:translateY(-3px)}
+.staff.on{border-color:var(--primary);background:#fff;box-shadow:0 0 0 3px var(--blush)}
+.staff:disabled{opacity:.4;cursor:not-allowed}
+.avatar{width:52px;height:52px;border-radius:50%;display:grid;place-items:center;font-family:var(--serif);font-size:1.3rem;color:var(--mocha);background:var(--av,var(--blush))}
+.staff b{font-weight:500;font-size:.92rem}
+.staff small{font-size:.7rem;color:var(--muted);line-height:1.4}
+.field{display:flex;flex-direction:column;gap:7px;margin-bottom:16px}
+.field label{font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.input{width:100%;padding:13px 16px;border-radius:12px;border:1px solid var(--line-2);background:#fff;transition:border-color .3s,box-shadow .3s;font-size:.95rem}
+.input:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 4px rgba(217,166,160,.2)}
+textarea.input{min-height:100px;resize:vertical}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:0 16px}
+@media (max-width:560px){.grid-2{grid-template-columns:1fr}}
+.design-pick{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px}
+.design-card{border-radius:var(--r-sm);border:1px solid var(--line);background:var(--ivory);overflow:hidden;text-align:left;transition:all .3s var(--ease);display:flex;flex-direction:column}
+.design-card:hover{border-color:var(--primary)}
+.design-card.on{border-color:var(--primary);box-shadow:0 0 0 3px var(--blush)}
+.design-card img{width:100%;background:#fff;aspect-ratio:16/7;object-fit:contain}
+.design-card .dc-body{padding:10px 12px;font-size:.8rem;display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+.success{text-align:center;padding:clamp(30px,6vw,60px) clamp(20px,4vw,50px)}
+.success .ring{width:78px;height:78px;border-radius:50%;background:var(--blush);display:grid;place-items:center;margin:0 auto 22px;color:var(--mocha);animation:pop .7s var(--ease)}
+.success .ring svg{width:32px;height:32px}
+@keyframes pop{from{transform:scale(.4);opacity:0}}
+.success-details{max-width:420px;margin:24px auto 30px;text-align:left}
+@media (max-width:960px){.book-grid{grid-template-columns:1fr}.summary{position:relative;top:0}}
+
+/* Account */
+.auth{max-width:460px;margin:0 auto;padding:36px 34px}
+.acc-head{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;margin-bottom:28px}
+.acc-head .who{display:flex;gap:16px;align-items:center}
+.acc-head .avatar{width:60px;height:60px;font-size:1.5rem}
+.list{display:grid;gap:14px}
+.bk{padding:20px 22px;display:grid;grid-template-columns:auto 1fr auto;gap:20px;align-items:center}
+.bk-date{text-align:center;padding:10px 14px;border-radius:14px;background:var(--beige);min-width:74px}
+.bk-date b{font-family:var(--serif);font-size:1.6rem;font-weight:500;display:block;line-height:1.1}
+.bk-date span{font-size:.64rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.bk-info b{font-weight:500}
+.bk-info p{font-size:.82rem;margin-top:2px}
+.bk-side{text-align:right;display:flex;flex-direction:column;gap:8px;align-items:flex-end}
+.bk-side .price{font-family:var(--serif);font-size:1.2rem}
+.bk img{width:84px;border-radius:8px;border:1px solid var(--line);background:#fff;margin-top:8px}
+@media (max-width:640px){.bk{grid-template-columns:auto 1fr}.bk-side{grid-column:1/-1;flex-direction:row;justify-content:space-between;align-items:center;text-align:left}}
+.table-wrap{overflow-x:auto}
+.table{width:100%;border-collapse:collapse;font-size:.88rem;min-width:540px}
+.table th{text-align:left;font-weight:500;font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);padding:14px 16px;border-bottom:1px solid var(--line)}
+.table td{padding:14px 16px;border-bottom:1px solid var(--line)}
+.table tr:last-child td{border-bottom:0}
+.form-msg{font-size:.82rem;color:var(--err);min-height:1.2em;margin-bottom:10px}
+
+/* Contact */
+.contact-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:28px}
+.info-list{list-style:none;display:grid;gap:22px}
+.info-list li{display:grid;grid-template-columns:44px 1fr;gap:14px;align-items:start}
+.info-list .ico{width:44px;height:44px;border-radius:50%;background:var(--blush);display:grid;place-items:center;color:var(--mocha)}
+.info-list .ico svg{width:18px;height:18px}
+.info-list b{font-weight:500;display:block;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:2px}
+.hours{width:100%;font-size:.88rem;border-collapse:collapse}
+.hours td{padding:3px 0}
+.hours td:last-child{text-align:right}
+.hours tr.today td{color:var(--mocha);font-weight:500}
+.map{border:0;width:100%;height:100%;min-height:340px;border-radius:var(--r);filter:grayscale(.35) sepia(.18)}
+.socials{display:flex;gap:10px;margin-top:6px}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,6vw,80px);align-items:center}
+@media (max-width:880px){.contact-grid,.about-grid{grid-template-columns:1fr}}
+
+/* Footer */
+.footer{background:var(--ivory);border-top:1px solid var(--line);padding:70px 0 30px;margin-top:40px}
+.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px}
+.footer h4{font-family:var(--sans);font-size:.68rem;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);font-weight:500;margin-bottom:16px}
+.footer ul{list-style:none;display:grid;gap:8px;font-size:.9rem}
+.footer ul a{transition:color .3s}
+.footer ul a:hover{color:var(--primary)}
+.foot-bottom{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-top:50px;padding-top:24px;border-top:1px solid var(--line);font-size:.78rem;color:var(--muted)}
+@media (max-width:860px){.foot-grid{grid-template-columns:1fr 1fr}}
+@media (max-width:520px){.foot-grid{grid-template-columns:1fr}}
+
+/* Toast */
+.toast{position:fixed;left:50%;bottom:28px;z-index:100;background:var(--text);color:var(--ivory);padding:13px 22px;border-radius:999px;font-size:.86rem;box-shadow:var(--shadow);transform:translate(-50%,30px);opacity:0;pointer-events:none;transition:transform .45s var(--ease),opacity .45s var(--ease);max-width:calc(100% - 32px);text-align:center}
+.toast.show{transform:translate(-50%,0);opacity:1}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+
+/* Loading */
+.boot{min-height:60vh;display:grid;place-items:center;color:var(--muted);font-size:.8rem;letter-spacing:.2em;text-transform:uppercase}
+.boot::before{content:'';width:28px;height:28px;border-radius:50%;border:2px solid var(--blush);border-top-color:var(--primary);animation:spin 1s linear infinite;display:block;margin:0 auto 14px}
+@keyframes spin{to{transform:rotate(360deg)}}
+.studio-banner{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding:12px 16px;border-radius:12px;background:var(--text);color:var(--ivory);font-size:.84rem;margin-bottom:18px}
+.studio-banner .textbtn{color:rgba(251,247,242,.8)}
+
+[hidden]{display:none!important}
+/* Reviews */
+.stars{position:relative;display:inline-block;color:rgba(201,169,110,.28);letter-spacing:2px;line-height:1;white-space:nowrap}
+.stars .on{position:absolute;left:0;top:0;width:var(--r);overflow:hidden;color:#C9A96E}
+.rev-summary{text-align:center}
+.rev-top{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.35fr);gap:20px;max-width:1000px;margin:0 auto}
+.rev-top .rev-summary{padding:36px 26px;display:flex;flex-direction:column;justify-content:center;align-items:center}
+.rev-map{border:0;width:100%;height:100%;min-height:320px;border-radius:var(--r);display:block;background:var(--beige)}
+@media (max-width:760px){.rev-top{grid-template-columns:1fr}}
+.rev-score{font-family:var(--serif);font-size:3.4rem;font-weight:500;display:block;line-height:1}
+.rev-summary .stars{font-size:1.5rem;margin:10px 0 6px}
+.rev-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),360px));justify-content:center;align-items:start;gap:18px;margin-top:40px}
+.rev{padding:24px 24px 20px;display:flex;flex-direction:column;gap:12px;align-items:flex-start}
+.rev-head{display:flex;gap:12px;align-items:center}
+.rev-head img,.rev-head .avatar{width:44px;height:44px;border-radius:50%;object-fit:cover;font-size:1.1rem;flex:none}
+.rev-head b{font-weight:500;display:block;font-size:.95rem}
+.rev-head a:hover{color:var(--primary)}
+.rev-head small{color:var(--muted);font-size:.76rem}
+.rev .stars{font-size:1rem}
+.rev-text{color:var(--text);font-size:.92rem;line-height:1.7;display:-webkit-box;-webkit-line-clamp:5;-webkit-box-orient:vertical;overflow:hidden}
+.rev-grid:not(.all) .rev:nth-child(n+7){display:none}
+.rev.open .rev-text{-webkit-line-clamp:unset;display:block}
+.rev-attr{text-align:center;font-size:.72rem;color:var(--muted);margin-top:24px;letter-spacing:.12em;text-transform:uppercase}
+.toggle-row{display:flex;justify-content:space-between;align-items:center;gap:20px;padding:20px 24px;cursor:pointer}
+.toggle-row b{display:block;font-weight:500;margin-bottom:2px}
+.toggle-row small{color:var(--muted);font-size:.82rem;line-height:1.5;display:block}
+.switch{appearance:none;-webkit-appearance:none;width:48px;height:28px;border-radius:14px;background:var(--line-2);position:relative;cursor:pointer;transition:background .3s var(--ease);flex:none}
+.switch::after{content:'';position:absolute;top:3px;left:3px;width:22px;height:22px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.2);transition:transform .3s var(--ease)}
+.switch:checked{background:var(--primary)}
+.switch:checked::after{transform:translateX(20px)}
+.switch:focus-visible{outline:2px solid var(--mocha);outline-offset:2px}
+.g-status{display:grid;grid-template-columns:auto 1fr;gap:6px 18px;font-size:.88rem;margin:4px 0 16px}
+.g-status dt{color:var(--muted)}
+/* Admin */
+.admin{display:grid;grid-template-columns:220px minmax(0,1fr);gap:28px;align-items:start}
+.ad-side{position:sticky;top:98px;padding:12px;display:flex;flex-direction:column;gap:2px}
+.ad-side button{display:flex;justify-content:space-between;align-items:center;gap:10px;text-align:left;padding:11px 14px;border-radius:12px;font-size:.84rem;color:var(--muted);transition:background .3s,color .3s}
+.ad-side button:hover{background:var(--beige);color:var(--text)}
+.ad-side button.on{background:var(--text);color:var(--ivory)}
+.ad-side .cnt{font-size:.64rem;background:var(--primary);color:#fff;border-radius:9px;padding:1px 7px;font-weight:600}
+.ad-side hr{border:0;border-top:1px solid var(--line);margin:8px 4px}
+.ad-main{min-width:0}
+.ad-head{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;margin-bottom:22px}
+.ad-head h2{font-size:1.8rem}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;margin-bottom:24px}
+.kpi{padding:20px 22px;text-align:left;display:flex;flex-direction:column;justify-content:flex-start;gap:6px;transition:transform .35s var(--ease),box-shadow .35s var(--ease)}
+button.kpi:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+.kpi b{font-family:var(--serif);font-size:2rem;font-weight:500;display:block;line-height:1.1}
+.kpi span{font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.ad-card{padding:24px 26px;margin-bottom:22px}
+.ad-card > h3{font-size:1.15rem;margin-bottom:14px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.row-actions{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+.table tr.click{cursor:pointer;transition:background .2s}
+.table tr.click:hover{background:var(--beige)}
+.table tr.unread td{font-weight:600}
+.table td small{display:block;color:var(--muted);font-size:.76rem}
+.sched{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px}
+.sched-col{background:var(--beige);border-radius:14px;padding:14px}
+.sched-col > b{font-weight:500;font-size:.9rem;display:flex;align-items:center;gap:8px}
+.sched-col > b i{width:10px;height:10px;border-radius:50%;background:var(--c);display:inline-block}
+.appt{display:block;width:100%;text-align:left;background:var(--ivory);border-radius:10px;padding:10px 12px;margin-top:8px;border-left:3px solid var(--primary);font-size:.8rem;transition:transform .3s var(--ease)}
+.appt:hover{transform:translateX(3px)}
+.appt.pending{border-left-color:var(--warn)}
+.appt.completed{border-left-color:var(--ok);opacity:.75}
+.appt b{font-weight:600}
+.ad-gal{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:16px}
+.ad-gal .card{overflow:hidden;display:flex;flex-direction:column}
+.ad-gal .g-art{padding:34px 12px}
+.ad-gal .g-art::after{display:none}
+.ad-gal .g-body{padding:14px 16px 16px;display:flex;flex-direction:column;gap:10px;flex:1}
+.ad-gal .hidden-item{opacity:.55}
+.cat-editor{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.cat-pill{display:inline-flex;align-items:center;gap:4px;padding:5px 6px 5px 14px;border-radius:999px;background:var(--beige);font-size:.8rem}
+.cat-pill button{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-size:.7rem;color:var(--muted);transition:all .3s}
+.cat-pill button:hover{background:var(--blush);color:var(--err)}
+.inline-add{display:flex;gap:8px;align-items:center}
+.inline-add .input{padding:8px 12px;width:170px;font-size:.85rem}
+.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 18px}
+.form-grid .full{grid-column:1/-1}
+.form-grid-3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 16px}
+.hours-edit{display:grid;grid-template-columns:110px 110px 1fr 1fr;gap:10px;align-items:center;font-size:.88rem;margin-bottom:8px}
+.hours-edit .input{padding:9px 12px}
+.check{display:inline-flex;align-items:center;gap:8px;font-size:.86rem;cursor:pointer}
+.check input{accent-color:var(--primary);width:16px;height:16px}
+.days{display:flex;gap:6px;flex-wrap:wrap}
+.days label{position:relative}
+.days input{position:absolute;opacity:0;pointer-events:none}
+.days span{display:grid;place-items:center;width:46px;height:36px;border-radius:10px;border:1px solid var(--line-2);font-size:.76rem;cursor:pointer;transition:all .3s;background:#fff}
+.days input:checked + span{background:var(--primary);border-color:var(--primary);color:#fff}
+.days input:focus-visible + span{outline:2px solid var(--mocha)}
+.svc-checks{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:6px 14px;max-height:220px;overflow:auto;padding:12px;border:1px solid var(--line-2);border-radius:12px;background:#fff}
+#admDlg{max-width:860px}
+.dlg-pad{padding:34px 32px 28px;max-height:88vh;overflow:auto}
+.dlg-pad h2{font-size:1.7rem;margin:8px 0 6px}
+.dlg-actions{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-top:22px;padding-top:20px;border-top:1px solid var(--line)}
+.design-view{background:var(--beige);border-radius:16px;padding:26px 16px;display:flex;justify-content:center;gap:28px;flex-wrap:wrap;margin:10px 0 14px}
+.img-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin-top:10px}
+.img-list a{display:block;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#fff;font-size:.72rem;color:var(--muted)}
+.img-list img{width:100%;height:110px;object-fit:cover}
+.img-list span{display:block;padding:6px 8px}
+.mode-note{font-size:.82rem;padding:12px 16px;border-radius:12px;background:#F6E6D6;color:#7A4E2E;margin-bottom:22px}
+.mode-note.ok{background:#E7EDE3;color:#48603F}
+.search{max-width:280px;padding:10px 16px;font-size:.88rem}
+.msg{padding:18px 20px;margin-bottom:12px}
+.msg.unread{border-left:3px solid var(--primary)}
+.msg p{color:var(--text);white-space:pre-wrap;margin:8px 0 10px;font-size:.92rem}
+.foot-staff{font-size:.72rem;color:var(--muted);opacity:.7}
+.foot-staff:hover{opacity:1;color:var(--primary)}
+@media (max-width:900px){.admin{grid-template-columns:minmax(0,1fr)}.ad-side{position:relative;top:0;flex-direction:row;overflow-x:auto}.ad-side button{white-space:nowrap}.ad-side hr{display:none}.form-grid,.form-grid-3{grid-template-columns:1fr}.hours-edit{grid-template-columns:1fr 1fr}.dlg-pad{padding:26px 18px}}
+</style>
+</head>
+<body>
+
+<header class="header" id="header">
+  <div class="container nav">
+    <a href="#home" class="logo" aria-label="Home">
+      <svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M9 27V14C9 8 13 4 16 3c3 1 7 5 7 11v13c0 3-14 3-14 0Z" fill="#F3D9D5" stroke="#D9A6A0" stroke-width="1.4"/><path d="M12.5 10c0 5 .5 10 1 14" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/><path d="M26 5l.7 1.8L28.5 7.5l-1.8.7L26 10l-.7-1.8-1.8-.7 1.8-.7Z" fill="#6E4B3A"/></svg>
+      <span data-shop="logo">Nails <i>Avenue</i></span>
+    </a>
+    <nav class="nav-links" id="navLinks" aria-label="Main">
+      <a href="#home">Home</a>
+      <a href="#services">Services</a>
+      <a href="#studio" data-feature="studio">Design Studio</a>
+      <a href="#gallery" data-feature="gallery">Gallery</a>
+      <a href="#contact">About &amp; Contact</a>
+    </nav>
+    <div class="nav-actions">
+      <a href="#account" class="icon-btn" aria-label="My Account" id="accBtn"></a>
+      <a href="#booking" class="icon-btn" aria-label="Booking"><span data-icon="bag"></span><span class="badge" id="cartBadge">0</span></a>
+      <a href="#booking" class="btn btn-primary btn-sm nav-book">Book Now</a>
+      <button class="icon-btn burger" data-act="menu" aria-label="Menu" aria-expanded="false"><span data-icon="menu"></span></button>
+    </div>
+  </div>
+</header>
+
+<main id="main"><div class="boot">Loading</div>
+<!-- HOME -->
+<section class="page" id="page-home">
+  <div class="hero">
+    <div class="container hero-grid">
+      <div>
+        <span class="eyebrow">Nail Salon &amp; Design Studio</span>
+        <h1 style="margin-top:18px" id="heroTitle"></h1>
+        <p class="lead" id="heroLead"></p>
+        <div class="hero-cta">
+          <a href="#booking" class="btn btn-primary">Book Now <span data-icon="arrow"></span></a>
+          <a href="#studio" class="btn btn-ghost" data-feature="studio">Design Your Nails</a>
+        </div>
+        <div class="hero-stats" id="heroStats"></div>
+      </div>
+      <div class="hero-visual">
+        <div id="heroHand"></div>
+        <div class="float-card fc-1" data-feature="studio"><span class="dot" data-icon="sparkle"></span><div><b>2D Design Studio</b>Create it. Preview it. Book it.</div></div>
+        <div class="float-card fc-2"><span class="dot" data-icon="clock"></span><div><b>Online booking</b>Pick your artist &amp; time</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="marquee" aria-hidden="true"><div class="marquee-track" id="marquee"></div></div>
+  <section class="section">
+    <div class="container">
+      <div class="section-head reveal"><span class="eyebrow">Our Services</span><h2>Beauty in <em>every detail</em></h2><p>From a quick polish to a full set of sculpted extensions — every service is performed with premium products and meticulous care.</p></div>
+      <div class="tiles" id="homeTiles"></div>
+      <div class="center" style="margin-top:40px"><a href="#services" class="link">View full menu</a></div>
+    </div>
+  </section>
+  <section class="section" style="background:var(--ivory)" data-feature="studio">
+    <div class="container split">
+      <div class="split-art reveal" id="homeStudioArt"></div>
+      <div class="reveal">
+        <span class="eyebrow">Nail Design Studio</span>
+        <h2 style="margin-top:14px">Your canvas. Your nails. <em>Your Avenue.</em></h2>
+        <p style="margin-top:16px">Try shapes, colors and finishes on a virtual set before your visit — or upload your own artwork and position it on each nail.</p>
+        <ol class="steps-list">
+          <li><span class="num">01</span><div><b>Choose a shape</b><p class="small">Almond, coffin, stiletto and more — for all ten nails or just an accent.</p></div></li>
+          <li><span class="num">02</span><div><b>Design every nail</b><p class="small">Colors, French tips, ombré, florals, chrome, rhinestones — or your own image.</p></div></li>
+          <li><span class="num">03</span><div><b>See the price &amp; book</b><p class="small">Your estimate updates live. Confirm and attach the design to your appointment.</p></div></li>
+        </ol>
+        <a href="#studio" class="btn btn-dark">Open the Studio</a>
+      </div>
+    </div>
+  </section>
+  <section class="section" data-feature="gallery">
+    <div class="container">
+      <div class="section-head reveal"><span class="eyebrow">Gallery</span><h2>Recently <em>loved</em> sets</h2><p>A few of our signature looks. Tap any design to book it as-is or make it your own.</p></div>
+      <div class="masonry" id="homeGallery"></div>
+      <div class="center" style="margin-top:30px"><a href="#gallery" class="link">Explore the gallery</a></div>
+    </div>
+  </section>
+  <section class="section" data-feature="reviews" style="background:var(--ivory)"><div class="container" id="homeReviews"></div></section>
+  <section class="section-sm">
+    <div class="container values">
+      <div class="reveal"><div class="ico" data-icon="shield"></div><h3>Clean &amp; Safe</h3><p class="small">Hospital-grade sterilization and single-use files for every guest.</p></div>
+      <div class="reveal"><div class="ico" data-icon="leaf"></div><h3>Premium Products</h3><p class="small">Gentle, long-wearing formulas that care for your natural nails.</p></div>
+      <div class="reveal"><div class="ico" data-icon="heart"></div><h3>Artists Who Listen</h3><p class="small">We take the time to understand the look you have in mind.</p></div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <div class="cta-band reveal">
+        <span class="eyebrow" style="color:rgba(251,247,242,.6)">Nails, Redefined.</span>
+        <h2 style="margin-top:14px">Ready for your <em>next set?</em></h2>
+        <p>Reserve your seat in under a minute — choose your services, your artist and a time that suits you.</p>
+        <a href="#booking" class="btn btn-primary">Book an Appointment</a>
+      </div>
+    </div>
+  </section>
+</section>
+
+<section class="page" id="page-services">
+  <div class="page-hero container"><span class="eyebrow">Menu</span><h1>Our <em>Services</em></h1><p>Transparent pricing, unhurried appointments. Add services to your booking and check out when you're ready.</p></div>
+  <div class="container section" style="padding-top:30px"><div class="chips" id="svcFilters"></div><div id="svcList"></div></div>
+</section>
+
+<section class="page" id="page-studio">
+  <div class="page-hero container"><span class="eyebrow">Nail Design Studio</span><h1>Design your <em>perfect set</em></h1><p>Pick a shape, style every nail, see your estimated price in real time — then attach the design to your booking.</p></div>
+  <div class="container section" style="padding-top:20px">
+    <div id="stBanner"></div>
+    <ol class="stepper" id="stStepper"></ol>
+    <div class="studio-grid">
+      <div class="card stage"><div class="stage-hands" id="stHands"></div><div class="stage-foot" id="stPrice"></div></div>
+      <div class="card panel" id="stPanel"></div>
+    </div>
+  </div>
+</section>
+
+<section class="page" id="page-gallery">
+  <div class="page-hero container"><span class="eyebrow">Gallery</span><h1>The <em>Collection</em></h1><p>Signature designs by our artists. Book a look exactly as shown, or open it in the Design Studio to make it yours.</p></div>
+  <div class="container section" style="padding-top:30px"><div class="chips" id="galFilters"></div><div class="masonry" id="galGrid"></div></div>
+</section>
+
+<section class="page" id="page-booking">
+  <div class="page-hero container"><span class="eyebrow">Reservations</span><h1>Book an <em>Appointment</em></h1><p>Five quick steps. Only available times are shown.</p></div>
+  <div class="container section" style="padding-top:20px" id="bkRoot"></div>
+</section>
+
+<section class="page" id="page-account">
+  <div class="page-hero container"><span class="eyebrow">My Account</span><h1 id="accTitle">Welcome <em>back</em></h1></div>
+  <div class="container section" style="padding-top:20px" id="accRoot"></div>
+</section>
+
+<section class="page" id="page-contact">
+  <div class="page-hero container"><span class="eyebrow">About &amp; Contact</span><h1>Visit <em>the Avenue</em></h1></div>
+  <div class="container section" style="padding-top:30px">
+    <div class="about-grid" style="margin-bottom:clamp(60px,8vw,100px)">
+      <div class="split-art" id="aboutArt"></div>
+      <div id="aboutText"></div>
+    </div>
+    <div class="contact-grid">
+      <div class="card" style="padding:34px 30px"><ul class="info-list" id="contactInfo"></ul></div>
+      <div id="mapWrap" class="card" style="padding:0;overflow:hidden;min-height:340px"></div>
+    </div>
+    <div data-feature="reviews" id="contactReviews" style="margin-top:clamp(60px,8vw,100px)"></div>
+    <div class="card" style="padding:clamp(26px,4vw,44px);margin-top:28px;max-width:760px;margin-inline:auto">
+      <div class="center" style="margin-bottom:22px"><span class="eyebrow">Quick Message</span><h2 style="font-size:1.8rem;margin-top:10px">Say <em>hello</em></h2></div>
+      <form data-form="contact" novalidate>
+        <div class="grid-2">
+          <div class="field"><label for="cName">Name</label><input class="input" id="cName" name="name" required autocomplete="name"></div>
+          <div class="field"><label for="cEmail">Email</label><input class="input" id="cEmail" name="email" type="email" required autocomplete="email"></div>
+        </div>
+        <div class="field"><label for="cMsg">Message</label><textarea class="input" id="cMsg" name="message" required></textarea></div>
+        <p class="form-msg"></p>
+        <button class="btn btn-primary" type="submit">Send Message</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section class="page" id="page-admin">
+  <div class="container section" style="padding-top:40px" id="adRoot"></div>
+</section>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="foot-grid">
+      <div>
+        <a href="#home" class="logo" style="margin-bottom:14px"><span data-shop="logo">Nails <i>Avenue</i></span></a>
+        <p class="small" style="max-width:280px" data-shop="tagline"></p>
+        <div class="socials" id="footSocial" style="margin-top:18px"></div>
+      </div>
+      <div><h4>Explore</h4><ul><li><a href="#services">Services</a></li><li data-feature="studio"><a href="#studio">Design Studio</a></li><li data-feature="gallery"><a href="#gallery">Gallery</a></li><li><a href="#booking">Book Now</a></li></ul></div>
+      <div><h4>Account</h4><ul><li><a href="#account">My Account</a></li><li data-feature="designs"><a href="#account" data-act="acc-goto" data-v="designs">My Designs</a></li><li><a href="#contact">Contact</a></li></ul></div>
+      <div><h4>Visit</h4><ul id="footVisit"></ul></div>
+    </div>
+    <div class="foot-bottom"><span id="copy"></span><a href="#admin" class="foot-staff">Staff login</a></div>
+  </div>
+</footer>
+
+<dialog id="galDlg" aria-label="Design details"></dialog>
+<dialog id="admDlg" aria-label="Edit"></dialog>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="backend.js"></script>
+<script>
+(() => {
+'use strict';
+const BK = window.NABackend;
+
+/* ============ HELPERS ============ */
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const r2 = n => Math.round(n * 100) / 100;
+const pad = n => String(n).padStart(2, '0');
+const fmtT = BK.fmtT;
+const toHM = m => `${pad(Math.floor(m / 60))}:${pad(m % 60)}`;
+const fromHM = s => { const [h, m] = String(s || '').split(':').map(Number); return (h || 0) * 60 + (m || 0); };
+const parseD = s => { const [y, m, d] = s.split('-').map(Number); return new Date(y, m - 1, d); };
+const fmtLong = s => parseD(s).toLocaleDateString('en-US', {weekday:'long', month:'long', day:'numeric', year:'numeric'});
+const fmtShort = s => parseD(s).toLocaleDateString('en-US', {month:'short', day:'numeric', year:'numeric'});
+const fmtDur = m => m >= 60 ? `${Math.floor(m / 60)}h${m % 60 ? ' ' + (m % 60) + 'm' : ''}` : `${m} min`;
+const fmtDT = iso => new Date(iso).toLocaleString('en-US', {month:'short', day:'numeric', hour:'numeric', minute:'2-digit'});
+const clone = o => JSON.parse(JSON.stringify(o));
+const uidL = p => p + Date.now().toString(36) + Math.random().toString(36).slice(2, 7);
+const DAYS = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+const DAYS3 = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+
+const store = {
+  get(k, d) { try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch (e) { return d; } },
+  set(k, v) { try { if (v == null) localStorage.removeItem(k); else localStorage.setItem(k, JSON.stringify(v)); return true; } catch (e) { toast('Browser storage is full — some changes may not be kept.'); return false; } }
+};
+let toastT;
+function toast(msg) { const t = $('#toast'); t.textContent = msg; t.classList.add('show'); clearTimeout(toastT); toastT = setTimeout(() => t.classList.remove('show'), 3200); }
+
+/* ============ DATA LAYER ============ */
+const LOCAL_KEY = 'na_db_v2', TK = 'na_token', ATK = 'na_admin_token';
+let MODE = 'local', LDB = null, C = null, ME = null, NOW = BK.nowIn('Asia/Ho_Chi_Minh'), BUSY = [], BUSY_T = 0, AD = null;
+const DC = {}; // design cache
+const claims = () => Object.assign({designs:{}, bookings:{}}, store.get('na_claims', {}));
+const setClaim = (kind, id, c) => { const x = claims(); if (c) x[kind][id] = c; else delete x[kind][id]; store.set('na_claims', x); };
+
+async function api(method, path, body, opt = {}) {
+  const tok = store.get(opt.admin ? ATK : TK, null);
+  let status, data;
+  if (MODE === 'remote') {
+    const r = await fetch('/api' + path, {method, headers:Object.assign({'Content-Type':'application/json'}, tok ? {Authorization:'Bearer ' + tok} : {}), body:body ? JSON.stringify(body) : undefined, cache:'no-store'});
+    status = r.status; data = await r.json().catch(() => ({error:'Unexpected server response.'}));
+  } else {
+    const [p, q] = path.split('?');
+    const res = await BK.handle(LDB, {method, path:p, query:Object.fromEntries(new URLSearchParams(q || '')), body:body ? clone(body) : null, token:tok});
+    status = res.status; data = clone(res.body);
+    if (method !== 'GET' || p === '/me' || p.startsWith('/admin')) store.set(LOCAL_KEY, LDB);
+  }
+  if (status >= 400) {
+    if (status === 401 && tok && !/login|setup/.test(path)) { store.set(opt.admin ? ATK : TK, null); if (!opt.admin) { ME = null; renderAccBtn(); } else AD = null; }
+    throw Object.assign(new Error(data.error || 'Request failed'), {status});
+  }
+  return data;
+}
+async function loadContent() { C = await api('GET', '/content'); applyShop(); }
+async function loadMe() {
+  if (!store.get(TK, null)) { ME = null; return; }
+  try { ME = await api('GET', '/me'); ME.designs.forEach(d => DC[d.id] = d); } catch (e) { ME = null; }
+  renderAccBtn();
+}
+async function loadBusy(force) {
+  if (!force && Date.now() - BUSY_T < 30000) return;
+  try { const r = await api('GET', '/availability'); BUSY = r.busy; NOW = r.now; BUSY_T = Date.now(); } catch (e) { toast(e.message); }
+}
+async function ensureDesign(id) {
+  if (!id) return null; if (DC[id]) return DC[id];
+  try { const r = await api('GET', `/designs/${id}?claim=${encodeURIComponent(claims().designs[id] || '')}`); return DC[id] = r.design; }
+  catch (e) { if (e.status === 404 || e.status === 403) setClaim('designs', id, null); return null; }
+}
+const me = () => ME && ME.user;
+const F = k => !C || !C.features ? true : k === 'designs' ? (C.features.studio !== false || C.features.gallery !== false) : C.features[k] !== false;
+const money = n => { const v = r2(+n || 0); return (C ? C.shop.currency : '$') + (Number.isInteger(v) ? v : v.toFixed(2)); };
+const svcById = id => C.services.find(s => s.id === id);
+const staffById = (id, list) => (list || C.staff).find(s => s.id === id);
+const logoHTML = n => { const w = String(n).trim().split(/\s+/); return w.length < 2 ? esc(n) : esc(w.slice(0, -1).join(' ')) + ' <i>' + esc(w[w.length - 1]) + '</i>'; };
+
+const ICONS = {
+  user:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg>',
+  bag:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3.5" y="5" width="17" height="15.5" rx="3"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg>',
+  menu:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 8h16M4 16h16"/></svg>',
+  arrow:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>',
+  sparkle:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l1.8 6.2L20 10l-6.2 1.8L12 18l-1.8-6.2L4 10l6.2-1.8Z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8Z"/></svg>',
+  clock:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>',
+  shield:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6Z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg>',
+  leaf:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 19C5 10 10 5 20 4c-1 10-6 15-15 15Z"/><path d="M5 19l8-8"/></svg>',
+  heart:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 20s-8-4.6-8-10.2A4.3 4.3 0 0 1 12 7a4.3 4.3 0 0 1 8 2.8C20 15.4 12 20 12 20Z"/></svg>',
+  pin:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></svg>',
+  phone:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2Z"/></svg>',
+  mail:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M3.5 6.5 12 13l8.5-6.5"/></svg>',
+  ig:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r=".9" fill="currentColor"/></svg>',
+  fb:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 8h3V4h-3a4 4 0 0 0-4 4v3H7v4h3v6h4v-6h3l1-4h-4V8.5c0-.3.2-.5.5-.5Z"/></svg>',
+  upload:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 16V4M7 9l5-5 5 5"/><path d="M4 16v2.5A1.5 1.5 0 0 0 5.5 20h13a1.5 1.5 0 0 0 1.5-1.5V16"/></svg>',
+  check:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>',
+  left:'<svg viewBox="0 0 24 24" width="16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 6l-6 6 6 6"/></svg>',
+  right:'<svg viewBox="0 0 24 24" width="16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 6l6 6-6 6"/></svg>'
+};
+const icon = k => ICONS[k] || '';
+function hydrateIcons(root = document) { $$('[data-icon]', root).forEach(el => { if (!el.dataset.done) { el.innerHTML = icon(el.dataset.icon); el.dataset.done = 1; } }); }
+
+/* ============ NAIL RENDERING ENGINE ============ */
+const SHAPES = {
+  almond:  {name:'Almond',   top:'M6,100 L6,52 C6,28 22,6 30,4 C38,6 54,28 54,52'},
+  square:  {name:'Square',   top:'M6,100 L6,22 Q6,16 12,16 L48,16 Q54,16 54,22'},
+  coffin:  {name:'Coffin',   top:'M6,100 L6,56 L17,6 Q18,3 21,3 L39,3 Q42,3 43,6 L54,56'},
+  stiletto:{name:'Stiletto', top:'M6,100 L6,58 C8,38 24,10 30,-1 C36,10 52,38 54,58'},
+  round:   {name:'Round',    top:'M6,100 L6,44 A24,24 0 0 1 54,44'},
+  oval:    {name:'Oval',     top:'M6,100 L6,48 C6,8 54,8 54,48'},
+  squoval: {name:'Squoval',  top:'M6,100 L6,30 Q6,14 20,14 L40,14 Q54,14 54,30'}
+};
+const shapePath = k => (SHAPES[k] || SHAPES.almond).top + ' L54,100 C54,124 6,124 6,100 Z';
+function rng(a) { return () => { a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+function flower(cx, cy, r, c) { let s = ''; for (let k = 0; k < 5; k++) { const a = k * 1.2566 - Math.PI / 2; s += `<circle cx="${(cx + Math.cos(a) * r * .62).toFixed(1)}" cy="${(cy + Math.sin(a) * r * .62).toFixed(1)}" r="${(r * .5).toFixed(1)}" fill="${c}" opacity=".93"/>`; } return s + `<circle cx="${cx}" cy="${cy}" r="${(r * .28).toFixed(1)}" fill="#fff"/>`; }
+const PRESETS = {
+  none:    {name:'Solid Color', draw:() => ''},
+  french:  {name:'French Tip',  draw:n => `<path d="M-5,-8H65V34Q30,14 -5,34Z" fill="${n.accent}"/>`},
+  ombre:   {name:'Ombré',       draw:(n,u) => `<defs><linearGradient id="om${u}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${n.accent}"/><stop offset=".8" stop-color="${n.accent}" stop-opacity="0"/></linearGradient></defs><rect x="-10" y="-10" width="80" height="140" fill="url(#om${u})"/>`},
+  glitter: {name:'Glitter',     draw:(n,u,i) => { const r = rng(i * 97 + 13); let s = ''; for (let k = 0; k < 70; k++) { const y = -3 + Math.pow(r(), 1.7) * 112, x = r() * 60, rad = .5 + r() * 1.4; s += `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${rad.toFixed(2)}" fill="${k % 5 ? n.accent : '#fff'}" opacity="${(.55 + r() * .45).toFixed(2)}"/>`; } return s; }},
+  floral:  {name:'Florals',     draw:n => flower(30, 46, 10, n.accent) + flower(17, 84, 6, n.accent) + flower(44, 92, 4.5, n.accent)},
+  marble:  {name:'Marble',      draw:(n,u,i) => { const r = rng(i * 31 + 7); let s = ''; for (let k = 0; k < 4; k++) { const p = () => (r() * 64 - 2).toFixed(1); s += `<path d="M${p()},-6 C${p()},34 ${p()},72 ${p()},128" stroke="${n.accent}" stroke-width="${(.6 + r() * 2.4).toFixed(1)}" fill="none" opacity="${(.35 + r() * .5).toFixed(2)}"/>`; } return s; }},
+  halfmoon:{name:'Half Moon',   draw:n => `<ellipse cx="30" cy="121" rx="27" ry="25" fill="${n.accent}"/>`},
+  dots:    {name:'Polka Dots',  draw:n => { let s = '', row = 0; for (let y = 8; y < 122; y += 13, row++) for (let x = row % 2 ? 9 : 16; x < 60; x += 14) s += `<circle cx="${x}" cy="${y}" r="2.5" fill="${n.accent}"/>`; return s; }},
+  lines:   {name:'Fine Lines',  draw:n => `<path d="M17,-6 C23,40 12,80 22,128" stroke="${n.accent}" stroke-width="1.5" fill="none"/><path d="M41,-6 C35,46 47,84 38,128" stroke="${n.accent}" stroke-width="1" fill="none"/>`}
+};
+const ADDONS = {
+  rhinestone:{name:'Rhinestones',    desc:'Three hand-set crystals at the cuticle'},
+  charm:     {name:'3D Charm',       desc:'Gold heart charm, sculpted in 3D'},
+  chrome:    {name:'Chrome Powder',  desc:'Mirror-like pearl sheen over the color'},
+  art:       {name:'Hand-drawn Art', desc:'Delicate line art painted by our artist'}
+};
+const pPreset = k => +(C.prices.presets[k] || 0), pAddon = k => +(C.prices.addons[k] || 0);
+const BASES = ['#FFFFFF','#FBF7F2','#F5EDE4','#F3D9D5','#EBC8C0','#E8CFC4','#D9A6A0','#C98B86','#B76E79','#D8B9A0','#C9A96E','#8A7267','#6E4B3A','#4A342E','#2E2220','#A8B8A5','#B9C4D6','#E4D4E8'];
+const ACCENTS = ['#FFFFFF','#FBF7F2','#F3D9D5','#D9A6A0','#B76E79','#C9A96E','#E8C9A0','#8A7267','#6E4B3A','#4A342E','#2E2220','#A8B8A5'];
+const lum = hex => { const h = hex.replace('#', ''); const [r, g, b] = [0, 2, 4].map(i => parseInt(h.substr(i, 2), 16) / 255); return .2126 * r + .7152 * g + .0722 * b; };
+
+const IMGS = {};
+function dataToBlobURL(d) { try { const [head, b64] = d.split(','); const mime = head.match(/:(.*?);/)[1]; const bin = atob(b64); const arr = new Uint8Array(bin.length); for (let i = 0; i < bin.length; i++) arr[i] = bin.charCodeAt(i); return URL.createObjectURL(new Blob([arr], {type:mime})); } catch (e) { return d; } }
+function imgSrc(id, d, useData) { const data = d && d.images && d.images[id]; if (!data) return ''; if (useData) return data; return IMGS[id] || (IMGS[id] = dataToBlobURL(data)); }
+const imgT = c => `translate(${(30 + c.x).toFixed(2)} ${(60 + c.y).toFixed(2)}) rotate(${c.r}) scale(${c.s}) translate(-30 -60)`;
+
+let U = 0;
+function nailSVG(n, d, i, opt = {}) {
+  const u = ++U, p = shapePath(n.shape || d.shape), P = PRESETS[n.preset] || PRESETS.none, a = n.addons || {};
+  const artC = lum(n.base) > .55 ? '#4A342E' : '#FBF7F2';
+  let s = `<svg viewBox="0 -4 60 128" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs><clipPath id="cp${u}"><path d="${p}"/></clipPath></defs><g clip-path="url(#cp${u})">`;
+  s += `<rect x="-10" y="-10" width="80" height="140" fill="${n.base}"/>` + P.draw(n, u, i);
+  if (n.custom) { const src = imgSrc(n.custom.img, d, opt.data); if (src) s += `<image href="${src}" x="-2" y="-4" width="64" height="128" preserveAspectRatio="xMidYMid slice" transform="${imgT(n.custom)}" data-ni="${opt.tag ? i : ''}"/>`; }
+  if (a.chrome) s += `<defs><linearGradient id="ch${u}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".85"/><stop offset=".3" stop-color="#fff" stop-opacity=".05"/><stop offset=".52" stop-color="#fff" stop-opacity=".62"/><stop offset=".75" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#fff" stop-opacity=".45"/></linearGradient></defs><rect x="-10" y="-10" width="80" height="140" fill="url(#ch${u})"/>`;
+  if (a.art) s += `<g fill="none" stroke="${artC}" stroke-width="1.3" stroke-linecap="round"><path d="M30,74 C23,64 14,70 20,79 L30,88 L40,79 C46,70 37,64 30,74Z"/><path d="M14,112 C18,102 22,98 30,96"/><path d="M19,104 q-5,-2 -6,-7 q5,1 6,7Z M24,99 q-2,-5 1,-8 q2,4 -1,8Z"/></g>`;
+  if (a.rhinestone) {
+    s += `<defs><radialGradient id="gm${u}" cx=".35" cy=".35" r=".8"><stop offset="0" stop-color="#fff"/><stop offset=".5" stop-color="#EDE3EE"/><stop offset="1" stop-color="#B7A5C2"/></radialGradient></defs>`;
+    [[19, 101, 3.2], [30, 98, 4.2], [41, 101, 3.2]].forEach(([x, y, r]) => { s += `<circle cx="${x}" cy="${y}" r="${r}" fill="url(#gm${u})" stroke="#fff" stroke-width=".6"/><circle cx="${x - r * .35}" cy="${y - r * .35}" r="${r * .3}" fill="#fff"/>`; });
+  }
+  s += `<path d="M13,26 C11,52 12,78 15,100" stroke="#fff" stroke-opacity=".4" stroke-width="3.5" fill="none" stroke-linecap="round"/></g>`;
+  if (a.charm) s += `<defs><linearGradient id="gd${u}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F6E3B4"/><stop offset=".5" stop-color="#C9A96E"/><stop offset="1" stop-color="#9C7A3F"/></linearGradient></defs><path d="M30,66 C17,56 19,42 30,48 C41,42 43,56 30,66Z" fill="url(#gd${u})" stroke="#8C6B34" stroke-width=".5"/><path d="M24,50 q2,-2 4,0" stroke="#fff" stroke-width="1.2" fill="none" stroke-linecap="round" opacity=".9"/>`;
+  s += `<path d="${p}" fill="none" stroke="rgba(74,52,46,.22)" stroke-width="1"/></svg>`;
+  return s;
+}
+const FINGERS = ['Pinky','Ring','Middle','Index','Thumb'], FSCALE = [.74, .86, .95, .9, 1.06], FOFF = [20, 6, 0, 5, 38];
+const fingerOf = i => i < 5 ? i : 9 - i;
+const nailLabel = i => `${i < 5 ? 'Left' : 'Right'} ${FINGERS[fingerOf(i)]}`;
+function handHTML(d, hand, o = {}) {
+  const idx = hand === 0 ? [0,1,2,3,4] : [5,6,7,8,9];
+  return `<div class="hand" style="--w:${o.w || 46}px">${idx.map(i => {
+    const f = fingerOf(i), tag = o.act ? 'button' : 'div';
+    const attrs = o.act ? ` type="button" data-act="${o.act}" data-i="${i}" aria-label="${nailLabel(i)}" aria-pressed="${o.sel === i}"` : '';
+    return `<div class="finger" style="--off:${FOFF[f]}px"><${tag} class="nail ${o.sel === i ? 'sel' : ''}" style="--s:${FSCALE[f]}"${attrs}>${nailSVG(d.nails[i], d, i, {tag:o.tag})}</${tag}>${o.labels ? `<small>${FINGERS[f]}</small>` : ''}</div>`;
+  }).join('')}</div>`;
+}
+const blankNail = BK.blankNail, newDesign = BK.newDesign, mk = BK.mk;
+const addonList = n => Object.keys(n.addons || {}).filter(k => n.addons[k]);
+function priceDesign(d) { return BK.priceParts(d.nails.map(n => ({preset:n.preset, addons:addonList(n), custom:!!n.custom})), C.prices); }
+const nailPrice = n => pPreset(n.preset) + addonList(n).reduce((t, k) => t + pAddon(k), 0) + (n.custom ? +C.prices.customEst : 0);
+function designFromRecord(r) {
+  const d = newDesign(); d.shape = r.nail_shape; d.images = clone(r.images || {});
+  d.nails = r.nails.map(x => ({shape:x.nail_shape === r.nail_shape ? null : x.nail_shape, base:x.base_color, accent:x.accent_color || '#FFFFFF', preset:x.preset_id || 'none', addons:Object.fromEntries((x.addons || []).map(a => [a, true])), custom:x.custom_image ? {img:x.custom_image.image_id, x:x.custom_image.x, y:x.custom_image.y, s:x.custom_image.scale, r:x.custom_image.rotation} : null}));
+  return d;
+}
+function recordFromDesign(d) {
+  return {nail_shape:d.shape, images:d.images,
+    nails:d.nails.map((n, i) => ({nail_index:i, nail_shape:n.shape || d.shape, base_color:n.base, accent_color:n.accent, preset_id:n.preset === 'none' ? null : n.preset, addons:addonList(n), custom_image:n.custom ? {image_id:n.custom.img, x:r2(n.custom.x), y:r2(n.custom.y), scale:n.custom.s, rotation:n.custom.r} : null}))};
+}
+function pruneImages(d) { const used = new Set(d.nails.filter(n => n.custom).map(n => n.custom.img)); Object.keys(d.images || {}).forEach(k => { if (!used.has(k)) delete d.images[k]; }); }
+function compositeSVG(d) {
+  let out = '', x = 30; const base = 160;
+  [0, 1].forEach(hand => {
+    (hand ? [5,6,7,8,9] : [0,1,2,3,4]).forEach(i => {
+      const f = fingerOf(i), w = 62 * FSCALE[f], h = w * 128 / 60, y = base - h + FOFF[f] * 1.3;
+      out += nailSVG(d.nails[i], d, i, {data:true}).replace('<svg ', `<svg x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${w.toFixed(1)}" height="${h.toFixed(1)}" `);
+      x += w + 12;
+    });
+    x += 36;
+  });
+  const W = Math.ceil(x - 18), H = 236;
+  return {svg:`<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}"><rect width="100%" height="100%" fill="#FBF7F2"/>${out}</svg>`, W, H};
+}
+function makePreview(d) {
+  const {svg, W, H} = compositeSVG(d), url = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
+  return new Promise(res => {
+    const im = new Image();
+    im.onload = () => { try { const c = document.createElement('canvas'); c.width = W * 2; c.height = H * 2; c.getContext('2d').drawImage(im, 0, 0, c.width, c.height); res(c.toDataURL('image/jpeg', .9)); } catch (e) { res(url); } };
+    im.onerror = () => res(url); im.src = url;
+  });
+}
+const CAT_ART_LIST = [mk('almond','#D9A6A0','none','#FFFFFF'), mk('round','#B76E79','none','#FFFFFF'), mk('oval','#FBF7F2','floral','#D9A6A0'), mk('coffin','#F3D9D5','ombre','#D9A6A0'), mk('almond','#F3E9E4','none','#FFFFFF',{chrome:true,rhinestone:true}), mk('square','#FBF7F2','marble','#8A7267'), mk('squoval','#D9A6A0','dots','#FBF7F2')];
+const catArt = c => CAT_ART_LIST[Math.max(0, C.categories.indexOf(c)) % CAT_ART_LIST.length];
+
+/* ============ STATE ============ */
+const emptyCart = () => ({services:[], design:null, date:null, time:null, staff:'any', note:'', guest:{name:'', phone:'', email:''}});
+window.NA = {
+  studio:{d:newDesign(), sel:3, step:1, scope:'all', tab:'color', upScope:'one', editingId:null, gal:null},
+  booking:Object.assign(emptyCart(), store.get('na_cart', {})),
+  bstep:1, month:null, svcFilter:'All', galFilter:'All', accTab:'bookings', authTab:'login', done:null,
+  ad:{tab:'dashboard', filter:'upcoming', q:'', date:null}
+};
+const S = NA.studio;
+const saveCart = () => { store.set('na_cart', NA.booking); updateBadge(); };
+function updateBadge() { const n = NA.booking.services.length + (NA.booking.design ? 1 : 0); const b = $('#cartBadge'); b.textContent = n; b.classList.toggle('on', n > 0); }
+function cartServices() { return NA.booking.services.map(svcById).filter(Boolean); }
+function cartDesign() { return NA.booking.design ? DC[NA.booking.design] || null : null; }
+function cartDuration() { const d = cartDesign(); return cartServices().reduce((t, s) => t + s.dur, 0) + (d ? +C.prices.designMin : 0); }
+function cartTotal() { const d = cartDesign(); return r2(cartServices().reduce((t, s) => t + s.price, 0) + (d ? d.estimated_price : 0)); }
+const STATUS = {pending:['Pending confirmation','warn'], confirmed:['Confirmed','info'], completed:['Completed','ok'], cancelled:['Cancelled','bad'], no_show:['No-show','bad']};
+const PAY = {unpaid:['Unpaid','warn'], paid:['Paid','ok'], refunded:['Refunded','bad'], void:['Voided','bad']};
+const tag = (map, k) => `<span class="tag ${(map[k] || ['', ''])[1]}">${(map[k] || [k])[0]}</span>`;
+
+/* ============ SHOP (dynamic content) ============ */
+function applyShop() {
+  const s = C.shop;
+  $$('[data-shop="logo"]').forEach(e => e.innerHTML = logoHTML(s.name));
+  $$('[data-feature]').forEach(el => el.hidden = !F(el.dataset.feature));
+  $$('[data-shop="tagline"]').forEach(e => e.textContent = s.tagline);
+  $('#copy').textContent = `© ${new Date().getFullYear()} ${s.name}. All rights reserved.`;
+  $('#footSocial').innerHTML = socialLinks();
+  $('#footVisit').innerHTML = `<li>${esc(s.address)}</li><li><a href="tel:${esc(s.phone.replace(/\s/g, ''))}">${esc(s.phone)}</a></li><li><a href="mailto:${esc(s.email)}">${esc(s.email)}</a></li>`;
+}
+const socialLinks = () => `${C.shop.instagram ? `<a class="icon-btn" href="${esc(C.shop.instagram)}" target="_blank" rel="noopener" aria-label="Instagram">${icon('ig')}</a>` : ''}${C.shop.facebook ? `<a class="icon-btn" href="${esc(C.shop.facebook)}" target="_blank" rel="noopener" aria-label="Facebook">${icon('fb')}</a>` : ''}`;
+const hoursText = h => h ? `${fmtT(h[0])} – ${fmtT(h[1])}` : 'Closed';
+
+/* ============ HOME ============ */
+function renderHome() {
+  const s = C.shop;
+  $('#heroTitle').innerHTML = `${esc(s.heroTitle)} <em>${esc(s.heroAccent)}</em>`;
+  $('#heroLead').textContent = s.heroLead;
+  const hero = mk('almond','#F3D9D5','none','#FFFFFF',{},{1:{preset:'glitter',accent:'#C9A96E',base:'#EBD9C6',addons:{charm:true}},3:{preset:'french',accent:'#FFFFFF'}});
+  hero.nails[6].preset = 'ombre'; hero.nails[6].accent = '#D9A6A0';
+  $('#heroHand').innerHTML = handHTML(hero, 1, {w:64});
+  $('#heroStats').innerHTML = `${F('studio') ? `<div><b>${Object.keys(SHAPES).length}</b><span>Nail shapes</span></div>` : ''}<div><b>${C.services.length}</b><span>Signature services</span></div><div><b>${C.staff.length}</b><span>Expert artists</span></div>`;
+  const words = [...C.categories, 'French Tips', 'Ombré', 'Chrome', '3D Charms', 'Hand-painted Art'];
+  $('#marquee').innerHTML = [...words, ...words].map(w => `<span>${esc(w)}</span>`).join('');
+  $('#homeTiles').innerHTML = C.categories.filter(c => C.services.some(s => s.cat === c)).slice(0, 4).map(c => { const list = C.services.filter(s => s.cat === c); return `<a href="#services" data-act="svc-cat" data-v="${esc(c)}" class="card tile reveal"><div class="tile-art">${handHTML(catArt(c), 1, {w:30})}</div><h3>${esc(c)}</h3><p class="small">${list.slice(0, 3).map(s => esc(s.name)).join(' · ')}</p><span class="from">From ${money(Math.min(...list.map(s => s.price)))}</span></a>`; }).join('');
+  const art = mk('coffin','#F3D9D5','none','#FFFFFF',{},{0:{preset:'french',accent:'#D9A6A0'},1:{preset:'floral',accent:'#D9A6A0',base:'#FBF7F2'},2:{preset:'ombre',accent:'#6E4B3A'},3:{addons:{chrome:true,rhinestone:true}},4:{preset:'glitter',accent:'#C9A96E'}});
+  art.nails[1].shape = 'stiletto'; art.nails[8].shape = 'stiletto';
+  $('#homeStudioArt').innerHTML = handHTML(art, 0, {w:44}) + handHTML(art, 1, {w:44});
+  $('#homeGallery').innerHTML = C.gallery.slice(0, 4).map(galCard).join('');
+  observeReveals();
+  renderReviews('#homeReviews');
+}
+/* ---------- Google reviews ---------- */
+let REV = null, REV_T = 0;
+async function loadReviews() {
+  if (REV && Date.now() - REV_T < 300000) return REV;
+  try { REV = await api('GET', '/reviews'); REV_T = Date.now(); } catch (e) { REV = {enabled:false, items:[]}; }
+  if (MODE === 'local' && REV.enabled) {
+    const g = await clientGoogle();
+    if (g && !g.error) Object.assign(REV, {source:'google', rating:g.rating || REV.rating, count:g.count || REV.count, items:[...g.items, ...REV.items], mapsUrl:REV.mapsUrl || g.mapsUri, writeUrl:LDB.content.reviews.writeUrl || 'https://search.google.com/local/writereview?placeid=' + encodeURIComponent(g.placeId)});
+  }
+  return REV;
+}
+/* Google reviews straight from the browser (demo mode, no server needed) — Maps JavaScript API + Places library */
+let gmapsP = null;
+function loadGmaps(key) {
+  if (window.google && google.maps && google.maps.importLibrary) return Promise.resolve();
+  if (gmapsP) return gmapsP;
+  gmapsP = new Promise((res, rej) => {
+    window.__naGm = () => res();
+    const sc = document.createElement('script');
+    sc.src = `https://maps.googleapis.com/maps/api/js?key=${encodeURIComponent(key)}&v=weekly&loading=async&callback=__naGm`;
+    sc.async = true; sc.onerror = () => { gmapsP = null; rej(new Error('Could not load Google Maps — check the internet connection.')); };
+    document.head.appendChild(sc);
+  });
+  return gmapsP;
+}
+async function clientGoogle(force) {
+  const key = LDB && LDB.secrets && LDB.secrets.googleApiKey, R = LDB && LDB.content.reviews;
+  if (!key || !R || R.useGoogle === false) return null;
+  const sig = key.slice(-6) + '|' + R.placeId + '|' + R.placeQuery, cache = store.get('na_gcache', null);
+  if (!force && cache && cache.sig === sig && Date.now() - cache.at < (cache.error ? 600e3 : 6 * 3600e3)) return cache;
+  let data;
+  try {
+    let authFail = false; window.gm_authFailure = () => { authFail = true; };
+    await loadGmaps(key);
+    const {Place} = await google.maps.importLibrary('places');
+    let id = R.placeId;
+    if (!id) {
+      const {places} = await Place.searchByText({textQuery:R.placeQuery || C.shop.name, fields:['id'], maxResultCount:1});
+      if (!places || !places.length) throw new Error('No Google place found for “' + R.placeQuery + '”.');
+      id = places[0].id;
+    }
+    const p = new Place({id, requestedLanguage:'en'});
+    await p.fetchFields({fields:['displayName','rating','userRatingCount','reviews','googleMapsURI']});
+    if (authFail) throw new Error('Google rejected the API key.');
+    data = {sig, at:Date.now(), error:null, placeId:id, name:p.displayName, rating:p.rating || null, count:p.userRatingCount || null, mapsUri:p.googleMapsURI || '',
+      items:(p.reviews || []).map(v => { const a = v.authorAttribution || {}; return {author:a.displayName || 'Google user', authorUrl:a.uri || '', photo:a.photoURI || '', rating:v.rating || 5, text:v.text || '', date:v.relativePublishTimeDescription || '', source:'google'}; }).filter(v => v.text)};
+  } catch (e) { data = {sig, at:Date.now(), error:(e && e.message) || 'Google request failed.', items:[]}; }
+  store.set('na_gcache', data);
+  return data;
+}
+const starsHTML = r => `<span class="stars" style="--r:${Math.max(0, Math.min(5, +r || 0)) / 5 * 100}%" role="img" aria-label="${(+r || 0).toFixed(1)} out of 5 stars"><span aria-hidden="true">★★★★★</span><span class="on" aria-hidden="true">★★★★★</span></span>`;
+function revCard(v) {
+  const name = v.authorUrl ? `<a href="${esc(v.authorUrl)}" target="_blank" rel="noopener">${esc(v.author)}</a>` : esc(v.author);
+  return `<article class="card rev reveal"><div class="rev-head">${v.photo ? `<img src="${esc(v.photo)}" alt="" referrerpolicy="no-referrer" loading="lazy">` : `<span class="avatar">${esc((v.author || '?')[0].toUpperCase())}</span>`}<div><b>${name}</b><small>${esc(v.date || '')}</small></div></div>${starsHTML(v.rating)}<p class="rev-text">${esc(v.text)}</p>${v.text.length > 240 ? '<button class="textbtn" data-act="rev-more">Read more</button>' : ''}</article>`;
+}
+async function renderReviews(sel) {
+  const el = $(sel); if (!el) return;
+  if (!F('reviews')) { el.innerHTML = ''; return; }
+  const R = await loadReviews();
+  if (!R.enabled) { el.innerHTML = ''; return; }
+  const items = R.items, links = `${R.mapsUrl ? `<a class="btn btn-primary btn-sm" href="${esc(R.mapsUrl)}" target="_blank" rel="noopener">See all reviews</a>` : ''}${R.writeUrl ? `<a class="btn btn-ghost btn-sm" href="${esc(R.writeUrl)}" target="_blank" rel="noopener">Write a review</a>` : ''}`;
+  el.innerHTML = `<div class="section-head reveal" style="margin-bottom:28px"><span class="eyebrow">Google Reviews</span><h2>Loved by <em>our clients</em></h2></div>
+    <div class="rev-top reveal"><div class="card rev-summary">${R.rating ? `<b class="rev-score">${(+R.rating).toFixed(1)}</b>${starsHTML(R.rating)}` : `<span class="rev-score" style="font-size:2.2rem">★</span>`}<p class="small">${R.count ? `Based on ${R.count} review${R.count > 1 ? 's' : ''} on Google` : 'Our rating and reviews on Google — see them on the map'}</p>${links ? `<div class="hero-cta" style="justify-content:center;margin-top:20px">${links}</div>` : ''}</div>
+    <iframe class="rev-map card" title="${esc(C.shop.name)} on Google Maps" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?q=${encodeURIComponent(R.placeQuery || C.shop.name)}&z=16&hl=en&output=embed"></iframe></div>
+    ${items.length ? `<div class="rev-grid">${items.map(revCard).join('')}</div>${items.length > 6 ? `<div class="center" style="margin-top:26px"><button class="btn btn-soft btn-sm" data-act="rev-all">Show more reviews (${items.length - 6})</button></div>` : ''}` : ''}${R.rating || items.length ? '<p class="rev-attr">Reviews from Google</p>' : ''}`;
+  observeReveals();
+}
+function galCard(g, k) {
+  const pads = [52, 72, 44, 64, 58];
+  return `<button class="g-item reveal" data-act="gal-open" data-id="${esc(g.id)}" style="--bg:${g.bg};--pad:${pads[k % pads.length]}px"><div class="g-art">${handHTML(g.d, 1, {w:36})}</div><div class="g-cap"><b>${esc(g.name)}</b><span>${esc(g.cat)}</span></div></button>`;
+}
+
+/* ============ SERVICES ============ */
+function renderServices() {
+  const cats = C.categories.filter(c => C.services.some(s => s.cat === c));
+  if (NA.svcFilter !== 'All' && !cats.includes(NA.svcFilter)) NA.svcFilter = 'All';
+  const f = NA.svcFilter, sel = NA.booking.services;
+  $('#svcFilters').innerHTML = ['All', ...cats].map(c => `<button class="chip ${f === c ? 'on' : ''}" data-act="svc-filter" data-v="${esc(c)}">${esc(c)}</button>`).join('');
+  $('#svcList').innerHTML = cats.filter(c => f === 'All' || f === c).map(c => { const list = C.services.filter(s => s.cat === c); return `
+    <div class="svc-group"><div class="svc-group-head"><h2>${esc(c)}</h2><span class="eyebrow">${list.length} services</span></div>
+    <div class="svc-grid">${list.map(s => `
+      <article class="card svc"><div class="svc-art">${handHTML(catArt(c), 1, {w:26})}</div>
+      <div class="svc-body"><h3>${esc(s.name)}</h3><p class="small">${esc(s.desc)}</p>
+      <div class="svc-meta"><span class="price">${money(s.price)}</span><span>${fmtDur(s.dur)}</span></div>
+      <button class="btn btn-soft btn-sm ${sel.includes(s.id) ? 'added' : ''}" data-act="svc-toggle" data-id="${esc(s.id)}">${sel.includes(s.id) ? '✓ Added to Booking' : 'Add to Booking'}</button></div></article>`).join('')}</div></div>`; }).join('');
+}
+
+/* ============ GALLERY ============ */
+function renderGallery() {
+  const cats = C.galleryCats.filter(c => C.gallery.some(g => g.cat === c));
+  if (NA.galFilter !== 'All' && !cats.includes(NA.galFilter)) NA.galFilter = 'All';
+  const f = NA.galFilter;
+  $('#galFilters').innerHTML = ['All', ...cats].map(c => `<button class="chip ${f === c ? 'on' : ''}" data-act="gal-filter" data-v="${esc(c)}">${esc(c)}</button>`).join('');
+  const list = C.gallery.filter(g => f === 'All' || g.cat === f);
+  $('#galGrid').innerHTML = list.length ? list.map(galCard).join('') : '<div class="empty">No designs yet.</div>';
+  observeReveals();
+}
+function openGallery(id) {
+  const g = C.gallery.find(x => x.id === id); if (!g) return;
+  const pr = priceDesign(g.d), dlg = $('#galDlg');
+  const presets = [...new Set(g.d.nails.map(n => PRESETS[n.preset].name))].join(', ');
+  const adds = [...new Set(g.d.nails.flatMap(n => addonList(n).map(k => ADDONS[k].name)))].join(', ') || '—';
+  dlg.innerHTML = `<div class="dlg-grid" style="--bg:${g.bg}"><div class="dlg-art">${handHTML(g.d, 0, {w:40})}<div style="height:26px"></div>${handHTML(g.d, 1, {w:40})}</div>
+    <div class="dlg-body"><span class="eyebrow">${esc(g.cat)}</span><h2 style="font-size:2rem">${esc(g.name)}</h2><p>${esc(g.desc)}</p>
+    <dl class="spec"><dt>Shape</dt><dd>${SHAPES[g.d.shape].name}</dd><dt>Style</dt><dd>${presets}</dd><dt>Add-ons</dt><dd>${adds}</dd><dt>Estimate</dt><dd><b>${money(pr.total)}</b> <span class="muted small">(nail art)</span></dd></dl>
+    <button class="btn btn-primary" data-act="gal-book" data-id="${esc(g.id)}">Book this design</button>
+    ${F('studio') ? `<button class="btn btn-ghost" data-act="gal-custom" data-id="${esc(g.id)}">Customize in Studio</button>` : ''}</div></div>
+    <button class="icon-btn dlg-close" data-act="dlg-close" data-v="galDlg" aria-label="Close">✕</button>`;
+  dlg.showModal();
+}
+
+/* ============ STUDIO ============ */
+function renderStudio() {
+  $('#stBanner').innerHTML = S.gal ? `<div class="studio-banner"><span>Admin · editing gallery design <b>“${esc(S.gal.name)}”</b></span><button class="textbtn" data-act="st-gal-cancel">Cancel &amp; return to admin</button></div>` : S.editingId ? `<div class="studio-banner"><span>Editing a saved design</span><button class="textbtn" data-act="st-new">Start a new design instead</button></div>` : '';
+  renderStepper(); renderStage(); renderPanel();
+}
+function renderStepper() { $('#stStepper').innerHTML = ['Shape','Design','Confirm'].map((n, k) => `<li class="${S.step === k + 1 ? 'on' : S.step > k + 1 ? 'done' : ''}"><button data-act="st-go" data-step="${k + 1}">${n}</button></li>`).join(''); }
+function renderStage() {
+  $('#stHands').innerHTML = `<div class="hand-wrap">${handHTML(S.d, 0, {act:'st-pick', sel:S.sel, labels:true, w:48, tag:true})}<span>Left hand</span></div><div class="hand-wrap">${handHTML(S.d, 1, {act:'st-pick', sel:S.sel, labels:true, w:48, tag:true})}<span>Right hand</span></div>`;
+  const pr = priceDesign(S.d);
+  $('#stPrice').innerHTML = `<div><span class="eyebrow">Estimated price</span><div class="price-big">${money(pr.total)}</div></div>${pr.status === 'fixed' ? '<span class="tag ok">Fixed price</span>' : '<span class="tag warn">Custom Design – Price to be confirmed</span>'}`;
+  const ed = $('#stEditor'); if (ed) { const n = S.d.nails[S.sel]; ed.innerHTML = nailSVG(n, S.d, S.sel, {tag:true}); ed.classList.toggle('can-drag', !!n.custom); }
+}
+function swatchRow(list, cur, act) {
+  return `<div class="swatches">${list.map(c => `<button class="sw ${cur.toUpperCase() === c ? 'on' : ''}" style="--c:${c}" data-act="${act}" data-v="${c}" aria-label="Color ${c}"></button>`).join('')}<label class="sw sw-custom" title="Custom color"><input type="color" data-in="${act}" value="${cur.toLowerCase()}" aria-label="Custom color"></label></div>`;
+}
+function renderPanel() {
+  const n = S.d.nails[S.sel], shapeKey = n.shape || S.d.shape, el = $('#stPanel');
+  if (S.step === 1) {
+    const cur = S.scope === 'all' ? S.d.shape : shapeKey;
+    el.innerHTML = `<span class="eyebrow">Step 1</span><h3>Choose your nail shape</h3><p class="small">Apply one shape to all ten nails, or select a single nail on the left to give it its own shape.</p>
+      <div class="seg"><button data-act="st-scope" data-v="all" class="${S.scope === 'all' ? 'on' : ''}">All 10 nails</button><button data-act="st-scope" data-v="one" class="${S.scope === 'one' ? 'on' : ''}">Selected nail · ${nailLabel(S.sel)}</button></div>
+      <div class="shape-grid">${Object.entries(SHAPES).map(([k, s]) => `<button class="shape-opt ${cur === k ? 'on' : ''}" data-act="st-shape" data-v="${k}"><svg viewBox="0 -4 60 128"><path d="${shapePath(k)}" fill="${cur === k ? '#F3D9D5' : '#F5EDE4'}" stroke="#D9A6A0" stroke-width="2"/></svg>${s.name}</button>`).join('')}</div>
+      <p class="hint">Tip: many clients choose a longer stiletto or coffin shape on the ring finger as an accent nail.</p>
+      <div class="panel-actions"><span class="small muted">Base shape: <b style="color:var(--text)">${SHAPES[S.d.shape].name}</b></span><button class="btn btn-primary" data-act="st-go" data-step="2">Continue to Design ${icon('arrow')}</button></div>`;
+  } else if (S.step === 2) {
+    const tabs = {color:'Color', designs:'Designs', addons:'Add-ons', upload:'Upload'};
+    let body = '';
+    if (S.tab === 'color') body = `<span class="lbl">Base color</span>${swatchRow(BASES, n.base, 'st-base')}<span class="lbl">Design accent color <span style="text-transform:none;letter-spacing:0">(tips, ombré, glitter, florals…)</span></span>${swatchRow(ACCENTS, n.accent, 'st-accent')}`;
+    if (S.tab === 'designs') body = `<div class="preset-grid">${Object.entries(PRESETS).map(([k, p]) => `<button class="preset ${n.preset === k ? 'on' : ''}" data-act="st-preset" data-v="${k}"><div class="nail" style="--w:34px">${nailSVG({...n, preset:k, custom:null, addons:{}}, S.d, S.sel)}</div><b>${p.name}</b><small>${pPreset(k) ? '+' + money(pPreset(k)) + ' / nail' : 'Included'}</small></button>`).join('')}</div>`;
+    if (S.tab === 'addons') body = `<div class="addon-list">${Object.entries(ADDONS).map(([k, a]) => `<button class="addon ${n.addons[k] ? 'on' : ''}" data-act="st-addon" data-v="${k}"><span class="chk">${n.addons[k] ? '✓' : ''}</span><span><b>${a.name}</b><small>${a.desc}</small></span><em>+${money(pAddon(k))}</em></button>`).join('')}</div><p class="note">Add-ons apply to the selected nail. Use <b>Apply to all nails</b> to copy the whole look.</p>`;
+    if (S.tab === 'upload') {
+      const c = n.custom;
+      body = (c ? `<div class="custom-box"><span class="lbl">Adjust your image — drag it on the large nail</span>
+        <div class="range-row"><label for="rz">Zoom</label><input id="rz" type="range" min=".3" max="3" step=".01" value="${c.s}" data-in="st-zoom"><output id="rzO">${Math.round(c.s * 100)}%</output></div>
+        <div class="range-row"><label for="rr">Rotate</label><input id="rr" type="range" min="-180" max="180" step="1" value="${c.r}" data-in="st-rot"><output id="rrO">${c.r}°</output></div>
+        <div class="mini-actions" style="margin-top:12px"><button class="textbtn" data-act="st-img-reset">Reset position</button><button class="textbtn" data-act="st-img-all">Use this image on all nails</button><button class="textbtn danger" data-act="st-img-remove">Remove image</button></div></div>` : '') +
+        `<label class="upload"><input type="file" accept="image/png,image/jpeg,image/webp" data-in="st-upload" hidden><span class="ico">${icon('upload')}</span><b>${c ? 'Replace image' : 'Upload your own design'}</b><small>JPG or PNG · the image is clipped to the nail shape</small></label>
+        <div class="seg" style="margin-bottom:4px"><button data-act="st-upscope" data-v="one" class="${S.upScope === 'one' ? 'on' : ''}">Upload to this nail</button><button data-act="st-upscope" data-v="all" class="${S.upScope === 'all' ? 'on' : ''}">Upload to all nails</button></div>
+        <p class="note"><b>Custom Design – Price to be confirmed.</b> Custom images add a provisional ${money(C.prices.customEst)} per nail; your artist confirms the final price. Your original image and its exact position are saved with the design.</p>`;
+    }
+    const tags = [SHAPES[shapeKey].name, PRESETS[n.preset].name, ...addonList(n).map(k => ADDONS[k].name), n.custom ? 'Custom image' : ''].filter(Boolean);
+    el.innerHTML = `<span class="eyebrow">Step 2 · Design</span>
+      <div class="editor-row" style="margin-top:14px"><div class="editor" id="stEditor"></div><div class="editor-info"><span class="eyebrow">Editing</span><h3>${nailLabel(S.sel)}</h3><div class="tags">${tags.map(t => `<span class="tag info">${esc(t)}</span>`).join('')}</div>
+      <div class="mini-actions"><button class="btn btn-soft btn-sm" data-act="st-apply-all">Apply to all nails</button><button class="textbtn" data-act="st-clear">Reset nail</button></div><p class="note">Tap any nail on the preview to edit it.</p></div></div>
+      <div class="tabs" role="tablist">${Object.entries(tabs).map(([k, v]) => `<button class="${S.tab === k ? 'on' : ''}" data-act="st-tab" data-v="${k}" role="tab" aria-selected="${S.tab === k}">${v}</button>`).join('')}</div>
+      ${body}
+      <div class="panel-actions"><button class="btn btn-ghost btn-sm" data-act="st-go" data-step="1">Back</button><button class="btn btn-primary" data-act="st-go" data-step="3">Review &amp; Price ${icon('arrow')}</button></div>`;
+    renderStage();
+  } else {
+    const pr = priceDesign(S.d);
+    el.innerHTML = `<span class="eyebrow">Step 3 · Confirm</span><h3>Review your design</h3>
+      <div class="table-wrap"><table class="nail-table"><thead><tr><th>Nail</th><th>Shape</th><th>Design</th><th>Extras</th><th>Price</th></tr></thead><tbody>
+      ${S.d.nails.map((n, i) => { const ex = [...addonList(n).map(k => ADDONS[k].name), n.custom ? 'Custom image' : ''].filter(Boolean);
+        return `<tr><td>${nailLabel(i)}</td><td>${SHAPES[n.shape || S.d.shape].name}</td><td><span class="swatch-dot" style="background:${n.base}"></span>${PRESETS[n.preset].name}</td><td>${ex.join(', ') || '—'}</td><td>${money(nailPrice(n))}${n.custom ? '*' : ''}</td></tr>`; }).join('')}
+      </tbody></table></div>
+      <div class="breakdown"><div><span>Nail art base (full set)</span><span>${money(pr.base)}</span></div><div><span>Designs</span><span>${money(pr.presets)}</span></div><div><span>Add-ons</span><span>${money(pr.addons)}</span></div>${pr.custom ? `<div><span>Custom images (provisional)*</span><span>${money(pr.custom)}</span></div>` : ''}<div class="total"><span>Estimated total</span><span>${money(pr.total)}</span></div></div>
+      ${pr.status === 'fixed' ? '<span class="tag ok">Fixed price</span>' : '<span class="tag warn">Custom Design – Price to be confirmed</span><p class="note">*Your artist will confirm the final price for custom images before your appointment.</p>'}
+      <div class="panel-actions"><button class="btn btn-ghost btn-sm" data-act="st-go" data-step="2">Back</button>${S.gal ? `<button class="btn btn-dark" data-act="st-gal-save">Save to Gallery ${icon('check')}</button>` : `<button class="btn btn-primary" data-act="st-confirm">${S.editingId ? 'Save &amp; Book' : 'Confirm Design'} ${icon('check')}</button>`}</div>`;
+  }
+}
+function updateImgT(i) { const c = S.d.nails[i].custom; if (!c) return; $$(`#page-studio image[data-ni="${i}"]`).forEach(im => im.setAttribute('transform', imgT(c))); }
+function downscale(file, max) {
+  return new Promise((res, rej) => {
+    const fr = new FileReader();
+    fr.onload = () => { const im = new Image(); im.onload = () => { const k = Math.min(1, max / Math.max(im.width, im.height)); const c = document.createElement('canvas'); c.width = Math.round(im.width * k); c.height = Math.round(im.height * k); c.getContext('2d').drawImage(im, 0, 0, c.width, c.height); res(file.type === 'image/png' ? c.toDataURL('image/png') : c.toDataURL('image/jpeg', .88)); }; im.onerror = rej; im.src = fr.result; };
+    fr.onerror = rej; fr.readAsDataURL(file);
+  });
+}
+async function handleUpload(file) {
+  if (!file || !/^image\/(png|jpe?g|webp)$/.test(file.type)) return toast('Please choose a JPG or PNG image.');
+  try {
+    const data = await downscale(file, file.type === 'image/png' ? 700 : 900);
+    const id = uidL('img'); S.d.images[id] = data;
+    const c = {img:id, x:0, y:0, s:1, r:0};
+    if (S.upScope === 'all') S.d.nails.forEach(n => n.custom = {...c}); else S.d.nails[S.sel].custom = c;
+    renderPanel(); toast('Image added — drag, zoom or rotate to fit.');
+  } catch (e) { toast('Sorry, that image could not be read.'); }
+}
+async function confirmDesign(btn) {
+  btn.disabled = true;
+  try {
+    const dd = clone(S.d); pruneImages(dd);
+    const body = recordFromDesign(dd); body.preview_image_url = await makePreview(dd);
+    const old = S.editingId && DC[S.editingId];
+    body.name = old ? old.name : 'My Design · ' + new Date().toLocaleDateString('en-US', {month:'short', day:'numeric'});
+    let r;
+    if (old) r = await api('PUT', '/designs/' + old.id, Object.assign(body, {claim:claims().designs[old.id]}));
+    else { r = await api('POST', '/designs', body); if (r.claim) setClaim('designs', r.design.id, r.claim); }
+    DC[r.design.id] = r.design; NA.booking.design = r.design.id; NA.booking.time = null; saveCart();
+    S.editingId = null; S.d = newDesign(); S.step = 1;
+    if (ME) await loadMe();
+    toast(me() ? 'Design saved to My Designs and attached to your booking.' : 'Design attached to your booking. Sign in to keep it in My Designs.');
+    NA.bstep = 1; location.hash = '#booking';
+  } catch (e) { toast(e.message); btn.disabled = false; }
+}
+
+/* ============ BOOKING ============ */
+const BSTEPS = ['Services','Date & Time','Details','Design','Confirm'];
+function canGo(step) {
+  const b = NA.booking;
+  if (step >= 2 && !b.services.length && !b.design) return false;
+  if (step >= 3 && (!b.date || b.time == null)) return false;
+  return true;
+}
+function summaryHTML() {
+  const b = NA.booking, d = cartDesign(), dur = cartDuration(), items = cartServices();
+  return `<h3>Your booking</h3>${items.length || d ? `<ul class="sum-list">${items.map(s => `<li><span>${esc(s.name)}</span><span>${money(s.price)}</span></li>`).join('')}${d ? `<li><span>Studio design${d.price_status !== 'fixed' ? ' <span class="tag warn" style="padding:2px 8px">TBC</span>' : ''}</span><span>${money(d.estimated_price)}</span></li>` : ''}</ul>` : '<p class="small">No services selected yet.</p>'}
+    ${d ? `<div class="sum-design"><img src="${d.preview_image_url}" alt="Your nail design"><span class="small muted">${esc(d.name)}</span></div>` : ''}
+    <div class="sum-sep"></div>
+    <div class="sum-row"><span>Date</span><span>${b.date ? fmtShort(b.date) : '—'}</span></div>
+    <div class="sum-row"><span>Time</span><span>${b.time != null ? fmtT(b.time) : '—'}</span></div>
+    <div class="sum-row"><span>Artist</span><span>${b.staff !== 'any' && staffById(b.staff) ? esc(staffById(b.staff).name) : 'No preference'}</span></div>
+    <div class="sum-row"><span>Duration</span><span>${dur ? fmtDur(Math.max(30, dur)) : '—'}</span></div>
+    <div class="sum-total"><span>Estimated total</span><span>${money(cartTotal())}</span></div>
+    ${d && d.price_status !== 'fixed' ? '<p class="note">Includes a provisional price for your custom design.</p>' : ''}
+    <p class="note">Pay at the salon after your appointment.</p>`;
+}
+async function renderBooking() {
+  const root = $('#bkRoot'), b = NA.booking;
+  if (NA.done) { root.innerHTML = successHTML(NA.done); return; }
+  b.services = b.services.filter(id => svcById(id));
+  if (b.design && !(await ensureDesign(b.design))) { b.design = null; }
+  saveCart();
+  const show4 = F('studio') || !!cartDesign();
+  let st = NA.bstep; while (st > 1 && !canGo(st)) st--; if (st === 4 && !show4) st = 5; NA.bstep = st;
+  if (st >= 2) await loadBusy();
+  const dur = Math.max(cartDuration(), 30);
+  if (b.date && b.time != null && !BK.slotsFor(C, BUSY, b.date, dur, NOW).some(s => s.t === b.time)) { b.time = null; saveCart(); if (st > 2) { st = NA.bstep = 2; } }
+  const stepper = `<ol class="stepper">${BSTEPS.map((n, k) => k === 3 && !show4 ? '' : `<li class="${st === k + 1 ? 'on' : st > k + 1 ? 'done' : ''}"><button data-act="bk-go" data-step="${k + 1}" ${canGo(k + 1) ? '' : 'disabled'}>${n}</button></li>`).join('')}</ol>`;
+  const next = (lbl, ok, to) => `<button class="btn btn-primary" data-act="bk-go" data-step="${to}" ${ok ? '' : 'disabled'}>${lbl} ${icon('arrow')}</button>`;
+  const back = st > 1 ? `<button class="btn btn-ghost btn-sm" data-act="bk-go" data-step="${st === 5 && !show4 ? 3 : st - 1}">Back</button>` : '<span></span>';
+  let body = '';
+  if (st === 1) {
+    const cats = C.categories.filter(c => C.services.some(s => s.cat === c));
+    body = `<span class="eyebrow">Step 1</span><h3>Choose your services</h3><p class="small" style="margin-bottom:22px">Select one or more. You can also attach a design from the Studio.</p>
+      ${cats.map(c => `<div class="pick-cat">${esc(c)}</div><div class="pick-list">${C.services.filter(s => s.cat === c).map(s => `<button class="pick ${b.services.includes(s.id) ? 'on' : ''}" data-act="bk-svc" data-id="${esc(s.id)}"><span class="chk">${b.services.includes(s.id) ? '✓' : ''}</span><span><b>${esc(s.name)}</b><small>${esc(s.desc)}</small></span><span class="pr">${money(s.price)}<small>${fmtDur(s.dur)}</small></span></button>`).join('')}</div>`).join('')}
+      <div class="panel-actions">${back}${next('Choose Date & Time', canGo(2), 2)}</div>`;
+  } else if (st === 2) {
+    if (!NA.month) { const t = parseD(b.date || NOW.date); NA.month = new Date(t.getFullYear(), t.getMonth(), 1); }
+    const m = NA.month, y = m.getFullYear(), mo = m.getMonth(), today = parseD(NOW.date), maxDs = BK.addDays(NOW.date, C.shop.bookingWindowDays);
+    let cells = ['Su','Mo','Tu','We','Th','Fr','Sa'].map(d => `<span class="dow">${d}</span>`).join('');
+    for (let k = 0; k < new Date(y, mo, 1).getDay(); k++) cells += '<span></span>';
+    for (let dd = 1; dd <= new Date(y, mo + 1, 0).getDate(); dd++) {
+      const ds = `${y}-${pad(mo + 1)}-${pad(dd)}`, dis = !BK.slotsFor(C, BUSY, ds, dur, NOW).length;
+      cells += `<button class="day ${b.date === ds ? 'on' : ''} ${ds === NOW.date ? 'today' : ''}" data-act="bk-date" data-v="${ds}" ${dis ? 'disabled' : ''} aria-label="${fmtLong(ds)}">${dd}</button>`;
+    }
+    const prevOk = new Date(y, mo, 1) > new Date(today.getFullYear(), today.getMonth(), 1), nextOk = new Date(y, mo + 1, 1) <= parseD(maxDs);
+    const slots = b.date ? BK.slotsFor(C, BUSY, b.date, dur, NOW) : [];
+    body = `<span class="eyebrow">Step 2</span><h3>Pick a date &amp; time</h3><p class="small" style="margin-bottom:22px">Showing times with at least one artist free for ${fmtDur(dur)}.</p>
+      <div class="cal-wrap"><div><div class="cal-head"><button data-act="bk-month" data-v="-1" ${prevOk ? '' : 'disabled'} aria-label="Previous month">${icon('left')}</button><b>${m.toLocaleDateString('en-US', {month:'long', year:'numeric'})}</b><button data-act="bk-month" data-v="1" ${nextOk ? '' : 'disabled'} aria-label="Next month">${icon('right')}</button></div><div class="cal">${cells}</div></div>
+      <div><span class="lbl">${b.date ? fmtLong(b.date) : 'Select a date'}</span>${b.date ? (slots.length ? `<div class="slots">${slots.map(s => `<button class="slot ${b.time === s.t ? 'on' : ''}" data-act="bk-time" data-v="${s.t}">${fmtT(s.t)}</button>`).join('')}</div>` : '<div class="empty">No times left on this day.</div>') : '<div class="empty">Choose a day on the calendar to see available times.</div>'}</div></div>
+      <div class="panel-actions">${back}${next('Continue', canGo(3), 3)}</div>`;
+  } else if (st === 3) {
+    const free = C.staff.filter(s => BK.staffFree(C, BUSY, s, b.date, b.time, dur));
+    if (b.staff !== 'any' && !free.find(s => s.id === b.staff)) b.staff = 'any';
+    const u = me();
+    body = `<span class="eyebrow">Step 3</span><h3>Your artist &amp; notes</h3><p class="small" style="margin-bottom:22px">Artists available on ${fmtShort(b.date)} at ${fmtT(b.time)}.</p>
+      <div class="staff-grid"><button class="staff ${b.staff === 'any' ? 'on' : ''}" data-act="bk-staff" data-v="any"><span class="avatar" style="--av:var(--beige)">✦</span><b>No preference</b><small>First available artist</small></button>
+      ${C.staff.map(s => { const ok = free.includes(s); return `<button class="staff ${b.staff === s.id ? 'on' : ''}" data-act="bk-staff" data-v="${esc(s.id)}" ${ok ? '' : 'disabled'}><span class="avatar" style="--av:${s.color}">${esc(s.name[0])}</span><b>${esc(s.name)}</b><small>${esc(s.role)}${ok ? '' : '<br>Unavailable'}</small></button>`; }).join('')}</div>
+      <div class="field" style="margin-top:26px"><label for="bkNote">Notes for your artist (optional)</label><textarea class="input" id="bkNote" data-in="bk-note" placeholder="Nail length, allergies, inspiration…">${esc(b.note)}</textarea></div>
+      ${u ? '' : `<span class="lbl" style="margin-top:8px">Your contact details</span><p class="small" style="margin-bottom:14px">Or <a href="#account" class="link" style="font-size:.7rem">sign in</a> to track this booking in My Account.</p><div class="grid-2"><div class="field"><label for="gN">Full name</label><input class="input" id="gN" data-in="bk-guest" data-k="name" value="${esc(b.guest.name)}" autocomplete="name"></div><div class="field"><label for="gP">Phone</label><input class="input" id="gP" data-in="bk-guest" data-k="phone" value="${esc(b.guest.phone)}" autocomplete="tel" inputmode="tel"></div></div><div class="field"><label for="gE">Email</label><input class="input" id="gE" type="email" data-in="bk-guest" data-k="email" value="${esc(b.guest.email)}" autocomplete="email"></div>`}
+      <div class="panel-actions">${back}${next('Continue', true, show4 ? 4 : 5)}</div>`;
+  } else if (st === 4) {
+    const d = cartDesign(), u = me();
+    let mine;
+    if (u) mine = ME.designs.slice().reverse();
+    else { mine = (await Promise.all(Object.keys(claims().designs).map(ensureDesign))).filter(Boolean).reverse(); }
+    body = `<span class="eyebrow">Step 4 · Optional</span><h3>Attach a nail design</h3><p class="small" style="margin-bottom:22px">Share your Studio design with your artist so they can prepare.</p>
+      ${d ? `<div class="card" style="padding:18px;display:flex;gap:18px;align-items:center;flex-wrap:wrap;margin-bottom:22px;background:#fff"><img src="${d.preview_image_url}" alt="" style="width:220px;border-radius:12px;border:1px solid var(--line)"><div><b>${esc(d.name)}</b><p class="small">${money(d.estimated_price)} · ${d.price_status === 'fixed' ? 'Fixed price' : 'Price to be confirmed'}</p><div class="mini-actions" style="margin-top:10px">${F('studio') ? '<button class="textbtn" data-act="bk-edit-design">Edit in Studio</button>' : ''}<button class="textbtn danger" data-act="bk-design" data-v="">Remove</button></div></div></div>` : ''}
+      ${mine.length ? `<span class="lbl">${u ? 'My Designs' : 'Designs saved in this browser'}</span><div class="design-pick">${mine.map(x => `<button class="design-card ${b.design === x.id ? 'on' : ''}" data-act="bk-design" data-v="${x.id}"><img src="${x.preview_image_url}" alt=""><div class="dc-body"><span>${esc(x.name)}</span><b>${money(x.estimated_price)}</b></div></button>`).join('')}</div>` : (d ? '' : '<div class="empty">You have no saved designs yet.</div>')}
+      ${F('studio') ? '<div style="margin-top:18px"><a href="#studio" class="btn btn-soft btn-sm">Open Design Studio</a></div>' : ''}
+      <div class="panel-actions">${back}${next(d ? 'Review Booking' : 'Skip & Review', true, 5)}</div>`;
+  } else {
+    const u = me(), items = cartServices(), d = cartDesign();
+    body = `<span class="eyebrow">Step 5</span><h3>Review &amp; confirm</h3>
+      <div class="breakdown">${items.map(s => `<div><span>${esc(s.name)} · ${fmtDur(s.dur)}</span><span>${money(s.price)}</span></div>`).join('')}${d ? `<div><span>Studio design — ${esc(d.name)}${d.price_status !== 'fixed' ? ' (price to be confirmed)' : ''}</span><span>${money(d.estimated_price)}</span></div>` : ''}<div class="total"><span>Estimated total</span><span>${money(cartTotal())}</span></div></div>
+      <dl class="spec"><dt>When</dt><dd>${fmtLong(b.date)} at ${fmtT(b.time)}</dd><dt>Artist</dt><dd>${b.staff === 'any' ? 'No preference' : esc(staffById(b.staff).name)}</dd><dt>Guest</dt><dd>${u ? esc(u.name) + ' · ' + esc(u.email) : esc(b.guest.name || '—') + ' · ' + esc(b.guest.email || '—')}</dd>${b.note ? `<dt>Notes</dt><dd>${esc(b.note)}</dd>` : ''}</dl>
+      <p class="note">Your request goes to the salon for confirmation — you'll see its status in My Account.</p>
+      <p class="form-msg" id="bkMsg"></p>
+      <div class="panel-actions">${back}<button class="btn btn-primary" data-act="bk-submit">Send Booking Request ${icon('check')}</button></div>`;
+  }
+  root.innerHTML = `${stepper}<div class="book-grid"><div class="card panel">${body}</div><aside class="card summary">${summaryHTML()}</aside></div>`;
+}
+function successHTML(bk) {
+  const d = bk.design_id && DC[bk.design_id], st = staffById(bk.staff_id);
+  return `<div class="card success"><div class="ring">${icon('check')}</div><span class="eyebrow">Request received</span><h2 style="margin:12px 0">Thank you${bk.contact_name ? ', ' + esc(bk.contact_name.split(' ')[0]) : ''}!</h2><p>Your appointment is reserved and waiting for the salon's confirmation.<br>We'll contact you at <b>${esc(bk.contact_email || bk.contact_phone)}</b>.</p>
+    <div class="success-details"><div class="sum-row"><span>Reference</span><span>#${bk.id.slice(-6).toUpperCase()}</span></div><div class="sum-row"><span>Status</span><span>${tag(STATUS, bk.status)}</span></div><div class="sum-row"><span>When</span><span>${fmtLong(bk.date)}, ${bk.time}</span></div><div class="sum-row"><span>Artist</span><span>${st ? esc(st.name) : '—'}</span></div><div class="sum-row"><span>Services</span><span style="text-align:right">${bk.services.map(s => esc(s.name)).join(', ') || '—'}</span></div>${d ? `<div class="sum-row"><span>Design</span><span>${esc(d.name)}</span></div>` : ''}<div class="sum-total"><span>Estimated total</span><span>${money(bk.total_price)}</span></div></div>
+    <div class="hero-cta" style="justify-content:center">${bk.user_id ? '<a href="#account" class="btn btn-dark">View in My Account</a>' : '<a href="#account" class="btn btn-dark">Create an account</a>'}<button class="btn btn-ghost" data-act="bk-new">Book another</button></div></div>`;
+}
+async function submitBooking(btn) {
+  const b = NA.booking, msg = $('#bkMsg'); btn.disabled = true; msg.textContent = '';
+  try {
+    const r = await api('POST', '/bookings', {services:b.services, date:b.date, start:b.time, staff:b.staff, note:b.note, design_id:b.design, design_claim:b.design ? claims().designs[b.design] : null, guest:b.guest});
+    if (r.claim) setClaim('bookings', r.booking.id, r.claim);
+    NA.booking = Object.assign(emptyCart(), {guest:b.guest}); NA.bstep = 1; NA.month = null; NA.done = r.booking; saveCart();
+    BUSY_T = 0; if (ME) await loadMe();
+    renderBooking(); window.scrollTo({top:0, behavior:'smooth'});
+  } catch (e) {
+    msg.textContent = e.message; btn.disabled = false;
+    if (e.status === 409) { b.time = null; saveCart(); await loadBusy(true); setTimeout(() => { NA.bstep = 2; renderBooking(); }, 1600); }
+  }
+}
+
+/* ============ ACCOUNT ============ */
+async function renderAccount() {
+  const root = $('#accRoot');
+  if (store.get(TK, null) && !ME) await loadMe();
+  const u = me();
+  if (!u) {
+    const L = NA.authTab === 'login';
+    $('#accTitle').innerHTML = L ? 'Welcome <em>back</em>' : 'Join <em>the Avenue</em>';
+    root.innerHTML = `<div class="card auth"><div class="seg" style="display:flex;margin-top:0"><button style="flex:1" data-act="auth-tab" data-v="login" class="${L ? 'on' : ''}">Sign in</button><button style="flex:1" data-act="auth-tab" data-v="register" class="${L ? '' : 'on'}">Create account</button></div>
+      <form data-form="${L ? 'login' : 'register'}" novalidate>
+        ${L ? '' : '<div class="field"><label for="aN">Full name</label><input class="input" id="aN" name="name" autocomplete="name" required></div><div class="field"><label for="aP">Phone</label><input class="input" id="aP" name="phone" autocomplete="tel" inputmode="tel" required></div>'}
+        <div class="field"><label for="aE">Email</label><input class="input" id="aE" name="email" type="email" autocomplete="email" required></div>
+        <div class="field"><label for="aW">Password</label><input class="input" id="aW" name="password" type="password" autocomplete="${L ? 'current-password' : 'new-password'}" minlength="6" required></div>
+        <p class="form-msg"></p><button class="btn btn-primary btn-block" type="submit">${L ? 'Sign in' : 'Create account'}</button>
+      </form><p class="note center" style="margin-top:18px">${L ? 'New here? Create an account to save designs and see your history.' : 'Designs and bookings you made on this device will be added to your account.'}</p></div>`;
+    return;
+  }
+  $('#accTitle').innerHTML = `Hello, <em>${esc(u.name.split(' ')[0])}</em>`;
+  const tabs = {bookings:'Bookings', transactions:'Transactions', designs:'My Designs', profile:'Profile'};
+  if (!F('designs') && !ME.designs.length) { delete tabs.designs; if (NA.accTab === 'designs') NA.accTab = 'bookings'; }
+  const bks = ME.bookings.slice().sort((a, b) => (b.date + pad(b.start)).localeCompare(a.date + pad(a.start)));
+  let body = '';
+  if (NA.accTab === 'bookings') {
+    body = bks.length ? `<div class="list">${bks.map(b => { const dt = parseD(b.date), d = b.design_id && ME.designs.find(x => x.id === b.design_id), st = staffById(b.staff_id);
+      const future = b.date > NOW.date || (b.date === NOW.date && b.start > NOW.min);
+      return `<div class="card bk"><div class="bk-date"><span>${dt.toLocaleDateString('en-US', {month:'short'})}</span><b>${dt.getDate()}</b><span>${dt.getFullYear()}</span></div><div class="bk-info"><b>${b.services.map(s => esc(s.name)).join(', ') || 'Nail design appointment'}</b><p>${DAYS[dt.getDay()]} · ${b.time} · ${fmtDur(b.duration)} · with ${st ? esc(st.name) : 'our artist'}</p>${b.note ? `<p>“${esc(b.note)}”</p>` : ''}${d ? `<img src="${d.preview_image_url}" alt="Attached design">` : ''}</div><div class="bk-side">${tag(STATUS, b.status)}<span class="price">${money(b.final_price != null ? b.final_price : b.total_price)}</span>${b.price_status !== 'fixed' ? '<small class="muted">Design price to be confirmed</small>' : ''}${['pending','confirmed'].includes(b.status) && future ? `<button class="textbtn danger" data-act="acc-cancel" data-id="${b.id}">Cancel booking</button>` : ''}</div></div>`; }).join('')}</div>` : `<div class="empty">No bookings yet. <a href="#booking" class="link" style="margin-left:6px">Book now</a></div>`;
+  } else if (NA.accTab === 'transactions') {
+    const tx = ME.transactions.slice().reverse();
+    body = tx.length ? `<div class="card table-wrap"><table class="table"><thead><tr><th>Date</th><th>Reference</th><th>Services</th><th>Amount</th><th>Payment</th></tr></thead><tbody>${tx.map(t => { const b = ME.bookings.find(x => x.id === t.booking_id); return `<tr><td>${b ? fmtShort(b.date) : fmtShort(t.date.slice(0, 10))}</td><td>#${t.booking_id.slice(-6).toUpperCase()}</td><td>${b ? b.services.map(s => esc(s.name)).join(', ') || 'Design' : '—'}</td><td>${money(t.amount)}${b && b.price_status !== 'fixed' ? '*' : ''}</td><td>${t.payment_status === 'unpaid' ? '<span class="tag warn">Pay at salon</span>' : tag(PAY, t.payment_status)}</td></tr>`; }).join('')}</tbody></table></div><p class="note">*Includes a custom design estimate — final price confirmed by your artist.</p>` : '<div class="empty">No transactions yet.</div>';
+  } else if (NA.accTab === 'designs') {
+    const ds = ME.designs.slice().reverse();
+    body = ds.length ? `<div class="design-pick" style="grid-template-columns:repeat(auto-fill,minmax(240px,1fr))">${ds.map(d => `<div class="design-card"><img src="${d.preview_image_url}" alt="${esc(d.name)}"><div class="dc-body" style="flex-direction:column;align-items:stretch;gap:10px"><div style="display:flex;justify-content:space-between;gap:8px"><b style="font-weight:500">${esc(d.name)}</b><span>${money(d.estimated_price)}</span></div>${d.price_status === 'fixed' ? '<span class="tag ok" style="align-self:flex-start">Fixed price</span>' : '<span class="tag warn" style="align-self:flex-start">Price to be confirmed</span>'}<div class="mini-actions"><button class="btn btn-primary btn-sm" data-act="acc-book-design" data-id="${d.id}">Book again</button>${F('studio') ? `<button class="textbtn" data-act="acc-edit-design" data-id="${d.id}">Edit</button>` : ''}<button class="textbtn danger" data-act="acc-del-design" data-id="${d.id}">Delete</button></div></div></div>`).join('')}</div>` : `<div class="empty">No saved designs yet. ${F('studio') ? '<a href="#studio" class="link" style="margin-left:6px">Open the Studio</a>' : ''}</div>`;
+  } else {
+    body = `<div class="grid-2" style="align-items:start;gap:22px"><div class="card" style="padding:30px"><h3 style="margin-bottom:16px">Profile</h3><form data-form="profile" novalidate><div class="field"><label for="pN">Full name</label><input class="input" id="pN" name="name" value="${esc(u.name)}" required></div><div class="field"><label for="pP">Phone</label><input class="input" id="pP" name="phone" value="${esc(u.phone)}" required></div><div class="field"><label for="pE">Email</label><input class="input" id="pE" name="email" type="email" value="${esc(u.email)}" required></div><p class="form-msg"></p><button class="btn btn-primary" type="submit">Save changes</button></form><p class="note">Member since ${new Date(u.created_at).toLocaleDateString('en-US', {month:'long', year:'numeric'})}</p></div>
+      <div class="card" style="padding:30px"><h3 style="margin-bottom:16px">Password</h3><form data-form="mypass" novalidate><div class="field"><label for="p1">Current password</label><input class="input" id="p1" name="current" type="password" autocomplete="current-password"></div><div class="field"><label for="p2">New password</label><input class="input" id="p2" name="next" type="password" autocomplete="new-password"></div><p class="form-msg"></p><button class="btn btn-ghost" type="submit">Change password</button></form></div></div>`;
+  }
+  root.innerHTML = `<div class="acc-head"><div class="who"><span class="avatar">${esc(u.name[0].toUpperCase())}</span><div><b style="font-family:var(--serif);font-size:1.3rem;font-weight:500">${esc(u.name)}</b><p class="small">${esc(u.email)} · ${esc(u.phone)}</p></div></div><button class="btn btn-ghost btn-sm" data-act="logout">Sign out</button></div>
+    <div class="tabs">${Object.entries(tabs).map(([k, v]) => `<button class="${NA.accTab === k ? 'on' : ''}" data-act="acc-tab" data-v="${k}">${v}</button>`).join('')}</div>${body}`;
+}
+function renderAccBtn() { const u = me(), b = $('#accBtn'); b.innerHTML = u ? `<span style="font-family:var(--serif);font-size:1rem">${esc(u.name[0].toUpperCase())}</span>` : icon('user'); b.style.background = u ? 'var(--blush)' : ''; }
+
+/* ============ CONTACT ============ */
+function renderContact() {
+  const s = C.shop, today = BK.dowOf(NOW.date);
+  $('#aboutText').innerHTML = `<span class="eyebrow">Our Story</span><h2 style="margin:14px 0 16px">${esc(s.aboutTitle)}</h2>${String(s.aboutText || '').split(/\n\s*\n/).map(p => `<p style="margin-bottom:14px">${esc(p)}</p>`).join('')}`;
+  $('#contactInfo').innerHTML = `
+    <li><span class="ico">${icon('pin')}</span><div><b>Address</b>${esc(s.address)}</div></li>
+    <li><span class="ico">${icon('phone')}</span><div><b>Phone</b><a href="tel:${esc(s.phone.replace(/\s/g, ''))}">${esc(s.phone)}</a></div></li>
+    <li><span class="ico">${icon('mail')}</span><div><b>Email</b><a href="mailto:${esc(s.email)}">${esc(s.email)}</a></div></li>
+    <li><span class="ico">${icon('clock')}</span><div style="width:100%"><b>Opening hours</b><table class="hours">${[1,2,3,4,5,6,0].map(d => `<tr class="${d === today ? 'today' : ''}"><td>${DAYS[d]}</td><td>${hoursText(s.hours[d])}</td></tr>`).join('')}</table></div></li>
+    <li><span class="ico">${icon('heart')}</span><div><b>Follow us</b><div class="socials">${socialLinks()}</div></div></li>`;
+  const src = `https://maps.google.com/maps?q=${encodeURIComponent(s.mapQuery || s.address)}&z=15&output=embed`, fr = $('#mapWrap iframe');
+  if (!fr || fr.getAttribute('src') !== src) $('#mapWrap').innerHTML = `<iframe class="map" title="Map" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="${esc(src)}"></iframe>`;
+  const a = mk('almond','#FBF7F2','none','#FFFFFF',{},{0:{preset:'halfmoon',accent:'#D9A6A0'},1:{preset:'marble',accent:'#8A7267'},2:{addons:{chrome:true}},3:{preset:'lines',accent:'#6E4B3A'},4:{preset:'french',accent:'#D9A6A0'}});
+  $('#aboutArt').innerHTML = handHTML(a, 1, {w:52});
+  renderReviews('#contactReviews');
+}
+
+/* ============ ADMIN ============ */
+const adApi = (m, p, b) => api(m, p, b, {admin:true});
+async function loadAdmin() { AD = await adApi('GET', '/admin/data'); NOW = AD.now; if (!NA.ad.date) NA.ad.date = NOW.date; }
+async function renderAdmin(force) {
+  const root = $('#adRoot');
+  if (!store.get(ATK, null)) {
+    let setup = true; try { setup = (await adApi('GET', '/admin/status')).setup; } catch (e) {}
+    root.innerHTML = `<div class="card auth" style="margin-top:20px"><span class="eyebrow">Salon admin</span><h2 style="font-size:1.8rem;margin:10px 0 8px">${setup ? 'Staff sign-in' : 'Create admin password'}</h2><p class="small" style="margin-bottom:20px">${setup ? 'Manage bookings, designs, services and shop details.' : 'First time here — choose the password your team will use to open the admin panel.'}</p>
+      <form data-form="${setup ? 'adm-login' : 'adm-setup'}" novalidate><div class="field"><label for="adPw">Password</label><input class="input" id="adPw" name="password" type="password" autocomplete="${setup ? 'current-password' : 'new-password'}" required></div>${setup ? '' : '<div class="field"><label for="adPw2">Repeat password</label><input class="input" id="adPw2" name="password2" type="password" autocomplete="new-password"></div>'}<p class="form-msg"></p><button class="btn btn-dark btn-block" type="submit">${setup ? 'Sign in' : 'Save & continue'}</button></form>
+      ${MODE === 'local' ? '<p class="note center" style="margin-top:16px">Demo mode: data is stored in this browser only.</p>' : ''}</div>`;
+    return;
+  }
+  try { if (force || !AD) await loadAdmin(); } catch (e) { if (e.status === 401) return renderAdmin(); root.innerHTML = `<div class="empty">${esc(e.message)}</div>`; return; }
+  const pending = AD.bookings.filter(b => b.status === 'pending').length, unread = AD.messages.filter(m => !m.read).length;
+  const tabs = [['dashboard','Dashboard'],['bookings','Bookings',pending],['customers','Customers'],['messages','Messages',unread],'-',['features','Website features'],['gallery','Gallery'],['services','Services'],['staff','Artists'],['reviews','Google reviews'],'-',['shop','Shop info'],['pricing','Design pricing'],['settings','Settings']];
+  if (!ADT[NA.ad.tab]) NA.ad.tab = 'dashboard';
+  root.innerHTML = `<div class="admin"><nav class="card ad-side">${tabs.map(t => t === '-' ? '<hr>' : `<button class="${NA.ad.tab === t[0] ? 'on' : ''}" data-act="ad-tab" data-v="${t[0]}">${t[1]}${t[2] ? `<span class="cnt">${t[2]}</span>` : ''}</button>`).join('')}<hr><button data-act="ad-logout">Sign out</button></nav><div class="ad-main" id="adMain"></div></div>`;
+  ADT[NA.ad.tab]();
+}
+const adMain = html => { $('#adMain').innerHTML = html; };
+const custName = b => b.contact_name || '—';
+const bkWhen = b => `${fmtShort(b.date)} · ${b.time}`;
+function isPast(b) { return b.date < NOW.date || (b.date === NOW.date && b.start + b.duration <= NOW.min); }
+function bkAmount(b) { return b.final_price != null ? b.final_price : b.total_price; }
+function quickActions(b) {
+  const a = [];
+  if (b.status === 'pending') a.push(`<button class="btn btn-primary btn-sm" data-act="ad-bk-status" data-id="${b.id}" data-v="confirmed">Confirm</button>`, `<button class="btn btn-ghost btn-sm" data-act="ad-bk-status" data-id="${b.id}" data-v="cancelled">Decline</button>`);
+  else if (b.status === 'confirmed' && isPast(b)) a.push(`<button class="btn btn-dark btn-sm" data-act="ad-bk-status" data-id="${b.id}" data-v="completed">Complete</button>`);
+  if (b.status === 'completed' && b.payment_status !== 'paid') a.push(`<button class="btn btn-soft btn-sm" data-act="ad-bk-paid" data-id="${b.id}">Mark paid</button>`);
+  a.push(`<button class="btn btn-soft btn-sm" data-act="ad-bk-open" data-id="${b.id}">Details</button>`);
+  return `<div class="row-actions">${a.join('')}</div>`;
+}
+function bookingRows(list, empty) {
+  if (!list.length) return `<div class="empty">${empty || 'Nothing here.'}</div>`;
+  return `<div class="table-wrap"><table class="table"><thead><tr><th>When</th><th>Customer</th><th>Services</th><th>Artist</th><th>Amount</th><th>Status</th><th></th></tr></thead><tbody>${list.map(b => { const st = staffById(b.staff_id, AD.content.staff); return `<tr><td>${bkWhen(b)}<small>${fmtDur(b.duration)}</small></td><td>${esc(custName(b))}<small>${esc(b.contact_phone || b.contact_email || '')}${b.user_id ? '' : ' · guest'}</small></td><td>${b.services.map(s => esc(s.name)).join(', ') || '—'}${b.design_id ? `<small>+ Studio design${b.price_status !== 'fixed' ? ' (price TBC)' : ''}</small>` : ''}</td><td>${st ? esc(st.name) : '—'}</td><td>${money(bkAmount(b))}<small>${(PAY[b.payment_status] || [''])[0]}</small></td><td>${tag(STATUS, b.status)}</td><td>${quickActions(b)}</td></tr>`; }).join('')}</tbody></table></div>`;
+}
+const sortAsc = l => l.slice().sort((a, b) => (a.date + pad(a.start)).localeCompare(b.date + pad(b.start)));
+const sortDesc = l => sortAsc(l).reverse();
+
+const ADT = {
+  features() {
+    const f = AD.content.features, row = (k, t, d) => `<label class="card toggle-row"><span><b>${t}</b><small>${d}</small></span><input type="checkbox" class="switch" data-in="ad-feature" data-k="${k}" ${f[k] !== false ? 'checked' : ''} aria-label="${t}"></label>`;
+    adMain(`<div class="ad-head"><div><span class="eyebrow">Turn sections of the website on or off</span><h2>Website features</h2></div></div>
+      <div class="list">${row('studio', 'Nail Design Studio', 'Customers design nails online and attach them to bookings. When off, customers no longer see the Studio page, its menu link, the home-page section or the “attach a design” booking step.')}
+      ${row('gallery', 'Gallery', 'Your collection of signature designs. When off, customers no longer see the Gallery page, its menu link or the home-page section. You can still edit designs in the Gallery tab.')}
+      ${row('reviews', 'Google reviews', 'Your Google rating and reviews on the Home and Contact pages. Set it up in the Google reviews tab.')}</div>
+      <p class="note">Changes apply to the website immediately. Bookings that already have a design attached keep it.</p>`);
+  },
+  async reviews() {
+    const R = AD.content.reviews, items = R.items || [];
+    let gs = null;
+    if (MODE === 'remote') { try { gs = await adApi('GET', '/admin/google-status'); } catch (e) {} }
+    else { const c = store.get('na_gcache', null), ok = c && !c.error; gs = {configured:!!LDB.secrets.googleApiKey, fromEnv:false, fetchedAt:c && c.at, error:c && c.error, placeName:ok && c.name, rating:ok && c.rating, count:ok && c.count, reviews:ok ? c.items.length : 0}; }
+    const f = (n, l, v, t = 'text', cls = '', ph = '') => `<div class="field ${cls}"><label>${l}</label><input class="input" name="${n}" type="${t}" value="${esc(v == null ? '' : v)}" placeholder="${esc(ph)}"${t === 'number' ? ' step="0.1" min="0"' : ''}></div>`;
+    adMain(`<div class="ad-head"><div><span class="eyebrow">Shown on the Home &amp; Contact pages</span><h2>Google reviews</h2></div>${AD.content.features.reviews === false ? '<button class="tag warn" data-act="ad-tab" data-v="features">Section is turned off — turn on in Website features</button>' : ''}</div>
+      <div class="card ad-card"><h3>Automatic import from Google</h3>${gs ? googleStatusHTML(gs) : ''}</div>
+      <div class="card ad-card"><h3>Links &amp; rating summary</h3><form data-form="adm-reviews" novalidate><div class="form-grid">
+        ${f('mapsUrl', 'Google Maps link (“See all reviews” button)', R.mapsUrl, 'url', 'full')}
+        ${f('writeUrl', '“Write a review” link (optional — filled automatically when Google import works)', R.writeUrl, 'url', 'full')}
+        ${f('placeQuery', 'Business name to look up on Google', R.placeQuery)}${f('placeId', 'Google Place ID (optional, more precise)', R.placeId, 'text', '', 'ChIJ…')}
+        ${f('rating', 'Average rating to show (optional)', R.rating, 'number', '', 'e.g. 4.9')}${f('count', 'Number of reviews to show (optional)', R.count, 'number', '', 'e.g. 128')}
+        <div class="field full"><label class="check"><input type="checkbox" name="useGoogle" ${R.useGoogle !== false ? 'checked' : ''}> Import reviews from Google automatically when an API key is set</label></div>
+      </div><p class="form-msg"></p><button class="btn btn-primary btn-sm" type="submit">Save</button><p class="note">When Google import works, Google's live rating and count replace the numbers above.</p></form></div>
+      <div class="card ad-card"><h3>Reviews added by hand <button class="btn btn-dark btn-sm" data-act="ad-rv-edit" data-id="new">+ Add review</button></h3><p class="small" style="margin-bottom:12px">Copy genuine reviews customers left on your Google page. They appear after any imported Google reviews.</p>
+      ${items.length ? `<div class="table-wrap"><table class="table"><thead><tr><th>Customer</th><th>Rating</th><th>Review</th><th>Status</th><th></th></tr></thead><tbody>${items.map(v => `<tr><td>${esc(v.author)}<small>${esc(v.date)}</small></td><td>${starsHTML(v.rating)}</td><td style="max-width:360px">${esc(v.text.length > 140 ? v.text.slice(0, 140) + '…' : v.text)}</td><td>${v.visible === false ? '<span class="tag">Hidden</span>' : '<span class="tag ok">Shown</span>'}</td><td><div class="row-actions"><button class="btn btn-soft btn-sm" data-act="ad-rv-edit" data-id="${v.id}">Edit</button><button class="textbtn" data-act="ad-rv-vis" data-id="${v.id}">${v.visible === false ? 'Show' : 'Hide'}</button><button class="textbtn danger" data-act="ad-rv-del" data-id="${v.id}">Delete</button></div></td></tr>`).join('')}</tbody></table></div>` : '<div class="empty">No reviews added by hand.</div>'}</div>`);
+  },
+  dashboard() {
+    const B = AD.bookings, today = NOW.date, week = BK.addDays(today, 7), monthKey = today.slice(0, 7);
+    const pend = sortAsc(B.filter(b => b.status === 'pending'));
+    const todays = B.filter(b => b.date === today && ['pending','confirmed','completed'].includes(b.status));
+    const upcoming = B.filter(b => b.date >= today && b.date <= week && ['pending','confirmed'].includes(b.status));
+    const paidMonth = B.filter(b => b.payment_status === 'paid' && b.date.slice(0, 7) === monthKey).reduce((t, b) => t + bkAmount(b), 0);
+    const stale = sortAsc(B.filter(b => ['pending','confirmed'].includes(b.status) && isPast(b)));
+    const tbc = B.filter(b => b.price_status !== 'fixed' && ['pending','confirmed'].includes(b.status));
+    const unread = AD.messages.filter(m => !m.read).length;
+    const sd = NA.ad.date || today, dayB = sortAsc(B.filter(b => b.date === sd && b.status !== 'cancelled'));
+    adMain(`<div class="ad-head"><div><span class="eyebrow">${fmtLong(today)}</span><h2>Dashboard</h2></div><button class="btn btn-dark btn-sm" data-act="ad-bk-new">+ New booking</button></div>
+      ${MODE === 'local' ? '<div class="mode-note">Demo mode — data lives in this browser only, so customers on other devices won’t appear here. Run <b>server.js</b> (see README) to share data.</div>' : ''}
+      <div class="kpis">
+        <button class="card kpi" data-act="ad-goto" data-v="bookings" data-f="pending"><b>${pend.length}</b><span>Awaiting confirmation</span></button>
+        <button class="card kpi" data-act="ad-goto" data-v="bookings" data-f="today"><b>${todays.length}</b><span>Appointments today</span></button>
+        <button class="card kpi" data-act="ad-goto" data-v="bookings" data-f="upcoming"><b>${upcoming.length}</b><span>Next 7 days</span></button>
+        <div class="card kpi"><b>${money(paidMonth)}</b><span>Paid this month</span></div>
+        <button class="card kpi" data-act="ad-goto" data-v="messages"><b>${unread}</b><span>Unread messages</span></button>
+      </div>
+      <div class="card ad-card"><h3>Awaiting confirmation ${tbc.length ? `<span class="tag warn">${tbc.length} custom design price${tbc.length > 1 ? 's' : ''} to confirm</span>` : ''}</h3>${bookingRows(pend, 'No new requests. ✨')}</div>
+      ${stale.length ? `<div class="card ad-card"><h3>Past appointments to close</h3><p class="small" style="margin-bottom:10px">These are in the past but still pending/confirmed — mark them completed, no-show or cancelled.</p>${bookingRows(stale)}</div>` : ''}
+      <div class="card ad-card"><h3>Schedule <span class="inline-add"><input type="date" class="input" data-in="ad-date" value="${sd}" aria-label="Schedule date"></span></h3>
+      <div class="sched">${AD.content.staff.filter(s => s.active !== false).map(s => { const l = dayB.filter(b => b.staff_id === s.id); return `<div class="sched-col" style="--c:${s.color}"><b><i></i>${esc(s.name)}</b>${l.length ? l.map(b => `<button class="appt ${b.status}" data-act="ad-bk-open" data-id="${b.id}"><b>${b.time}</b> · ${fmtDur(b.duration)}<br>${esc(custName(b))}<br><span class="muted">${b.services.map(x => esc(x.name)).join(', ') || 'Studio design'}</span></button>`).join('') : '<p class="small" style="margin-top:8px">No appointments</p>'}</div>`; }).join('')}</div></div>`);
+  },
+  bookings() {
+    const f = NA.ad.filter, q = NA.ad.q.trim().toLowerCase(), today = NOW.date;
+    const filters = {upcoming:'Upcoming', pending:'Pending', today:'Today', past:'Past', cancelled:'Cancelled', all:'All'};
+    adMain(`<div class="ad-head"><div><span class="eyebrow">Appointments</span><h2>Bookings</h2></div><div class="inline-add"><input class="input search" data-in="ad-q" placeholder="Search name, phone, email, #ref" value="${esc(NA.ad.q)}"><button class="btn btn-dark btn-sm" data-act="ad-bk-new">+ New booking</button></div></div>
+      <div class="chips" style="justify-content:flex-start;margin-bottom:20px">${Object.entries(filters).map(([k, v]) => `<button class="chip ${f === k ? 'on' : ''}" data-act="ad-filter" data-v="${k}">${v}</button>`).join('')}</div>
+      <div class="card ad-card" id="adList"></div>`);
+    let l = AD.bookings;
+    if (f === 'upcoming') l = sortAsc(l.filter(b => ['pending','confirmed'].includes(b.status) && !isPast(b)));
+    else if (f === 'pending') l = sortAsc(l.filter(b => b.status === 'pending'));
+    else if (f === 'today') l = sortAsc(l.filter(b => b.date === today));
+    else if (f === 'past') l = sortDesc(l.filter(b => isPast(b) && b.status !== 'cancelled'));
+    else if (f === 'cancelled') l = sortDesc(l.filter(b => b.status === 'cancelled'));
+    else l = sortDesc(l);
+    if (q) l = l.filter(b => [b.contact_name, b.contact_phone, b.contact_email, b.id.slice(-6), '#' + b.id.slice(-6)].join(' ').toLowerCase().includes(q));
+    $('#adList').innerHTML = bookingRows(l, 'No bookings match.');
+  },
+  customers() {
+    const map = {};
+    AD.users.forEach(u => map['u:' + u.id] = {key:'u:' + u.id, name:u.name, email:u.email, phone:u.phone, account:true, since:u.created_at, list:[]});
+    AD.bookings.forEach(b => { const k = b.user_id ? 'u:' + b.user_id : 'g:' + (b.contact_email || b.contact_phone || b.id); map[k] = map[k] || {key:k, name:b.contact_name, email:b.contact_email, phone:b.contact_phone, account:false, list:[]}; map[k].list.push(b); });
+    const rows = Object.values(map).sort((a, b) => b.list.length - a.list.length);
+    NA.ad.cust = map;
+    adMain(`<div class="ad-head"><div><span class="eyebrow">${rows.length} people</span><h2>Customers</h2></div></div>
+      <div class="card ad-card"><div class="table-wrap"><table class="table"><thead><tr><th>Name</th><th>Contact</th><th>Type</th><th>Bookings</th><th>Last visit</th><th>Paid total</th></tr></thead><tbody>${rows.map(c => { const last = sortDesc(c.list)[0]; const paid = c.list.filter(b => b.payment_status === 'paid').reduce((t, b) => t + bkAmount(b), 0); return `<tr class="click" data-act="ad-cust" data-v="${esc(c.key)}"><td>${esc(c.name)}</td><td>${esc(c.phone || '')}<small>${esc(c.email || '')}</small></td><td>${c.account ? '<span class="tag info">Account</span>' : '<span class="tag">Guest</span>'}</td><td>${c.list.length}</td><td>${last ? fmtShort(last.date) : '—'}</td><td>${money(paid)}</td></tr>`; }).join('') || '<tr><td colspan="6">No customers yet.</td></tr>'}</tbody></table></div></div>`);
+  },
+  messages() {
+    const l = AD.messages.slice().reverse();
+    adMain(`<div class="ad-head"><div><span class="eyebrow">Contact form</span><h2>Messages</h2></div></div>${l.length ? l.map(m => `<div class="card msg ${m.read ? '' : 'unread'}"><div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap"><b>${esc(m.name)} <span class="muted small" style="font-weight:400">· ${esc(m.email)}</span></b><span class="small muted">${fmtDT(m.date)}</span></div><p>${esc(m.message)}</p><div class="mini-actions"><a class="btn btn-soft btn-sm" href="mailto:${esc(m.email)}?subject=${encodeURIComponent('Re: your message to ' + C.shop.name)}">Reply by email</a><button class="textbtn" data-act="ad-msg-read" data-id="${m.id}" data-v="${m.read ? '' : '1'}">Mark as ${m.read ? 'unread' : 'read'}</button><button class="textbtn danger" data-act="ad-msg-del" data-id="${m.id}">Delete</button></div></div>`).join('') : '<div class="empty">No messages yet.</div>'}`);
+  },
+  gallery() {
+    const G = AD.content.gallery;
+    adMain(`<div class="ad-head"><div><span class="eyebrow">${G.length} designs · shown on the Gallery &amp; Home pages</span><h2>Gallery</h2></div><button class="btn btn-dark btn-sm" data-act="ad-g-edit" data-id="new">+ Add design</button></div>
+      <div class="card ad-card"><h3>Gallery categories</h3>${catEditor('galleryCats')}</div>
+      <div class="ad-gal">${G.map((g, i) => `<div class="card ${g.visible === false ? 'hidden-item' : ''}"><div class="g-art" style="--bg:${g.bg}">${handHTML(g.d, 1, {w:30})}</div><div class="g-body"><div style="display:flex;justify-content:space-between;gap:8px;align-items:baseline"><b style="font-family:var(--serif);font-weight:500">${esc(g.name)}</b><span class="small muted">${esc(g.cat)}</span></div>${g.visible === false ? '<span class="tag" style="align-self:flex-start">Hidden</span>' : ''}<div class="mini-actions"><button class="btn btn-soft btn-sm" data-act="ad-g-edit" data-id="${g.id}">Edit</button><button class="textbtn" data-act="ad-g-studio" data-id="${g.id}">Design</button><button class="textbtn" data-act="ad-g-vis" data-id="${g.id}">${g.visible === false ? 'Show' : 'Hide'}</button><button class="textbtn" data-act="ad-g-move" data-id="${g.id}" data-v="-1" ${i ? '' : 'disabled'} aria-label="Move up">↑</button><button class="textbtn" data-act="ad-g-move" data-id="${g.id}" data-v="1" ${i < G.length - 1 ? '' : 'disabled'} aria-label="Move down">↓</button><button class="textbtn danger" data-act="ad-g-del" data-id="${g.id}">Delete</button></div></div></div>`).join('')}</div>`);
+  },
+  services() {
+    const S2 = AD.content.services;
+    adMain(`<div class="ad-head"><div><span class="eyebrow">${S2.length} services</span><h2>Services</h2></div><button class="btn btn-dark btn-sm" data-act="ad-svc-edit" data-id="new">+ Add service</button></div>
+      <div class="card ad-card"><h3>Service categories</h3>${catEditor('categories')}</div>
+      ${AD.content.categories.map(c => { const l = S2.filter(s => s.cat === c); return `<div class="card ad-card"><h3>${esc(c)} <span class="small muted" style="font-family:var(--sans)">${l.length} services</span></h3>${l.length ? `<div class="table-wrap"><table class="table"><thead><tr><th>Service</th><th>Price</th><th>Duration</th><th>Status</th><th></th></tr></thead><tbody>${l.map(s => `<tr><td>${esc(s.name)}<small>${esc(s.desc)}</small></td><td>${money(s.price)}</td><td>${fmtDur(s.dur)}</td><td>${s.active === false ? '<span class="tag">Hidden</span>' : '<span class="tag ok">Live</span>'}</td><td><div class="row-actions"><button class="btn btn-soft btn-sm" data-act="ad-svc-edit" data-id="${s.id}">Edit</button><button class="textbtn" data-act="ad-svc-vis" data-id="${s.id}">${s.active === false ? 'Show' : 'Hide'}</button><button class="textbtn danger" data-act="ad-svc-del" data-id="${s.id}">Delete</button></div></td></tr>`).join('')}</tbody></table></div>` : '<p class="small">No services in this category.</p>'}</div>`; }).join('')}`);
+  },
+  staff() {
+    const L = AD.content.staff;
+    adMain(`<div class="ad-head"><div><span class="eyebrow">${L.length} artists</span><h2>Artists</h2></div><button class="btn btn-dark btn-sm" data-act="ad-st-edit" data-id="new">+ Add artist</button></div>
+      <div class="staff-grid" style="grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:16px">${L.map(s => `<div class="card" style="padding:22px;display:flex;flex-direction:column;gap:10px;${s.active === false ? 'opacity:.55' : ''}"><div style="display:flex;gap:12px;align-items:center"><span class="avatar" style="--av:${s.color}">${esc(s.name[0])}</span><div><b style="font-weight:500">${esc(s.name)}</b><p class="small">${esc(s.role)}</p></div></div><p class="small">${s.days.map(d => DAYS3[d]).join(', ') || 'No days'}<br>${fmtT(s.start)} – ${fmtT(s.end)}</p>${s.active === false ? '<span class="tag" style="align-self:flex-start">Inactive</span>' : ''}<div class="mini-actions"><button class="btn btn-soft btn-sm" data-act="ad-st-edit" data-id="${s.id}">Edit</button><button class="textbtn danger" data-act="ad-st-del" data-id="${s.id}">Delete</button></div></div>`).join('')}</div>`);
+  },
+  shop() {
+    const s = AD.content.shop, f = (n, l, v, t = 'text', cls = '') => `<div class="field ${cls}"><label for="sh-${n}">${l}</label><input class="input" id="sh-${n}" name="${n}" type="${t}" value="${esc(v)}"></div>`;
+    adMain(`<div class="ad-head"><div><span class="eyebrow">Shown across the website</span><h2>Shop info</h2></div></div>
+      <form data-form="adm-shop" novalidate>
+      <div class="card ad-card"><h3>Brand &amp; home page</h3><div class="form-grid">${f('name', 'Shop name', s.name)}${f('tagline', 'Tagline (footer)', s.tagline)}${f('heroTitle', 'Hero title', s.heroTitle)}${f('heroAccent', 'Hero title — italic part', s.heroAccent)}<div class="field full"><label for="sh-heroLead">Hero text</label><textarea class="input" id="sh-heroLead" name="heroLead">${esc(s.heroLead)}</textarea></div>${f('aboutTitle', 'About title', s.aboutTitle, 'text', 'full')}<div class="field full"><label for="sh-aboutText">About text (blank line = new paragraph)</label><textarea class="input" id="sh-aboutText" name="aboutText" style="min-height:140px">${esc(s.aboutText)}</textarea></div></div></div>
+      <div class="card ad-card"><h3>Contact &amp; location</h3><div class="form-grid">${f('address', 'Address', s.address, 'text', 'full')}${f('mapQuery', 'Map search (address or place name)', s.mapQuery, 'text', 'full')}${f('phone', 'Phone', s.phone, 'tel')}${f('email', 'Email', s.email, 'email')}${f('instagram', 'Instagram URL', s.instagram, 'url')}${f('facebook', 'Facebook URL', s.facebook, 'url')}</div></div>
+      <div class="card ad-card"><h3>Opening hours</h3>${[1,2,3,4,5,6,0].map(d => { const h = s.hours[d]; return `<div class="hours-edit"><b style="font-weight:500">${DAYS[d]}</b><label class="check"><input type="checkbox" name="open${d}" ${h ? 'checked' : ''}> Open</label><input class="input" type="time" name="from${d}" value="${toHM(h ? h[0] : 540)}" aria-label="${DAYS[d]} opens"><input class="input" type="time" name="to${d}" value="${toHM(h ? h[1] : 1140)}" aria-label="${DAYS[d]} closes"></div>`; }).join('')}</div>
+      <div class="card ad-card"><h3>Booking rules</h3><div class="form-grid-3">${f('currency', 'Currency symbol', s.currency)}${f('bookingWindowDays', 'Book up to (days ahead)', s.bookingWindowDays, 'number')}<div class="field"><label for="sh-slot">Time slot step</label><select class="input" id="sh-slot" name="slotStep">${[10,15,20,30,45,60].map(v => `<option value="${v}" ${s.slotStep === v ? 'selected' : ''}>${v} min</option>`).join('')}</select></div>${f('timezone', 'Time zone (IANA)', s.timezone, 'text', 'full')}</div></div>
+      <p class="form-msg"></p><button class="btn btn-primary" type="submit">Save shop info</button></form>`);
+  },
+  pricing() {
+    const p = AD.content.prices, f = (n, l, v, step = '0.5') => `<div class="field"><label>${l}</label><input class="input" type="number" min="0" step="${step}" name="${n}" value="${v}"></div>`;
+    adMain(`<div class="ad-head"><div><span class="eyebrow">Design Studio estimates</span><h2>Design pricing</h2></div></div>
+      <form data-form="adm-prices" novalidate>
+      <div class="card ad-card"><h3>General</h3><div class="form-grid-3">${f('base', 'Nail art base (per set)', p.base)}${f('customEst', 'Custom image estimate (per nail)', p.customEst)}${f('designMin', 'Extra minutes when a design is attached', p.designMin, '5')}</div></div>
+      <div class="card ad-card"><h3>Design styles (per nail)</h3><div class="form-grid-3">${Object.keys(PRESETS).filter(k => k !== 'none').map(k => f('pr_' + k, PRESETS[k].name, p.presets[k])).join('')}</div></div>
+      <div class="card ad-card"><h3>Add-ons (per nail)</h3><div class="form-grid-3">${Object.keys(ADDONS).map(k => f('ad_' + k, ADDONS[k].name, p.addons[k])).join('')}</div></div>
+      <p class="form-msg"></p><button class="btn btn-primary" type="submit">Save prices</button><p class="note">New prices apply to new designs. Existing bookings keep the price the customer saw.</p></form>`);
+  },
+  settings() {
+    adMain(`<div class="ad-head"><div><span class="eyebrow">Admin</span><h2>Settings</h2></div></div>
+      <div class="mode-note ${MODE === 'remote' ? 'ok' : ''}">${MODE === 'remote' ? 'Connected to the server — all customers and staff share the same data.' : 'Demo mode — data is stored in this browser only. Run server.js (see README) so customer bookings reach this panel.'}</div>
+      <div class="card ad-card"><h3>Change admin password</h3><form data-form="adm-pass" novalidate style="max-width:420px"><div class="field"><label for="ap1">Current password</label><input class="input" id="ap1" name="current" type="password" autocomplete="current-password"></div><div class="field"><label for="ap2">New password (8+ characters)</label><input class="input" id="ap2" name="next" type="password" autocomplete="new-password"></div><p class="form-msg"></p><button class="btn btn-dark" type="submit">Update password</button></form></div>
+      <div class="card ad-card"><h3>Backup &amp; restore</h3><p class="small" style="margin-bottom:16px">Download everything (content, customers, bookings, designs, messages) as one file, or restore from a backup. Restoring replaces all current data.</p><div class="mini-actions"><button class="btn btn-soft btn-sm" data-act="ad-export">Download backup</button><label class="btn btn-ghost btn-sm" style="cursor:pointer">Restore from file<input type="file" accept="application/json,.json" data-in="ad-import" hidden></label></div></div>
+      <div class="card ad-card"><h3>Reset website content</h3><p class="small" style="margin-bottom:16px">Restore the original services, artists, gallery, prices and shop info. Customers and bookings are kept.</p><button class="btn btn-ghost btn-sm" data-act="ad-reset">Reset content to defaults</button></div>`);
+  }
+};
+async function localGoogleStatus() { const c = await clientGoogle(true); return {error:c ? c.error : 'No API key saved.', reviews:c && !c.error ? c.items.length : 0}; }
+function googleStatusHTML(gs) {
+  const keyForm = gs.fromEnv ? '' : `<form data-form="adm-gkey" novalidate class="inline-add" style="flex-wrap:wrap;margin-top:6px"><input class="input" name="key" type="password" autocomplete="off" placeholder="${gs.configured ? 'Replace API key' : 'Paste Google Places API key'}" style="width:320px"><button class="btn btn-dark btn-sm" type="submit">${gs.configured ? 'Replace key' : 'Save & connect'}</button>${gs.configured ? '<button class="textbtn danger" type="button" data-act="ad-gkey-remove">Remove key</button>' : ''}<p class="form-msg" style="width:100%"></p></form>`;
+  if (!gs.configured) return `<p class="small" style="margin-bottom:12px">Google only shares review text through its API, so a free-tier API key is needed to show your live rating and up to 5 recent reviews (Google's limit), refreshed every 6 hours. Until then the website shows your Google Maps card with your star rating.<br>Create a key in Google Cloud Console → enable <b>Places API (New)</b> and <b>Maps JavaScript API</b> → Credentials → API key.</p>${keyForm}`;
+  return `<dl class="g-status"><dt>Status</dt><dd>${gs.error ? `<span class="tag bad">Error</span> ${esc(gs.error)}` : gs.fetchedAt ? '<span class="tag ok">Connected</span>' : '<span class="tag warn">Not fetched yet</span>'}</dd>${gs.placeName ? `<dt>Google place</dt><dd>${esc(gs.placeName)}</dd>` : ''}${gs.rating ? `<dt>Rating</dt><dd>${gs.rating} ★ · ${gs.count} reviews</dd>` : ''}<dt>Reviews imported</dt><dd>${gs.reviews}</dd>${gs.fetchedAt ? `<dt>Last updated</dt><dd>${fmtDT(new Date(gs.fetchedAt).toISOString())}</dd>` : ''}<dt>API key</dt><dd>${gs.fromEnv ? 'Set on the server (GOOGLE_PLACES_API_KEY)' : 'Saved in admin'}</dd></dl>
+    <button class="btn btn-soft btn-sm" data-act="ad-g-refresh">Refresh from Google now</button>${keyForm}`;
+}
+function catEditor(key) {
+  const list = AD.content[key], used = key === 'categories' ? AD.content.services.map(s => s.cat) : AD.content.gallery.map(g => g.cat);
+  return `<div class="cat-editor">${list.map(c => `<span class="cat-pill">${esc(c)}<button data-act="ad-cat-del" data-k="${key}" data-v="${esc(c)}" aria-label="Remove ${esc(c)}" ${used.includes(c) ? 'title="In use"' : ''}>✕</button></span>`).join('')}<form class="inline-add" data-form="adm-cat" data-k="${key}"><input class="input" name="cat" placeholder="New category" aria-label="New category"><button class="btn btn-soft btn-sm" type="submit">Add</button></form></div>`;
+}
+async function adSaveContent(patch, msg) {
+  try { const r = await adApi('PUT', '/admin/content', patch); AD.content = r.content; await loadContent(); toast(msg || 'Saved.'); return true; }
+  catch (e) { toast(e.message); if (e.status === 401) renderAdmin(); return false; }
+}
+async function adUpdateBooking(id, patch, msg) {
+  try { const r = await adApi('PUT', '/admin/bookings/' + id, patch); const i = AD.bookings.findIndex(b => b.id === id); AD.bookings[i] = r.booking; BUSY_T = 0; toast(msg || 'Booking updated.'); return r.booking; }
+  catch (e) { toast(e.message); return null; }
+}
+const admDlg = () => $('#admDlg');
+function openAdmDlg(html) { const d = admDlg(); d.innerHTML = `<div class="dlg-pad">${html}</div><button class="icon-btn dlg-close" data-act="dlg-close" data-v="admDlg" aria-label="Close">✕</button>`; if (!d.open) d.showModal(); }
+function designDetailsHTML(rec) {
+  const d = designFromRecord(rec), imgs = rec.nails.filter(n => n.custom_image);
+  return `<div class="design-view">${handHTML(d, 0, {w:36})}${handHTML(d, 1, {w:36})}</div>
+    <div class="table-wrap"><table class="nail-table"><thead><tr><th>Nail</th><th>Shape</th><th>Base</th><th>Style</th><th>Add-ons</th><th>Custom image</th></tr></thead><tbody>${rec.nails.map((n, i) => `<tr><td>${nailLabel(i)}</td><td>${SHAPES[n.nail_shape] ? SHAPES[n.nail_shape].name : n.nail_shape}</td><td><span class="swatch-dot" style="background:${n.base_color}"></span>${n.base_color}</td><td>${PRESETS[n.preset_id || 'none'].name}${n.preset_id ? ` <span class="swatch-dot" style="background:${n.accent_color};margin-left:4px"></span>` : ''}</td><td>${(n.addons || []).map(a => ADDONS[a] ? ADDONS[a].name : a).join(', ') || '—'}</td><td>${n.custom_image ? `x ${n.custom_image.x}, y ${n.custom_image.y}, ${Math.round(n.custom_image.scale * 100)}%, ${n.custom_image.rotation}°` : '—'}</td></tr>`).join('')}</tbody></table></div>
+    ${imgs.length ? `<span class="lbl" style="margin-top:14px">Original uploaded images</span><div class="img-list">${[...new Set(imgs.map(n => n.custom_image.image_id))].map((id, k) => `<a href="${rec.images[id]}" download="design-${rec.id.slice(-6)}-image-${k + 1}"><img src="${rec.images[id]}" alt="Customer image ${k + 1}"><span>Download image ${k + 1} · used on ${imgs.filter(n => n.custom_image.image_id === id).length} nail(s)</span></a>`).join('')}</div>` : ''}
+    <p class="note">Estimated by the Studio: ${money(rec.estimated_price)} · ${rec.price_status === 'fixed' ? 'fixed price' : 'custom — price to be confirmed'}</p>`;
+}
+function openBookingDlg(id) {
+  const b = AD.bookings.find(x => x.id === id); if (!b) return;
+  const rec = b.design_id && AD.designs.find(d => d.id === b.design_id), user = b.user_id && AD.users.find(u => u.id === b.user_id);
+  openAdmDlg(`<span class="eyebrow">Booking #${b.id.slice(-6).toUpperCase()} · ${b.source === 'salon' ? 'added by salon' : 'online request'} · ${fmtDT(b.created_at)}</span>
+    <h2>${esc(custName(b))}</h2><p class="small">${b.contact_phone ? `<a class="link" href="tel:${esc(b.contact_phone)}">${esc(b.contact_phone)}</a> &nbsp; ` : ''}${b.contact_email ? `<a class="link" href="mailto:${esc(b.contact_email)}">${esc(b.contact_email)}</a>` : ''} · ${user ? 'Account holder' : 'Guest'}</p>
+    <div style="margin:14px 0">${tag(STATUS, b.status)} ${tag(PAY, b.payment_status)} ${b.cancelled_by ? `<span class="small muted">cancelled by ${b.cancelled_by}</span>` : ''}</div>
+    <div class="breakdown">${b.services.map(s => `<div><span>${esc(s.name)} · ${fmtDur(s.dur)}</span><span>${money(s.price)}</span></div>`).join('')}${b.design_id ? `<div><span>Studio design ${b.price_status !== 'fixed' ? '<span class="tag warn">price to confirm</span>' : ''}</span><span>${money(b.design_price)}</span></div>` : ''}<div class="total"><span>Total${b.final_price != null ? ' (overridden)' : ''}</span><span>${money(bkAmount(b))}</span></div></div>
+    ${b.note ? `<p class="hint"><b>Customer note:</b> ${esc(b.note)}</p>` : ''}
+    ${rec ? `<span class="lbl" style="margin-top:18px">Attached design — ${esc(rec.name)}</span>${designDetailsHTML(rec)}` : ''}
+    <form data-form="adm-booking" data-id="${b.id}" novalidate style="margin-top:22px">
+      <div class="form-grid">
+        <div class="field"><label>Status</label><select class="input" name="status">${Object.keys(STATUS).map(k => `<option value="${k}" ${b.status === k ? 'selected' : ''}>${STATUS[k][0]}</option>`).join('')}</select></div>
+        <div class="field"><label>Payment</label><select class="input" name="payment_status">${['unpaid','paid','refunded'].map(k => `<option value="${k}" ${b.payment_status === k ? 'selected' : ''}>${PAY[k][0]}</option>`).join('')}</select></div>
+        <div class="field"><label>Date</label><input class="input" type="date" name="date" value="${b.date}"></div>
+        <div class="field"><label>Start time</label><input class="input" type="time" step="300" name="start" value="${toHM(b.start)}"></div>
+        <div class="field"><label>Artist</label><select class="input" name="staff_id">${AD.content.staff.map(s => `<option value="${s.id}" ${b.staff_id === s.id ? 'selected' : ''}>${esc(s.name)}${s.active === false ? ' (inactive)' : ''}</option>`).join('')}</select></div>
+        <div class="field"><label>Duration (minutes)</label><input class="input" type="number" min="5" step="5" name="duration" value="${b.duration}"></div>
+        ${b.design_id ? `<div class="field"><label>Confirmed design price</label><input class="input" type="number" min="0" step="0.5" name="design_price" value="${b.design_price}" data-orig="${b.design_price}"></div>` : ''}
+        <div class="field"><label>Final price override (optional)</label><input class="input" type="number" min="0" step="0.5" name="final_price" value="${b.final_price != null ? b.final_price : ''}" placeholder="${bkAmount(b)}"></div>
+        <div class="field full"><label>Internal note (staff only)</label><textarea class="input" name="admin_note">${esc(b.admin_note || '')}</textarea></div>
+      </div>
+      <p class="form-msg"></p>
+      <div class="dlg-actions"><button class="textbtn danger" type="button" data-act="ad-bk-del" data-id="${b.id}">Delete booking</button><div class="mini-actions"><button class="btn btn-ghost btn-sm" type="button" data-act="dlg-close" data-v="admDlg">Close</button><button class="btn btn-primary btn-sm" type="submit">Save changes</button></div></div>
+    </form>`);
+}
+function openNewBookingDlg() {
+  const svcs = AD.content.services;
+  openAdmDlg(`<span class="eyebrow">Phone or walk-in</span><h2>New booking</h2>
+    <form data-form="adm-newbooking" novalidate style="margin-top:16px"><div class="form-grid">
+      <div class="field"><label>Customer name</label><input class="input" name="name" required></div>
+      <div class="field"><label>Phone</label><input class="input" name="phone" type="tel"></div>
+      <div class="field full"><label>Email (optional)</label><input class="input" name="email" type="email"></div>
+      <div class="field full"><label>Services</label><div class="svc-checks">${svcs.map(s => `<label class="check"><input type="checkbox" name="svc" value="${s.id}"> ${esc(s.name)} <span class="muted small">${money(s.price)}</span></label>`).join('')}</div></div>
+      <div class="field"><label>Date</label><input class="input" type="date" name="date" value="${NA.ad.date || NOW.date}"></div>
+      <div class="field"><label>Start time</label><input class="input" type="time" step="300" name="start" value="10:00"></div>
+      <div class="field"><label>Artist</label><select class="input" name="staff"><option value="any">Any available</option>${AD.content.staff.filter(s => s.active !== false).map(s => `<option value="${s.id}">${esc(s.name)}</option>`).join('')}</select></div>
+      <div class="field" style="justify-content:flex-end"><label class="check"><input type="checkbox" name="ignoreHours"> Allow outside working hours</label></div>
+      <div class="field full"><label>Note</label><textarea class="input" name="note"></textarea></div>
+    </div><p class="form-msg"></p><div class="dlg-actions"><span></span><button class="btn btn-primary btn-sm" type="submit">Create confirmed booking</button></div></form>`);
+}
+function openReviewDlg(id) {
+  const v = id === 'new' ? {author:'', rating:5, date:'', text:'', visible:true} : AD.content.reviews.items.find(x => x.id === id);
+  openAdmDlg(`<span class="eyebrow">Google review</span><h2>${id === 'new' ? 'Add review' : esc(v.author)}</h2>
+    <form data-form="adm-review" data-id="${id}" novalidate style="margin-top:16px"><div class="form-grid">
+      <div class="field"><label>Customer name (as on Google)</label><input class="input" name="author" value="${esc(v.author)}" required></div>
+      <div class="field"><label>Rating</label><select class="input" name="rating">${[5,4,3,2,1].map(n => `<option value="${n}" ${v.rating === n ? 'selected' : ''}>${'★'.repeat(n)} (${n})</option>`).join('')}</select></div>
+      <div class="field"><label>Date</label><input class="input" name="date" value="${esc(v.date)}" placeholder="e.g. March 2026"></div>
+      <div class="field" style="justify-content:flex-end"><label class="check"><input type="checkbox" name="visible" ${v.visible !== false ? 'checked' : ''}> Show on website</label></div>
+      <div class="field full"><label>Review text</label><textarea class="input" name="text" style="min-height:140px">${esc(v.text)}</textarea></div>
+    </div><p class="form-msg"></p><div class="dlg-actions"><span></span><button class="btn btn-primary btn-sm" type="submit">Save review</button></div></form>`);
+}
+function openServiceDlg(id) {
+  const s = id === 'new' ? {id:'', name:'', cat:AD.content.categories[0], price:0, dur:30, desc:'', active:true} : AD.content.services.find(x => x.id === id);
+  openAdmDlg(`<span class="eyebrow">Service</span><h2>${id === 'new' ? 'Add service' : esc(s.name)}</h2>
+    <form data-form="adm-service" data-id="${id}" novalidate style="margin-top:16px"><div class="form-grid">
+      <div class="field full"><label>Name</label><input class="input" name="name" value="${esc(s.name)}" required></div>
+      <div class="field"><label>Category</label><select class="input" name="cat">${AD.content.categories.map(c => `<option ${s.cat === c ? 'selected' : ''}>${esc(c)}</option>`).join('')}</select></div>
+      <div class="field"><label>Price (${esc(C.shop.currency)})</label><input class="input" type="number" min="0" step="0.5" name="price" value="${s.price}"></div>
+      <div class="field"><label>Duration (minutes)</label><input class="input" type="number" min="5" step="5" name="dur" value="${s.dur}"></div>
+      <div class="field" style="justify-content:flex-end"><label class="check"><input type="checkbox" name="active" ${s.active !== false ? 'checked' : ''}> Show on website</label></div>
+      <div class="field full"><label>Description</label><textarea class="input" name="desc">${esc(s.desc)}</textarea></div>
+    </div><p class="form-msg"></p><div class="dlg-actions"><span></span><button class="btn btn-primary btn-sm" type="submit">Save service</button></div></form>`);
+}
+function openStaffDlg(id) {
+  const s = id === 'new' ? {id:'', name:'', role:'Nail Artist', days:[1,2,3,4,5,6], start:540, end:1140, color:'#F3D9D5', active:true} : AD.content.staff.find(x => x.id === id);
+  openAdmDlg(`<span class="eyebrow">Artist</span><h2>${id === 'new' ? 'Add artist' : esc(s.name)}</h2>
+    <form data-form="adm-staff" data-id="${id}" novalidate style="margin-top:16px"><div class="form-grid">
+      <div class="field"><label>Name</label><input class="input" name="name" value="${esc(s.name)}" required></div>
+      <div class="field"><label>Role</label><input class="input" name="role" value="${esc(s.role)}"></div>
+      <div class="field full"><label>Working days</label><div class="days">${[1,2,3,4,5,6,0].map(d => `<label><input type="checkbox" name="day" value="${d}" ${s.days.includes(d) ? 'checked' : ''}><span>${DAYS3[d]}</span></label>`).join('')}</div></div>
+      <div class="field"><label>Starts</label><input class="input" type="time" name="start" value="${toHM(s.start)}"></div>
+      <div class="field"><label>Ends</label><input class="input" type="time" name="end" value="${toHM(s.end)}"></div>
+      <div class="field"><label>Avatar color</label><input class="input" type="color" name="color" value="${s.color.toLowerCase()}" style="height:48px;padding:4px"></div>
+      <div class="field" style="justify-content:flex-end"><label class="check"><input type="checkbox" name="active" ${s.active !== false ? 'checked' : ''}> Taking bookings</label></div>
+    </div><p class="form-msg"></p><div class="dlg-actions"><span></span><button class="btn btn-primary btn-sm" type="submit">Save artist</button></div></form>`);
+}
+function openGalleryDlg(id) {
+  const g = S.galDraft && S.galDraft.id === id ? S.galDraft : id === 'new' ? {id:'new', name:'', cat:AD.content.galleryCats[0], bg:'#F3D9D5', desc:'', visible:true, d:newDesign()} : AD.content.gallery.find(x => x.id === id);
+  S.galDraft = clone(g); if (id === 'new') S.galDraft.id = 'new';
+  openAdmDlg(`<span class="eyebrow">Gallery design</span><h2>${id === 'new' ? 'Add design' : esc(g.name)}</h2>
+    <div class="design-view" style="background:${g.bg}">${handHTML(g.d, 0, {w:34})}${handHTML(g.d, 1, {w:34})}</div>
+    <button class="btn btn-soft btn-sm" data-act="ad-g-studio" data-id="${id}">Design the nails in Studio</button>
+    <form data-form="adm-gallery" data-id="${id}" novalidate style="margin-top:20px"><div class="form-grid">
+      <div class="field"><label>Name</label><input class="input" name="name" value="${esc(g.name)}" required></div>
+      <div class="field"><label>Category</label><select class="input" name="cat">${AD.content.galleryCats.map(c => `<option ${g.cat === c ? 'selected' : ''}>${esc(c)}</option>`).join('')}</select></div>
+      <div class="field"><label>Card background</label><input class="input" type="color" name="bg" value="${g.bg.toLowerCase()}" style="height:48px;padding:4px"></div>
+      <div class="field" style="justify-content:flex-end"><label class="check"><input type="checkbox" name="visible" ${g.visible !== false ? 'checked' : ''}> Show on website</label></div>
+      <div class="field full"><label>Description</label><textarea class="input" name="desc">${esc(g.desc)}</textarea></div>
+    </div><p class="form-msg"></p><div class="dlg-actions"><span></span><button class="btn btn-primary btn-sm" type="submit">Save design</button></div></form>`);
+}
+function readGalForm() { const f = $('form[data-form="adm-gallery"]'); if (!f || !S.galDraft) return; Object.assign(S.galDraft, {name:f.name.value.trim() || S.galDraft.name || 'New Design', cat:f.cat.value, bg:f.bg.value.toUpperCase(), desc:f.desc.value.trim(), visible:f.visible.checked}); }
+async function saveGalleryItem(item) {
+  const G = clone(AD.content.gallery);
+  if (item.id === 'new' || !item.id) { item = Object.assign({}, item, {id:uidL('g')}); G.unshift(item); }
+  else { const i = G.findIndex(x => x.id === item.id); if (i > -1) G[i] = item; else G.unshift(item); }
+  return adSaveContent({gallery:G}, 'Gallery saved.');
+}
+function twoTap(el, label) {
+  if (el.dataset.confirm === '1') return true;
+  const old = el.textContent; el.dataset.confirm = '1'; el.textContent = label || 'Tap again to confirm';
+  setTimeout(() => { if (el.isConnected) { el.dataset.confirm = ''; el.textContent = old; } }, 4000);
+  return false;
+}
+
+/* ============ ROUTER ============ */
+const PAGES = ['home','services','studio','gallery','booking','account','contact','admin'];
+const RENDER = {home:renderHome, services:renderServices, studio:renderStudio, gallery:renderGallery, booking:renderBooking, account:renderAccount, contact:renderContact, admin:renderAdmin};
+const TITLES = {home:'', services:'Services', studio:'Nail Design Studio', gallery:'Gallery', booking:'Book an Appointment', account:'My Account', contact:'About & Contact', admin:'Admin'};
+async function route() {
+  const h = location.hash.slice(1); let p = PAGES.includes(h) ? h : 'home';
+  if ((p === 'studio' && !F('studio') && !S.gal) || (p === 'gallery' && !F('gallery'))) { p = 'home'; history.replaceState(null, '', '#home'); }
+  if (p !== 'booking') NA.done = null;
+  $$('.page').forEach(s => s.classList.toggle('active', s.id === 'page-' + p));
+  $$('.nav-links a').forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + p));
+  $('#navLinks').classList.remove('open');
+  document.title = TITLES[p] ? `${TITLES[p]} — ${C.shop.name}` : `${C.shop.name} — ${C.shop.tagline}`;
+  window.scrollTo({top:0, behavior:'instant'});
+  try { await RENDER[p](); } catch (e) { console.error(e); toast(e.message || 'Something went wrong.'); }
+}
+let io;
+function observeReveals() {
+  if (!('IntersectionObserver' in window)) { $$('.reveal').forEach(e => e.classList.add('in')); return; }
+  io = io || new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), {threshold:.12, rootMargin:'0px 0px -40px 0px'});
+  $$('.reveal:not(.in)').forEach(e => io.observe(e));
+}
+
+/* ============ EVENTS (delegated) ============ */
+const toggleIn = (arr, v) => { const k = arr.indexOf(v); if (k > -1) arr.splice(k, 1); else arr.push(v); return k === -1; };
+const ACT = {
+  'menu': () => { const n = $('#navLinks'); n.classList.toggle('open'); $('.burger').setAttribute('aria-expanded', n.classList.contains('open')); },
+  'dlg-close': el => { const d = $('#' + el.dataset.v); if (d && d.open) d.close(); },
+  'svc-cat': el => { NA.svcFilter = el.dataset.v; },
+  'svc-filter': el => { NA.svcFilter = el.dataset.v; renderServices(); },
+  'svc-toggle': el => { const id = el.dataset.id; if (toggleIn(NA.booking.services, id)) toast(`${svcById(id).name} added to your booking.`); saveCart(); renderServices(); },
+  'gal-filter': el => { NA.galFilter = el.dataset.v; renderGallery(); },
+  'gal-open': el => openGallery(el.dataset.id),
+  'gal-book': async el => {
+    const g = C.gallery.find(x => x.id === el.dataset.id); el.disabled = true;
+    try {
+      const map = store.get('na_gal_designs', {}); let rec = map[g.id] && await ensureDesign(map[g.id]);
+      if (rec && ME && rec.user_id && rec.user_id !== me().id) rec = null;
+      if (!rec) {
+        const dd = clone(g.d); pruneImages(dd);
+        const body = Object.assign(recordFromDesign(dd), {name:g.name, source:'gallery:' + g.id, preview_image_url:await makePreview(dd)});
+        const r = await api('POST', '/designs', body); if (r.claim) setClaim('designs', r.design.id, r.claim);
+        rec = DC[r.design.id] = r.design; map[g.id] = rec.id; store.set('na_gal_designs', map);
+        if (ME) await loadMe();
+      }
+      NA.booking.design = rec.id; NA.booking.time = null; saveCart(); $('#galDlg').close(); NA.bstep = 1; location.hash = '#booking'; toast(`“${g.name}” attached to your booking.`);
+    } catch (e) { toast(e.message); el.disabled = false; }
+  },
+  'gal-custom': el => { const g = C.gallery.find(x => x.id === el.dataset.id); Object.assign(S, {d:clone(g.d), step:2, tab:'designs', editingId:null, gal:null}); $('#galDlg').close(); location.hash = '#studio'; },
+  // Studio
+  'st-go': el => { S.step = +el.dataset.step; renderStudio(); $('#stStepper').scrollIntoView({behavior:'smooth', block:'start'}); },
+  'st-pick': el => { S.sel = +el.dataset.i; if (S.step === 1 && S.scope === 'all') S.scope = 'one'; renderStage(); renderPanel(); },
+  'st-scope': el => { S.scope = el.dataset.v; renderPanel(); },
+  'st-shape': el => { const v = el.dataset.v; if (S.scope === 'all') { S.d.shape = v; S.d.nails.forEach(n => n.shape = null); } else S.d.nails[S.sel].shape = v === S.d.shape ? null : v; renderStage(); renderPanel(); },
+  'st-tab': el => { S.tab = el.dataset.v; renderPanel(); },
+  'st-base': el => { S.d.nails[S.sel].base = el.dataset.v; renderPanel(); },
+  'st-accent': el => { S.d.nails[S.sel].accent = el.dataset.v; renderPanel(); },
+  'st-preset': el => { S.d.nails[S.sel].preset = el.dataset.v; renderPanel(); },
+  'st-addon': el => { const a = S.d.nails[S.sel].addons, k = el.dataset.v; a[k] = !a[k]; renderPanel(); },
+  'st-upscope': el => { S.upScope = el.dataset.v; renderPanel(); },
+  'st-apply-all': () => { const src = S.d.nails[S.sel]; S.d.nails.forEach((n, i) => { if (i !== S.sel) { const sh = n.shape; Object.assign(n, clone(src)); n.shape = sh; } }); renderPanel(); toast(`${nailLabel(S.sel)} design applied to all nails.`); },
+  'st-clear': () => { const sh = S.d.nails[S.sel].shape; S.d.nails[S.sel] = Object.assign(blankNail(), {shape:sh}); renderPanel(); },
+  'st-img-reset': () => { Object.assign(S.d.nails[S.sel].custom, {x:0, y:0, s:1, r:0}); renderPanel(); },
+  'st-img-all': () => { const c = S.d.nails[S.sel].custom; S.d.nails.forEach(n => n.custom = {...c}); renderPanel(); toast('Image applied to all nails — adjust each one individually if needed.'); },
+  'st-img-remove': () => { S.d.nails[S.sel].custom = null; renderPanel(); },
+  'st-confirm': el => confirmDesign(el),
+  'st-new': () => { Object.assign(S, {d:newDesign(), step:1, editingId:null}); renderStudio(); },
+  'st-gal-cancel': () => { const id = S.gal && S.gal.id; Object.assign(S, {gal:null, d:newDesign(), step:1}); NA.ad.tab = 'gallery'; location.hash = '#admin'; if (id) setTimeout(() => openGalleryDlg(id), 300); },
+  'st-gal-save': async el => {
+    el.disabled = true; const dd = clone(S.d); pruneImages(dd);
+    const item = Object.assign(clone(S.gal), {d:dd});
+    if (await saveGalleryItem(item)) { Object.assign(S, {gal:null, galDraft:null, d:newDesign(), step:1}); NA.ad.tab = 'gallery'; location.hash = '#admin'; } else el.disabled = false;
+  },
+  // Booking
+  'bk-go': el => { const s = +el.dataset.step; if (canGo(s)) { NA.bstep = s; renderBooking(); $('#bkRoot').scrollIntoView({behavior:'smooth', block:'start'}); } },
+  'bk-svc': el => { toggleIn(NA.booking.services, el.dataset.id); saveCart(); renderBooking(); },
+  'bk-month': el => { NA.month = new Date(NA.month.getFullYear(), NA.month.getMonth() + (+el.dataset.v), 1); renderBooking(); },
+  'bk-date': el => { NA.booking.date = el.dataset.v; NA.booking.time = null; saveCart(); renderBooking(); },
+  'bk-time': el => { NA.booking.time = +el.dataset.v; saveCart(); renderBooking(); },
+  'bk-staff': el => { NA.booking.staff = el.dataset.v; saveCart(); renderBooking(); },
+  'bk-design': el => { NA.booking.design = el.dataset.v || null; saveCart(); renderBooking(); toast(el.dataset.v ? 'Design attached.' : 'Design removed from booking.'); },
+  'bk-edit-design': () => { const d = cartDesign(); if (!d) return; Object.assign(S, {d:designFromRecord(d), editingId:d.id, step:2, gal:null}); location.hash = '#studio'; },
+  'bk-submit': el => submitBooking(el),
+  'bk-new': () => { NA.done = null; renderBooking(); },
+  // Account
+  'auth-tab': el => { NA.authTab = el.dataset.v; renderAccount(); },
+  'acc-tab': el => { NA.accTab = el.dataset.v; renderAccount(); },
+  'acc-goto': el => { NA.accTab = el.dataset.v; },
+  'logout': async () => { try { await api('POST', '/auth/logout'); } catch (e) {} store.set(TK, null); ME = null; NA.accTab = 'bookings'; renderAccBtn(); renderAccount(); toast('You have been signed out.'); },
+  'acc-cancel': async el => { if (!twoTap(el)) return; try { await api('POST', `/bookings/${el.dataset.id}/cancel`, {}); await loadMe(); BUSY_T = 0; renderAccount(); toast('Booking cancelled.'); } catch (e) { toast(e.message); } },
+  'acc-book-design': el => { NA.booking.design = el.dataset.id; NA.booking.time = null; saveCart(); NA.bstep = 1; location.hash = '#booking'; toast('Design attached to a new booking.'); },
+  'acc-edit-design': el => { const d = DC[el.dataset.id]; if (!d) return; Object.assign(S, {d:designFromRecord(d), editingId:d.id, step:2, sel:3, gal:null}); location.hash = '#studio'; },
+  'acc-del-design': async el => { if (!twoTap(el, 'Tap to confirm')) return; try { await api('DELETE', '/designs/' + el.dataset.id); delete DC[el.dataset.id]; if (NA.booking.design === el.dataset.id) { NA.booking.design = null; saveCart(); } await loadMe(); renderAccount(); toast('Design deleted.'); } catch (e) { toast(e.message); } },
+  // Admin
+  'ad-tab': el => { NA.ad.tab = el.dataset.v; renderAdmin(); },
+  'ad-goto': el => { NA.ad.tab = el.dataset.v; if (el.dataset.f) NA.ad.filter = el.dataset.f; renderAdmin(); },
+  'ad-filter': el => { NA.ad.filter = el.dataset.v; ADT.bookings(); },
+  'ad-logout': async () => { try { await adApi('POST', '/admin/logout'); } catch (e) {} store.set(ATK, null); AD = null; renderAdmin(); },
+  'ad-bk-open': el => openBookingDlg(el.dataset.id),
+  'ad-bk-new': () => openNewBookingDlg(),
+  'ad-bk-status': async el => { const v = el.dataset.v; if (v === 'cancelled' && !twoTap(el, 'Confirm decline')) return; if (await adUpdateBooking(el.dataset.id, {status:v}, `Booking ${STATUS[v][0].toLowerCase()}.`)) renderAdmin(); },
+  'ad-bk-paid': async el => { if (await adUpdateBooking(el.dataset.id, {payment_status:'paid'}, 'Marked as paid.')) renderAdmin(); },
+  'ad-bk-del': async el => { if (!twoTap(el, 'Tap again to delete')) return; try { await adApi('DELETE', '/admin/bookings/' + el.dataset.id); admDlg().close(); await renderAdmin(true); toast('Booking deleted.'); } catch (e) { toast(e.message); } },
+  'ad-cust': el => {
+    const c = NA.ad.cust[el.dataset.v]; if (!c) return;
+    openAdmDlg(`<span class="eyebrow">${c.account ? 'Account holder' : 'Guest'}${c.since ? ' · since ' + fmtShort(c.since.slice(0, 10)) : ''}</span><h2>${esc(c.name)}</h2><p class="small">${esc(c.phone || '')} ${c.email ? '· <a class="link" href="mailto:' + esc(c.email) + '">' + esc(c.email) + '</a>' : ''}</p><div style="margin-top:18px">${bookingRows(sortDesc(c.list), 'No bookings yet.')}</div>`);
+  },
+  'ad-msg-read': async el => { try { await adApi('PUT', '/admin/messages/' + el.dataset.id, {read:!!el.dataset.v}); AD.messages.find(m => m.id === el.dataset.id).read = !!el.dataset.v; renderAdmin(); } catch (e) { toast(e.message); } },
+  'ad-msg-del': async el => { if (!twoTap(el)) return; try { await adApi('DELETE', '/admin/messages/' + el.dataset.id); AD.messages = AD.messages.filter(m => m.id !== el.dataset.id); renderAdmin(); toast('Message deleted.'); } catch (e) { toast(e.message); } },
+  'ad-cat-del': async el => {
+    const k = el.dataset.k, v = el.dataset.v, used = k === 'categories' ? AD.content.services.some(s => s.cat === v) : AD.content.gallery.some(g => g.cat === v);
+    if (used) return toast(`“${v}” is still used — move or delete those items first.`);
+    if (await adSaveContent({[k]:AD.content[k].filter(c => c !== v)}, 'Category removed.')) renderAdmin();
+  },
+  'ad-g-edit': el => { S.galDraft = null; openGalleryDlg(el.dataset.id); },
+  'ad-g-studio': el => {
+    const id = el.dataset.id; readGalForm();
+    const g = S.galDraft && (S.galDraft.id === id) ? S.galDraft : clone(AD.content.gallery.find(x => x.id === id));
+    if (!g) return;
+    if (admDlg().open) admDlg().close();
+    Object.assign(S, {gal:clone(g), galDraft:clone(g), d:clone(g.d), step:1, sel:3, editingId:null, scope:'all'});
+    location.hash = '#studio';
+  },
+  'ad-g-vis': async el => { const G = clone(AD.content.gallery), g = G.find(x => x.id === el.dataset.id); g.visible = g.visible === false; if (await adSaveContent({gallery:G}, g.visible ? 'Now visible on the website.' : 'Hidden from the website.')) renderAdmin(); },
+  'ad-g-move': async el => { const G = clone(AD.content.gallery), i = G.findIndex(x => x.id === el.dataset.id), j = i + (+el.dataset.v); if (j < 0 || j >= G.length) return; [G[i], G[j]] = [G[j], G[i]]; if (await adSaveContent({gallery:G}, 'Order updated.')) renderAdmin(); },
+  'ad-g-del': async el => { if (!twoTap(el)) return; if (await adSaveContent({gallery:AD.content.gallery.filter(x => x.id !== el.dataset.id)}, 'Design deleted.')) renderAdmin(); },
+  'rev-all': el => { el.closest('[data-feature]').querySelector('.rev-grid').classList.add('all'); el.parentElement.remove(); },
+  'rev-more': el => { const c = el.closest('.rev'); c.classList.toggle('open'); el.textContent = c.classList.contains('open') ? 'Show less' : 'Read more'; },
+  'ad-rv-edit': el => openReviewDlg(el.dataset.id),
+  'ad-rv-vis': async el => { const L = clone(AD.content.reviews.items), v = L.find(x => x.id === el.dataset.id); v.visible = v.visible === false; if (await adSaveContent({reviews:{items:L}}, v.visible ? 'Review shown.' : 'Review hidden.')) { REV = null; renderAdmin(); } },
+  'ad-rv-del': async el => { if (!twoTap(el)) return; if (await adSaveContent({reviews:{items:AD.content.reviews.items.filter(x => x.id !== el.dataset.id)}}, 'Review deleted.')) { REV = null; renderAdmin(); } },
+  'ad-g-refresh': async el => { el.disabled = true; try { const r = MODE === 'remote' ? await adApi('POST', '/admin/google-status') : await localGoogleStatus(); REV = null; toast(r.error ? 'Google: ' + r.error : `Updated — ${r.reviews} reviews imported.`); } catch (e) { toast(e.message); } renderAdmin(); },
+  'ad-gkey-remove': async el => { if (!twoTap(el)) return; try { await adApi('PUT', '/admin/secrets', {googleApiKey:''}); REV = null; toast('API key removed.'); renderAdmin(); } catch (e) { toast(e.message); } },
+  'ad-svc-edit': el => openServiceDlg(el.dataset.id),
+  'ad-svc-vis': async el => { const L = clone(AD.content.services), s = L.find(x => x.id === el.dataset.id); s.active = s.active === false; if (await adSaveContent({services:L}, s.active ? 'Service is live.' : 'Service hidden.')) renderAdmin(); },
+  'ad-svc-del': async el => { if (!twoTap(el)) return; if (await adSaveContent({services:AD.content.services.filter(x => x.id !== el.dataset.id)}, 'Service deleted.')) renderAdmin(); },
+  'ad-st-edit': el => openStaffDlg(el.dataset.id),
+  'ad-st-del': async el => {
+    const id = el.dataset.id, future = AD.bookings.filter(b => b.staff_id === id && ['pending','confirmed'].includes(b.status) && !isPast(b)).length;
+    if (future) return toast(`This artist has ${future} upcoming booking(s). Reassign them first, or set the artist inactive.`);
+    if (!twoTap(el)) return;
+    if (await adSaveContent({staff:AD.content.staff.filter(x => x.id !== id)}, 'Artist removed.')) renderAdmin();
+  },
+  'ad-export': async () => {
+    try { const r = await adApi('GET', '/admin/export'); const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([JSON.stringify(r, null, 1)], {type:'application/json'})); a.download = `nails-avenue-backup-${NOW.date}.json`; document.body.appendChild(a); a.click(); a.remove(); toast('Backup downloaded.'); } catch (e) { toast(e.message); }
+  },
+  'ad-reset': async el => { if (!twoTap(el, 'Tap again to reset content')) return; try { const r = await adApi('POST', '/admin/reset-content'); AD.content = r.content; await loadContent(); renderAdmin(); toast('Content restored to defaults.'); } catch (e) { toast(e.message); } }
+};
+document.addEventListener('click', e => {
+  const dlg = e.target.closest('dialog'); if (dlg && e.target === dlg) { dlg.close(); return; }
+  const el = e.target.closest('[data-act]'); if (!el) return;
+  const fn = ACT[el.dataset.act]; if (!fn) return;
+  if (el.tagName === 'BUTTON' || el.tagName === 'TR') e.preventDefault();
+  fn(el, e);
+});
+let qT;
+const IN = {
+  'st-base': el => { S.d.nails[S.sel].base = el.value.toUpperCase(); renderStage(); },
+  'st-accent': el => { S.d.nails[S.sel].accent = el.value.toUpperCase(); renderStage(); },
+  'st-zoom': el => { const c = S.d.nails[S.sel].custom; c.s = +el.value; $('#rzO').textContent = Math.round(c.s * 100) + '%'; updateImgT(S.sel); },
+  'st-rot': el => { const c = S.d.nails[S.sel].custom; c.r = +el.value; $('#rrO').textContent = c.r + '°'; updateImgT(S.sel); },
+  'bk-note': el => { NA.booking.note = el.value; saveCart(); },
+  'bk-guest': el => { NA.booking.guest[el.dataset.k] = el.value; saveCart(); },
+  'ad-q': el => { NA.ad.q = el.value; clearTimeout(qT); qT = setTimeout(() => { const pos = el.selectionStart; ADT.bookings(); const n = $('[data-in="ad-q"]'); n.focus(); n.setSelectionRange(pos, pos); }, 250); }
+};
+const CH = {
+  'st-base': () => renderPanel(), 'st-accent': () => renderPanel(),
+  'st-zoom': () => renderStage(), 'st-rot': () => renderStage(),
+  'st-upload': el => { handleUpload(el.files[0]); el.value = ''; },
+  'ad-feature': async el => { if (await adSaveContent({features:{[el.dataset.k]:el.checked}}, el.checked ? 'Turned on — visible to customers.' : 'Turned off — hidden from customers.')) REV = null; else el.checked = !el.checked; },
+  'ad-date': el => { NA.ad.date = el.value || NOW.date; ADT.dashboard(); },
+  'ad-import': async el => {
+    const file = el.files[0]; el.value = ''; if (!file) return;
+    try { const j = JSON.parse(await file.text()); await adApi('POST', '/admin/import', {data:j.data || j}); await loadContent(); await renderAdmin(true); toast('Backup restored.'); }
+    catch (e) { toast(e.message || 'Could not read that file.'); }
+  }
+};
+document.addEventListener('input', e => { const el = e.target.closest('[data-in]'); if (el && IN[el.dataset.in]) IN[el.dataset.in](el, e); });
+document.addEventListener('change', e => { const el = e.target.closest('[data-in]'); if (el && CH[el.dataset.in]) CH[el.dataset.in](el, e); });
+
+let drag = null;
+document.addEventListener('pointerdown', e => {
+  const ed = e.target.closest('#stEditor'); if (!ed) return;
+  const c = S.d.nails[S.sel].custom; if (!c) return;
+  e.preventDefault(); ed.setPointerCapture(e.pointerId); ed.classList.add('dragging');
+  const r = ed.querySelector('svg').getBoundingClientRect();
+  drag = {id:e.pointerId, sx:e.clientX, sy:e.clientY, ox:c.x, oy:c.y, k:128 / r.height};
+});
+document.addEventListener('pointermove', e => {
+  if (!drag || e.pointerId !== drag.id) return;
+  const c = S.d.nails[S.sel].custom; if (!c) return;
+  c.x = drag.ox + (e.clientX - drag.sx) * drag.k; c.y = drag.oy + (e.clientY - drag.sy) * drag.k; updateImgT(S.sel);
+});
+const endDrag = e => { if (!drag || e.pointerId !== drag.id) return; drag = null; const ed = $('#stEditor'); if (ed) ed.classList.remove('dragging'); };
+document.addEventListener('pointerup', endDrag); document.addEventListener('pointercancel', endDrag);
+document.addEventListener('wheel', e => {
+  const ed = e.target.closest('#stEditor'); if (!ed) return; const c = S.d.nails[S.sel].custom; if (!c) return;
+  e.preventDefault(); c.s = Math.min(3, Math.max(.3, +(c.s * (e.deltaY < 0 ? 1.06 : .94)).toFixed(3))); updateImgT(S.sel);
+  const z = $('#rz'); if (z) { z.value = c.s; $('#rzO').textContent = Math.round(c.s * 100) + '%'; }
+}, {passive:false});
+
+/* ============ FORMS ============ */
+const fmsg = (f, t) => { const m = $('.form-msg', f); if (m) m.textContent = t || ''; };
+const FORM = {
+  async login(f) {
+    const r = await api('POST', '/auth/login', {email:f.email.value, password:f.password.value, claims:claims()});
+    store.set(TK, r.token); await loadMe(); renderAccount(); toast(`Welcome back, ${r.user.name.split(' ')[0]}.`);
+  },
+  async register(f) {
+    const r = await api('POST', '/auth/register', {name:f.name.value, phone:f.phone.value, email:f.email.value, password:f.password.value, claims:claims()});
+    store.set(TK, r.token); await loadMe(); renderAccount(); toast(`Welcome to ${C.shop.name}!`);
+  },
+  async profile(f) { await api('PUT', '/me', {name:f.name.value, phone:f.phone.value, email:f.email.value}); await loadMe(); renderAccount(); toast('Profile updated.'); },
+  async mypass(f) { await api('PUT', '/me/password', {current:f.current.value, next:f.next.value}); f.reset(); toast('Password changed.'); },
+  async contact(f) { await api('POST', '/messages', {name:f.name.value, email:f.email.value, message:f.message.value}); f.reset(); toast('Thank you — we will get back to you soon.'); },
+  // admin
+  async 'adm-setup'(f) {
+    if (f.password.value !== f.password2.value) throw new Error('Passwords do not match.');
+    const r = await adApi('POST', '/admin/setup', {password:f.password.value}); store.set(ATK, r.token); await renderAdmin(true); toast('Admin password saved.');
+  },
+  async 'adm-login'(f) { const r = await adApi('POST', '/admin/login', {password:f.password.value}); store.set(ATK, r.token); await renderAdmin(true); },
+  async 'adm-pass'(f) { await adApi('PUT', '/admin/password', {current:f.current.value, next:f.next.value}); f.reset(); toast('Admin password updated.'); },
+  async 'adm-booking'(f) {
+    const b = AD.bookings.find(x => x.id === f.dataset.id), patch = {};
+    const v = {status:f.status.value, payment_status:f.payment_status.value, date:f.date.value, start:fromHM(f.start.value), staff_id:f.staff_id.value, duration:+f.duration.value, admin_note:f.admin_note.value};
+    Object.keys(v).forEach(k => { if (v[k] !== b[k]) patch[k] = v[k]; });
+    if (!('date' in patch || 'start' in patch || 'staff_id' in patch || 'duration' in patch)) ['date','start','staff_id','duration'].forEach(k => delete patch[k]);
+    else Object.assign(patch, {date:v.date, start:v.start, staff_id:v.staff_id, duration:v.duration});
+    if (f.design_price && (f.design_price.value !== f.design_price.dataset.orig || b.price_status !== 'fixed')) patch.design_price = +f.design_price.value;
+    const fp = f.final_price.value === '' ? null : +f.final_price.value; if (fp !== b.final_price) patch.final_price = fp;
+    if (!Object.keys(patch).length) { admDlg().close(); return; }
+    const r = await adApi('PUT', '/admin/bookings/' + b.id, patch);
+    AD.bookings[AD.bookings.indexOf(b)] = r.booking; BUSY_T = 0; admDlg().close(); renderAdmin(); toast('Booking updated.');
+  },
+  async 'adm-newbooking'(f) {
+    const svcs = $$('input[name="svc"]:checked', f).map(i => i.value);
+    const r = await adApi('POST', '/admin/bookings', {services:svcs, date:f.date.value, start:fromHM(f.start.value), staff:f.staff.value, note:f.note.value, ignoreHours:f.ignoreHours.checked, guest:{name:f.name.value, phone:f.phone.value, email:f.email.value}});
+    AD.bookings.push(r.booking); BUSY_T = 0; admDlg().close(); renderAdmin(); toast('Booking created.');
+  },
+  async 'adm-service'(f) {
+    const L = clone(AD.content.services), id = f.dataset.id;
+    const s = {id:id === 'new' ? uidL('s') : id, name:f.name.value, cat:f.cat.value, price:+f.price.value, dur:+f.dur.value, desc:f.desc.value, active:f.active.checked};
+    if (id === 'new') L.push(s); else L[L.findIndex(x => x.id === id)] = s;
+    if (await adSaveContent({services:L}, 'Service saved.')) { admDlg().close(); renderAdmin(); }
+  },
+  async 'adm-staff'(f) {
+    const L = clone(AD.content.staff), id = f.dataset.id;
+    const s = {id:id === 'new' ? uidL('st') : id, name:f.name.value, role:f.role.value, days:$$('input[name="day"]:checked', f).map(i => +i.value), start:fromHM(f.start.value), end:fromHM(f.end.value), color:f.color.value.toUpperCase(), active:f.active.checked};
+    if (id === 'new') L.push(s); else L[L.findIndex(x => x.id === id)] = s;
+    if (await adSaveContent({staff:L}, 'Artist saved.')) { admDlg().close(); renderAdmin(); }
+  },
+  async 'adm-gallery'(f) {
+    readGalForm();
+    if (await saveGalleryItem(clone(S.galDraft))) { S.galDraft = null; admDlg().close(); renderAdmin(); }
+  },
+  async 'adm-cat'(f) {
+    const k = f.dataset.k, v = f.cat.value.trim(); if (!v) return;
+    if (AD.content[k].includes(v)) throw new Error('That category already exists.');
+    if (await adSaveContent({[k]:[...AD.content[k], v]}, 'Category added.')) renderAdmin();
+  },
+  async 'adm-shop'(f) {
+    const v = n => f[n].value.trim();
+    const shop = {name:v('name'), tagline:v('tagline'), heroTitle:v('heroTitle'), heroAccent:v('heroAccent'), heroLead:v('heroLead'), aboutTitle:v('aboutTitle'), aboutText:f.aboutText.value.trim(), address:v('address'), mapQuery:v('mapQuery'), phone:v('phone'), email:v('email'), instagram:v('instagram'), facebook:v('facebook'), currency:v('currency'), bookingWindowDays:+v('bookingWindowDays'), slotStep:+f.slotStep.value, timezone:v('timezone'),
+      hours:[0,1,2,3,4,5,6].map(d => f['open' + d].checked ? [fromHM(f['from' + d].value), fromHM(f['to' + d].value)] : null)};
+    if (await adSaveContent({shop}, 'Shop info saved — the website is updated.')) renderAdmin();
+  },
+  async 'adm-reviews'(f) {
+    const v = n => f[n].value.trim();
+    if (await adSaveContent({reviews:{mapsUrl:v('mapsUrl'), writeUrl:v('writeUrl'), placeQuery:v('placeQuery'), placeId:v('placeId'), rating:v('rating'), count:v('count'), useGoogle:f.useGoogle.checked}}, 'Review settings saved.')) { REV = null; renderAdmin(); }
+  },
+  async 'adm-review'(f) {
+    const L = clone(AD.content.reviews.items || []), id = f.dataset.id;
+    const v = {id:id === 'new' ? uidL('rv') : id, author:f.author.value, rating:+f.rating.value, date:f.date.value, text:f.text.value, visible:f.visible.checked};
+    if (!v.author.trim() || !v.text.trim()) throw new Error('Please add the customer name and review text.');
+    if (id === 'new') L.unshift(v); else L[L.findIndex(x => x.id === id)] = v;
+    if (await adSaveContent({reviews:{items:L}}, 'Review saved.')) { REV = null; admDlg().close(); renderAdmin(); }
+  },
+  async 'adm-gkey'(f) {
+    const key = f.key.value.trim(); if (!key) throw new Error('Paste your API key first.');
+    await adApi('PUT', '/admin/secrets', {googleApiKey:key});
+    const r = MODE === 'remote' ? await adApi('POST', '/admin/google-status') : await localGoogleStatus(); REV = null;
+    toast(r.error ? 'Key saved, but Google said: ' + r.error : `Connected — ${r.reviews} reviews imported.`); renderAdmin();
+  },
+  async 'adm-prices'(f) {
+    const prices = {base:+f.base.value, customEst:+f.customEst.value, designMin:+f.designMin.value, presets:{}, addons:{}};
+    Object.keys(PRESETS).filter(k => k !== 'none').forEach(k => prices.presets[k] = +f['pr_' + k].value);
+    Object.keys(ADDONS).forEach(k => prices.addons[k] = +f['ad_' + k].value);
+    if (await adSaveContent({prices}, 'Prices saved.')) renderAdmin();
+  }
+};
+document.addEventListener('submit', async e => {
+  const f = e.target.closest('[data-form]'); if (!f) return; e.preventDefault();
+  const btn = $('button[type="submit"]', f); if (btn) btn.disabled = true; fmsg(f);
+  try { await FORM[f.dataset.form](f); } catch (err) { if (f.isConnected) fmsg(f, err.message); else toast(err.message); }
+  finally { if (btn && btn.isConnected) btn.disabled = false; }
+});
+
+/* ============ INIT ============ */
+async function init() {
+  if (/^https?:$/.test(location.protocol)) { try { const r = await fetch('/api/health', {cache:'no-store'}); if (r.ok && (await r.json()).ok) MODE = 'remote'; } catch (e) {} }
+  if (MODE === 'local') LDB = BK.migrate(store.get(LOCAL_KEY, null) || BK.emptyDb());
+  try { await loadContent(); }
+  catch (e) { $('.boot').textContent = 'Could not load the website. Please refresh.'; return; }
+  NOW = BK.nowIn(C.shop.timezone);
+  $('.boot').remove();
+  hydrateIcons(); renderAccBtn(); updateBadge();
+  await loadMe();
+  window.addEventListener('hashchange', route);
+  window.addEventListener('scroll', () => $('#header').classList.toggle('scrolled', scrollY > 10), {passive:true});
+  route();
+}
+init();
+})();
+</script>
+</body>
+</html>

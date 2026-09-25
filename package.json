@@ -1,0 +1,9 @@
+{
+  "name": "nails-avenue",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Nails Avenue website, booking system, Nail Design Studio and admin panel",
+  "main": "server.js",
+  "scripts": { "start": "node server.js" },
+  "engines": { "node": ">=18" }
+}
