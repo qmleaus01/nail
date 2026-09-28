@@ -71,6 +71,13 @@ p{color:var(--muted)}
 .logo{font-family:var(--serif);font-size:1.45rem;letter-spacing:.03em;display:flex;align-items:center;gap:10px;white-space:nowrap}
 .logo i{font-style:italic;color:var(--primary)}
 .logo svg{width:26px;height:26px}
+.logo-img{display:block;height:44px;width:auto;max-width:190px;object-fit:contain}
+.logo.has-img > svg{display:none}
+.footer .logo-img{height:52px;max-width:220px}
+@media (max-width:520px){.logo-img{height:36px;max-width:150px}}
+.logo-box{display:flex;gap:20px;align-items:center;flex-wrap:wrap}
+.logo-prev{width:220px;height:110px;border-radius:14px;border:1px dashed var(--line-2);background:#fff;display:grid;place-items:center;padding:12px;overflow:hidden}
+.logo-prev img{max-width:100%;max-height:100%;object-fit:contain}
 .nav-links{display:flex;gap:30px;align-items:center}
 .nav-links a{font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);position:relative;padding:6px 0;transition:color .3s}
 .nav-links a::after{content:'';position:absolute;left:0;bottom:0;width:100%;height:1px;background:var(--primary);transform:scaleX(0);transform-origin:left;transition:transform .45s var(--ease)}
@@ -812,6 +819,12 @@ const money = n => { const v = r2(+n || 0); return (C ? C.shop.currency : '$') +
 const svcById = id => C.services.find(s => s.id === id);
 const staffById = (id, list) => (list || C.staff).find(s => s.id === id);
 const logoHTML = n => { const w = String(n).trim().split(/\s+/); return w.length < 2 ? esc(n) : esc(w.slice(0, -1).join(' ')) + ' <i>' + esc(w[w.length - 1]) + '</i>'; };
+/* Website images — stored in content.images[key] (data URL). Add more slots here later (hero, about…). */
+const SITE_IMGS = {logo:{label:'Logo', max:600, note:'Shown in the header and footer. PNG with a transparent background works best.'}};
+const DEFAULT_LOGO = 'assets/logo.png'; // shop's default logo file; used when no logo is uploaded in admin
+let DEF_LOGO_OK = null; // null = not checked yet
+const siteImg = k => (C && C.images && C.images[k]) || (k === 'logo' && DEF_LOGO_OK ? DEFAULT_LOGO : '');
+function checkDefaultLogo() { if (DEF_LOGO_OK !== null) return; DEF_LOGO_OK = false; const im = new Image(); im.onload = () => { DEF_LOGO_OK = true; if (C) applyShop(); if (AD && NA.ad.tab === 'shop' && location.hash === '#admin') renderAdmin(); }; im.src = DEFAULT_LOGO; }
 
 const ICONS = {
   user:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg>',
@@ -965,7 +978,8 @@ const tag = (map, k) => `<span class="tag ${(map[k] || ['', ''])[1]}">${(map[k] 
 /* ============ SHOP (dynamic content) ============ */
 function applyShop() {
   const s = C.shop;
-  $$('[data-shop="logo"]').forEach(e => e.innerHTML = logoHTML(s.name));
+  checkDefaultLogo(); const logo = siteImg('logo');
+  $$('[data-shop="logo"]').forEach(e => { e.innerHTML = logo ? `<img class="logo-img" src="${esc(logo)}" alt="${esc(s.name)}">` : logoHTML(s.name); e.parentElement.classList.toggle('has-img', !!logo); });
   $$('[data-feature]').forEach(el => el.hidden = !F(el.dataset.feature));
   $$('[data-shop="tagline"]').forEach(e => e.textContent = s.tagline);
   $('#copy').textContent = `© ${new Date().getFullYear()} ${s.name}. All rights reserved.`;
@@ -1166,10 +1180,10 @@ function renderPanel() {
   }
 }
 function updateImgT(i) { const c = S.d.nails[i].custom; if (!c) return; $$(`#page-studio image[data-ni="${i}"]`).forEach(im => im.setAttribute('transform', imgT(c))); }
-function downscale(file, max) {
+function downscale(file, max, alpha) {
   return new Promise((res, rej) => {
     const fr = new FileReader();
-    fr.onload = () => { const im = new Image(); im.onload = () => { const k = Math.min(1, max / Math.max(im.width, im.height)); const c = document.createElement('canvas'); c.width = Math.round(im.width * k); c.height = Math.round(im.height * k); c.getContext('2d').drawImage(im, 0, 0, c.width, c.height); res(file.type === 'image/png' ? c.toDataURL('image/png') : c.toDataURL('image/jpeg', .88)); }; im.onerror = rej; im.src = fr.result; };
+    fr.onload = () => { const im = new Image(); im.onload = () => { const k = Math.min(1, max / Math.max(im.width, im.height)); const c = document.createElement('canvas'); c.width = Math.round(im.width * k); c.height = Math.round(im.height * k); c.getContext('2d').drawImage(im, 0, 0, c.width, c.height); res(file.type === 'image/png' || (alpha && file.type === 'image/webp') ? c.toDataURL('image/png') : c.toDataURL('image/jpeg', .88)); }; im.onerror = rej; im.src = fr.result; };
     fr.onerror = rej; fr.readAsDataURL(file);
   });
 }
@@ -1505,6 +1519,7 @@ const ADT = {
   shop() {
     const s = AD.content.shop, f = (n, l, v, t = 'text', cls = '') => `<div class="field ${cls}"><label for="sh-${n}">${l}</label><input class="input" id="sh-${n}" name="${n}" type="${t}" value="${esc(v)}"></div>`;
     adMain(`<div class="ad-head"><div><span class="eyebrow">Shown across the website</span><h2>Shop info</h2></div></div>
+      ${siteImgCard('logo')}
       <form data-form="adm-shop" novalidate>
       <div class="card ad-card"><h3>Brand &amp; home page</h3><div class="form-grid">${f('name', 'Shop name', s.name)}${f('tagline', 'Tagline (footer)', s.tagline)}${f('heroTitle', 'Hero title', s.heroTitle)}${f('heroAccent', 'Hero title — italic part', s.heroAccent)}<div class="field full"><label for="sh-heroLead">Hero text</label><textarea class="input" id="sh-heroLead" name="heroLead">${esc(s.heroLead)}</textarea></div>${f('aboutTitle', 'About title', s.aboutTitle, 'text', 'full')}<div class="field full"><label for="sh-aboutText">About text (blank line = new paragraph)</label><textarea class="input" id="sh-aboutText" name="aboutText" style="min-height:140px">${esc(s.aboutText)}</textarea></div></div></div>
       <div class="card ad-card"><h3>Contact &amp; location</h3><div class="form-grid">${f('address', 'Address', s.address, 'text', 'full')}${f('mapQuery', 'Map search (address or place name)', s.mapQuery, 'text', 'full')}${f('phone', 'Phone', s.phone, 'tel')}${f('email', 'Email', s.email, 'email')}${f('instagram', 'Instagram URL', s.instagram, 'url')}${f('facebook', 'Facebook URL', s.facebook, 'url')}</div></div>
@@ -1535,6 +1550,17 @@ function googleStatusHTML(gs) {
   if (!gs.configured) return `<p class="small" style="margin-bottom:12px">Google only shares review text through its API, so a free-tier API key is needed to show your live rating and up to 5 recent reviews (Google's limit), refreshed every 6 hours. Until then the website shows your Google Maps card with your star rating.<br>Create a key in Google Cloud Console → enable <b>Places API (New)</b> and <b>Maps JavaScript API</b> → Credentials → API key.</p>${keyForm}`;
   return `<dl class="g-status"><dt>Status</dt><dd>${gs.error ? `<span class="tag bad">Error</span> ${esc(gs.error)}` : gs.fetchedAt ? '<span class="tag ok">Connected</span>' : '<span class="tag warn">Not fetched yet</span>'}</dd>${gs.placeName ? `<dt>Google place</dt><dd>${esc(gs.placeName)}</dd>` : ''}${gs.rating ? `<dt>Rating</dt><dd>${gs.rating} ★ · ${gs.count} reviews</dd>` : ''}<dt>Reviews imported</dt><dd>${gs.reviews}</dd>${gs.fetchedAt ? `<dt>Last updated</dt><dd>${fmtDT(new Date(gs.fetchedAt).toISOString())}</dd>` : ''}<dt>API key</dt><dd>${gs.fromEnv ? 'Set on the server (GOOGLE_PLACES_API_KEY)' : 'Saved in admin'}</dd></dl>
     <button class="btn btn-soft btn-sm" data-act="ad-g-refresh">Refresh from Google now</button>${keyForm}`;
+}
+function siteImgCard(k) {
+  const m = SITE_IMGS[k], src = (AD.content.images || {})[k] || '', def = k === 'logo' && DEF_LOGO_OK ? DEFAULT_LOGO : '', shown = src || def;
+  const status = src ? 'Custom ' + m.label.toLowerCase() + ' uploaded.' + (def ? ' Remove it to go back to the default logo.' : '') : def ? 'Showing the default logo.' : 'No image uploaded — the text logo is shown.';
+  return `<div class="card ad-card"><h3>${m.label}</h3><div class="logo-box"><div class="logo-prev">${shown ? `<img src="${esc(shown)}" alt="Current ${m.label.toLowerCase()}">` : `<span class="logo" style="font-size:1.3rem">${logoHTML(AD.content.shop.name)}</span>`}</div>
+    <div><p class="small" style="margin-bottom:12px">${status} ${m.note}<br>PNG, JPG or WEBP.</p><div class="mini-actions"><label class="btn btn-soft btn-sm" style="cursor:pointer">${shown ? 'Replace' : 'Upload'}<input type="file" accept="image/png,image/jpeg,image/webp" data-in="ad-img" data-k="${k}" hidden></label>${src ? `<button class="textbtn danger" data-act="ad-img-remove" data-k="${k}">Remove</button>` : ''}</div></div></div></div>`;
+}
+async function saveSiteImg(k, src) {
+  if (!(await adSaveContent({images:{[k]:src}}, src ? SITE_IMGS[k].label + ' updated.' : SITE_IMGS[k].label + ' removed.'))) return;
+  if (((AD.content.images || {})[k] || '') !== src) toast('The server did not store the image — backend.js needs to accept content.images.');
+  renderAdmin();
 }
 function catEditor(key) {
   const list = AD.content[key], used = key === 'categories' ? AD.content.services.map(s => s.cat) : AD.content.gallery.map(g => g.cat);
@@ -1806,6 +1832,7 @@ const ACT = {
   'ad-export': async () => {
     try { const r = await adApi('GET', '/admin/export'); const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([JSON.stringify(r, null, 1)], {type:'application/json'})); a.download = `nails-avenue-backup-${NOW.date}.json`; document.body.appendChild(a); a.click(); a.remove(); toast('Backup downloaded.'); } catch (e) { toast(e.message); }
   },
+  'ad-img-remove': el => { if (twoTap(el, 'Tap to confirm')) saveSiteImg(el.dataset.k, ''); },
   'ad-reset': async el => { if (!twoTap(el, 'Tap again to reset content')) return; try { const r = await adApi('POST', '/admin/reset-content'); AD.content = r.content; await loadContent(); renderAdmin(); toast('Content restored to defaults.'); } catch (e) { toast(e.message); } }
 };
 document.addEventListener('click', e => {
@@ -1829,6 +1856,11 @@ const CH = {
   'st-base': () => renderPanel(), 'st-accent': () => renderPanel(),
   'st-zoom': () => renderStage(), 'st-rot': () => renderStage(),
   'st-upload': el => { handleUpload(el.files[0]); el.value = ''; },
+  'ad-img': async el => {
+    const file = el.files[0], k = el.dataset.k; el.value = ''; if (!file) return;
+    if (!/^image\/(png|jpe?g|webp)$/.test(file.type)) return toast('Please choose a PNG, JPG or WEBP image.');
+    try { await saveSiteImg(k, await downscale(file, SITE_IMGS[k].max, true)); } catch (e) { toast('Sorry, that image could not be read.'); }
+  },
   'ad-feature': async el => { if (await adSaveContent({features:{[el.dataset.k]:el.checked}}, el.checked ? 'Turned on — visible to customers.' : 'Turned off — hidden from customers.')) REV = null; else el.checked = !el.checked; },
   'ad-date': el => { NA.ad.date = el.value || NOW.date; ADT.dashboard(); },
   'ad-import': async el => {

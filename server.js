@@ -79,8 +79,8 @@ async function reviewsResponse(force) {
 }
 const isAdmin = token => { const s = token && db.sessions[token]; return !!(s && s.role === 'admin' && s.exp > Date.now()); };
 
-const STATIC = {'/':'index.html', '/index.html':'index.html', '/backend.js':'backend.js'};
-const TYPES = {'.html':'text/html; charset=utf-8', '.js':'text/javascript; charset=utf-8'};
+const STATIC = {'/':'index.html', '/index.html':'index.html', '/backend.js':'backend.js', '/assets/logo.png':'assets/logo.png'};
+const TYPES = {'.html':'text/html; charset=utf-8', '.js':'text/javascript; charset=utf-8', '.png':'image/png'};
 const SEC = {'X-Content-Type-Options':'nosniff', 'Referrer-Policy':'strict-origin-when-cross-origin', 'X-Frame-Options':'SAMEORIGIN'};
 
 function send(res, status, body, headers) {

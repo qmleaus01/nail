@@ -47,6 +47,8 @@ async function hashPw(pw, salt) {
 const SHAPE_KEYS = ['almond','square','coffin','stiletto','round','oval','squoval'];
 const PRESET_KEYS = ['none','french','ombre','glitter','floral','marble','halfmoon','dots','lines'];
 const ADDON_KEYS = ['rhinestone','charm','chrome','art'];
+const IMAGE_KEYS = ['logo']; // website images (content.images) — add more slots here later
+const IMAGE_MAX = 3 * 1024 * 1024; // max data-URL length per image
 const fingerOf = i => i < 5 ? i : 9 - i;
 function blankNail() { return {shape:null, base:'#F3D9D5', accent:'#FFFFFF', preset:'none', addons:{}, custom:null}; }
 function newDesign() { return {shape:'almond', nails:Array.from({length:10}, blankNail), images:{}}; }
@@ -116,6 +118,7 @@ function defaultContent() {
       {id:'g16',name:'Love Notes',cat:'Nail Art',bg:'#FBF7F2',desc:'Delicate hand-drawn hearts and leaves on blush — sweet and subtle.',d:mk('almond','#F3D9D5','none','#FFFFFF',{art:true},{0:{addons:{}},2:{addons:{}},4:{addons:{}}})}
     ].map(g => Object.assign(g, {visible:true})),
     features:{studio:true, gallery:true, reviews:true},
+    images:{logo:''},
     reviews:{
       mapsUrl:'https://www.google.com/maps/place/Nails+Avenue+Victoria+Cross+Metro/@-33.8374849,151.2075537,15z/data=!4m15!1m8!3m7!1s0x6b12af2b4211f723:0x59a3e8bdef4e2ce9!2sNails+Avenue+Victoria+Cross+Metro!8m2!3d-33.8374849!4d151.207574!10e5!16s%2Fg%2F11y7hwwqbc!3m5!1s0x6b12af2b4211f723:0x59a3e8bdef4e2ce9!8m2!3d-33.8374849!4d151.207574!16s%2Fg%2F11y7hwwqbc!18m1!1e1',
       writeUrl:'', placeQuery:'Nails Avenue Victoria Cross Metro, North Sydney', placeId:'', useGoogle:true,
@@ -136,6 +139,7 @@ function migrate(db) {
   for (const k in e.content) if (db.content[k] == null) db.content[k] = e.content[k];
   for (const k in e.content.shop) if (db.content.shop[k] == null) db.content.shop[k] = e.content.shop[k];
   for (const k in e.content.features) if (db.content.features[k] == null) db.content.features[k] = e.content.features[k];
+  for (const k in e.content.images) if (db.content.images[k] == null) db.content.images[k] = e.content.images[k];
   if (!db.content.reviews.seeded) { // one-time: bring in the Google reviews captured for the shop
     const R = db.content.reviews, d = e.content.reviews;
     if (!R.items || !R.items.length) R.items = d.items;
@@ -296,6 +300,18 @@ function cleanContent(key, v, C) {
       const f = Object.assign({}, C.features);
       ['studio','gallery','reviews'].forEach(k => { if (k in v) f[k] = !!v[k]; });
       return f;
+    }
+    case 'images': {
+      if (!v || typeof v !== 'object') err(400, 'Invalid images.');
+      const im = Object.assign({}, C.images);
+      IMAGE_KEYS.forEach(k => {
+        if (!(k in v)) return;
+        const d = v[k] == null ? '' : String(v[k]);
+        if (d && !/^data:image\/(png|jpeg|webp);base64,[A-Za-z0-9+/=]+$/.test(d)) err(400, 'Images must be PNG, JPG or WEBP.');
+        if (d.length > IMAGE_MAX) err(400, 'Image is too large.');
+        im[k] = d;
+      });
+      return im;
     }
     case 'reviews': {
       const R = Object.assign({}, C.reviews), url = x => { const u = str(x, 2000); if (u && !/^https:\/\//.test(u)) err(400, 'Links must start with https://'); return u; };
@@ -576,7 +592,7 @@ async function route(db, req) {
       ['content','users','bookings','designs','transactions','messages'].forEach(k => { if (x[k] != null) db[k] = clone(x[k]); });
       migrate(db); return {ok:true};
     }
-    if (m === 'POST' && p === '/admin/reset-content') { db.content = defaultContent(); return {content:clone(db.content)}; }
+    if (m === 'POST' && p === '/admin/reset-content') { const im = db.content.images; db.content = defaultContent(); if (im) db.content.images = im; return {content:clone(db.content)}; }
   }
   err(404, 'Not found.');
 }

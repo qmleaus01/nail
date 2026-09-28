@@ -6,6 +6,7 @@
 | `index.html` | Toàn bộ website (Home, Services, Design Studio, Gallery, Booking, My Account, Contact) + trang quản lý `#admin` |
 | `backend.js` | Logic nghiệp vụ dùng chung: tài khoản, đặt lịch, chống trùng lịch, giá, quyền admin |
 | `server.js` | Server Node.js (không cần cài thư viện) — lưu dữ liệu chung cho mọi khách và admin |
+| `assets/logo.png` | Logo mặc định của shop (hiện ở header + footer khi admin chưa upload logo khác) |
 | `package.json` | Để deploy lên Railway / Render |
 | `data/db.json` | Tự tạo khi chạy server — **toàn bộ dữ liệu** (nhớ sao lưu) |
 
@@ -37,11 +38,17 @@ Mở http://localhost:3000 — mọi khách và admin dùng chung dữ liệu. C
 | Gallery | Thêm / sửa / ẩn / xoá / sắp xếp mẫu; thiết kế mẫu bằng chính Design Studio; quản lý danh mục |
 | Services | Thêm / sửa / ẩn / xoá dịch vụ (tên, giá, thời gian, mô tả), quản lý danh mục |
 | Artists | Thêm / sửa thợ: ngày làm, giờ làm, màu, ngừng nhận khách |
-| Shop info | Tên shop, tiêu đề & đoạn giới thiệu trang chủ, About, địa chỉ, bản đồ, SĐT, email, Instagram, Facebook, giờ mở cửa từng ngày, đơn vị tiền, số ngày cho đặt trước, bước giờ, múi giờ |
+| Shop info | **Logo** (xem trước, upload / thay / xoá — PNG, JPG, WEBP), tên shop, tiêu đề & đoạn giới thiệu trang chủ, About, địa chỉ, bản đồ, SĐT, email, Instagram, Facebook, giờ mở cửa từng ngày, đơn vị tiền, số ngày cho đặt trước, bước giờ, múi giờ |
 | Design pricing | Giá nền nail art, giá tạm ảnh custom, giá từng kiểu (French, Ombré…) và từng add-on |
 | Settings | Đổi mật khẩu admin, tải file sao lưu, khôi phục từ file, đưa nội dung về mặc định |
 
 Quy trình đơn: khách gửi → **Pending** → admin **Confirm** → sau buổi hẹn **Completed** + **Paid**. Khách thấy trạng thái trong My Account.
+
+## Logo
+- Thứ tự ưu tiên: logo upload trong Admin › Shop info → file `assets/logo.png` → logo chữ + icon SVG có sẵn.
+- Logo upload được lưu trong `data/db.json` (`content.images.logo`), nằm trong file sao lưu, và giữ nguyên khi bấm “Reset content to defaults”. Bấm **Remove** để quay về logo mặc định.
+- Muốn đổi logo mặc định: thay file `assets/logo.png` (giữ đúng tên).
+- `content.images` được thiết kế để sau này thêm ảnh khác của website (hero, about…): thêm tên vào `IMAGE_KEYS` ở `backend.js` và `SITE_IMGS` ở `index.html`.
 
 ## Google reviews
 Website hiển thị điểm đánh giá + review trên trang Home và Contact, kèm nút “See all reviews” / “Write a review”.
